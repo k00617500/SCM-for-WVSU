@@ -7,7 +7,7 @@ A **smart, transparent, and AI-powered Supply Chain Management System** designed
 
 </div>
 
-WeChain will be utilized by the **WVSU Supply Management Office** to modernize and centralize all supply and demand operations across the university.  It integrates **AI-driven forecasting** to intelligently analyze logistics trends—identifying which colleges have the highest supply requests, consumption rates, and funding allocations—while leveraging **blockchain technology** to ensure transparent, tamper-proof records of all procurement and distribution activities.
+WeChain will be utilized by the **WVSU Supply Management Office** to modernize and centralize all supply and demand operations across the university.  It integrates **AI-driven forecasting** to intelligently analyze logistics trends—identifying which colleges have the highest supply requests, consumption rates, and funding allocations—while leveraging **blockchain technology** to ensure transparent, tamper-proof records of all procurement and distribution activities
 
 The system promotes **accountability, efficiency, and reliability** in managing university resources.  It allows the Supply Management Office to monitor inventory levels, supplier transactions, and fund usage for each college. Through blockchain-backed tracking, the university can verify where supplies go, how they are utilized, and how unused or malfunctioning items are properly disposed of.
 
