@@ -14,6 +14,25 @@ The system promotes **accountability, efficiency, and reliability** in managing 
 Ultimately, WeChain aims to **streamline processes, reduce workload, prevent redundant requests, and automate validation tasks**, enabling WVSU Supply Management to focus on **strategic planning and equitable distribution of resources** across all departments.
 
 ---
+## Table of Contents
+<details>
+<summary>Click to expand</summary>
+
+- [Project Overview](#wechain-an-ai-driven-supply-chain-management-and-logistics-tracker-for-wvsu-using-blockchain-and-trend-analysis)
+- [Developers](#developed-by)
+- [Installation Guide](#installation-guide)
+- [System Features](#system-features)
+- [User Manual](#user-manual--instructions)
+- [System Architecture](#system-architecture)
+- [Data Flow](#data-flow)
+- [Tech Stack](#tech-stack)
+- [GitHub Statistics](#github-statistics)
+- [License](#license)
+
+</details>
+
+---
+
 <div align="center">
   
 ## Developed by
