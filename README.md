@@ -175,13 +175,13 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 
 ## Data Flow
 
-1. User login (Admin / Dept Head / Staff)  
-2. Staff creates procurement request  
-3. Department Head approves or rejects  
-4. AI forecasting module validates demand  
-5. Approved order hashed & stored on blockchain ledger  
-6. Inventory auto-updated on delivery  
-7. Ledger ensures traceable, tamper-evident audit trail  
+1. User interacts via **Frontend**  
+2. Request goes to **PHP Backend** 
+3. Backend logs request & sends to **AI module**  
+4. AI module validates demand -> returns decision 
+5. If approved, backend hashes transaction & stores on blockchain ledger  
+6. **MySQL** updates inventory & logs final status
+7. Analytics Dashboard visualizes usage and blockchain audit history 
 
 ---
 <div align="center">
