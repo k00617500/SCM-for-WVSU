@@ -204,10 +204,18 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 ---
 
 ## License
-This project is developed for **academic and research purposes** under **West Visayas State University**.  
+This project is being developed for **academic and research purposes only** under **West Visayas State University**.  
 Unauthorized reproduction or commercial use is prohibited.
 
 ---
+
+## Academic Context
+WeChain is being developed as a course requirement under **CC 206 – Application Development and Emerging Technologies**.  
+It showcases the integration of **AI, blockchain, and data-driven forecasting** in university-level logistics systems.  
+The project aligns with WVSU’s goal of promoting **digital transformation and sustainable resource management**.
+
+---
+
 
 <img width="6750" height="2323" alt="RespoLink - HCI Final App Development" src="https://github.com/user-attachments/assets/886ce978-d916-4b73-b531-4d3310311419" />
 
