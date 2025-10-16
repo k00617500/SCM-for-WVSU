@@ -76,8 +76,12 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 
 ### 1. Account Setup
 - **Admin Login:** Use credentials provided by the system administrator.  
-- **Department Head / Staff:** Register through the system or request access approval from the admin.  
-- **Password Reset:** Click “Forgot Password?” on the login page to reset via email verification.
+- **Department Head / Staff:**
+      - Click **Register** or request an account from admin.
+      - After approval, you can log in using your credentials.  
+- **Password Reset:**
+      - Click **Forgot Password**
+      - Enter your email -> Check inbox for reset link
 
 ---
 
@@ -91,14 +95,17 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
    - Approve or reject with remarks  
    - Approved requests automatically proceed to AI validation
 3. **AI Validation:**  
-   - The AI module checks item demand and forecasted need  
-   - System alerts if similar requests exist or stock is sufficient
+   - After approval, the system checks:
+       - Is stock still available?
+       - Has a similar request already been placed?
+       - Is the request aligned with forecasted needs?
+  - If there is an issue, you will be notified.
 
 ---
 
 ### 3. Inventory Management
 - View live inventory under *Inventory Dashboard*  
-- Low-stock alerts appear in the **Notifications** tab  
+- If items are almost out of stock, a **Low Stock Alert** will appear  
 - Add or update items via *Inventory > Manage Items*  
 - Incoming deliveries automatically sync to inventory after blockchain logging
 
@@ -107,26 +114,26 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 ### 4. Blockchain Ledger Tracking
 - Each approved transaction is hashed and recorded  
 - Access ledger via *Reports > Blockchain Log*  
-- Check authenticity and timestamps for audit purposes  
-- Ledger entries cannot be altered or deleted
+- You can see **time, status, and proof of transaction**  
+- These records **cannot be changed or deleted**
 
 ---
 
 ### 5. Analytics & Forecasting
 - Go to *Analytics Dashboard*  
 - View charts for:
-  - Procurement trends  
-  - Departmental consumption  
-  - Supplier reliability scores  
-- Use filters (e.g., Month, Department, Category) to refine data  
-- Export analytics reports as CSV or PDF for documentation
+  - Most requested items  
+  - Which department uses supplies the most  
+  - Vendor performance and reliability 
+- Use filters (Example: Month, Department, Category) to refine data  
+- Click **Export** to save as **CSV or PDF**
 
 ---
 
 ### 6. Vendor Management
 - Access under *Vendors > List / Add Vendor*  
 - Record supplier contact info, ratings, and past transactions  
-- AI-based suggestions highlight top-performing vendors  
+- The system will **suggest the best suppliers** based on history and ratings
 - Use blockchain logs to verify supplier fulfillment history
 
 ---
@@ -150,8 +157,8 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 
 ### 9. Feedback & Contributions
 - Report bugs via the **Issues** tab on GitHub  
-- Pull requests are welcome for minor improvements or documentation  
-- For deployment concerns, contact the developers via email listed above
+- You may **submit improvements or suggestions** via Pull Request  
+- Need help with setup? Contact the **developer email** listed in the About section
 
 ---
 
