@@ -15,8 +15,7 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 
 ---
 ## Table of Contents
-<details>
-<summary>Click to expand</summary>
+
 
 - [Project Overview](#wechain-an-ai-driven-supply-chain-management-and-logistics-tracker-for-wvsu-using-blockchain-and-trend-analysis)
 - [Developers](#developed-by)
@@ -29,7 +28,7 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 - [GitHub Statistics](#github-statistics)
 - [License](#license)
 
-</details>
+
 
 ---
 
