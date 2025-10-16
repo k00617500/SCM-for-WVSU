@@ -210,8 +210,11 @@ Unauthorized reproduction or commercial use is prohibited.
 ---
 
 ## Academic Context
+
 WeChain is being developed as a course requirement under **CC 206 – Application Development and Emerging Technologies**.  
+
 It showcases the integration of **AI, blockchain, and data-driven forecasting** in university-level logistics systems.  
+
 The project aligns with WVSU’s goal of promoting **digital transformation and sustainable resource management**.
 
 ---
