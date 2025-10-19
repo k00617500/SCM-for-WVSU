@@ -13,7 +13,7 @@ body {
  
 }
 
-.loG{
+.Log{
   text-align: center;
   margin-top: 10%;
 }
@@ -28,7 +28,7 @@ body {
 
 .btn {
   text-decoration: none;
-  background: #00796b;
+  background: #f97796;
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
@@ -37,7 +37,7 @@ body {
 }
 
 .btn:hover {
-  background: #004d40;
+  background: #f97796;
 }
 
 .btn-outline {
