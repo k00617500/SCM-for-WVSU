@@ -1,6 +1,6 @@
 <div align="center">
-<img width="60<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/4d14b56b-b79d-4360-98cd-1cc6d7e7ac63" />
-00" height="1468" alt="TECHNO STARTUP (1)" src="https://github.com/user-attachments/assets/c8c05027-ed10-418e-a790-5cc735d5af12" />
+<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/de6ed1d6-5c78-4ebd-8895-c006e88bbcac" />
+
 
 # WeChain: An AI-driven Supply Chain Management and Logistics Tracker for WVSU using Blockchain and Trend Analysis
 
@@ -43,7 +43,9 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 | **Meryll Klaryze Polaron** | UI/UX Designer / Frontend Developer / Project Lead | [polaron.mk@gmail.com](mailto:meryllklaryze.polaron@wvsu.edu.ph) |
 | **Jester Galfo** | Backend Developer / AI Integration & Database Architect | [jester.galfo@wvsu.edu.ph](mailto:jester.galfo@wvsu.edu.ph) |
 | **Zalve Mae Magsael** | Backend Developer / Blockchain Integrator | [zalvemae.magsael@wvsu.edu.ph](mailto:zalvemae.magsael@wvsu.edu.ph) |
-<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/1915c0d6-c5fb-406c-8249-298f5b8eb847" />
+
+<img width="1920" height="1080" alt="14" src="https://github.com/user-attachments/assets/d9f61a95-f5f5-4c32-8281-bda0200abff4" />
+
 </div>
 
 **Course:** CC 206 – Application Development and Emerging Technologies  
@@ -59,7 +61,8 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
    git clone https://github.com/k00617500/SCM-for-WVSU.git
    cd SCM-for-WVSU
 
-<img width="1920" height="1080" alt="10" src="https://github.com/user-attachments/assets/63df5f37-a361-4a2c-b6a0-ab657cbc6726" />
+<img width="1920" height="1080" alt="10" src="https://github.com/user-attachments/assets/de589c00-37c8-4d33-8a28-5f84db647987" />
+
 
 ---
 
@@ -72,6 +75,7 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 - **Analytics Dashboard:** Visual reports for smarter decision-making.
 
 ---
+<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/0009e279-02a7-44e3-b849-b9f8d9713ff3" />
 
 ## User Manual & Instructions
 
