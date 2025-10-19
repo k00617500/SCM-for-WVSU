@@ -1,5 +1,6 @@
 <div align="center">
-<img width="6000" height="1468" alt="TECHNO STARTUP (1)" src="https://github.com/user-attachments/assets/c8c05027-ed10-418e-a790-5cc735d5af12" />
+<img width="60<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/4d14b56b-b79d-4360-98cd-1cc6d7e7ac63" />
+00" height="1468" alt="TECHNO STARTUP (1)" src="https://github.com/user-attachments/assets/c8c05027-ed10-418e-a790-5cc735d5af12" />
 
 # WeChain: An AI-driven Supply Chain Management and Logistics Tracker for WVSU using Blockchain and Trend Analysis
 
