@@ -41,9 +41,13 @@ body {
 }
 
 .btn-outline {
+  text-decoration: none;
   background: #f97796;
-  color: #f97796;
-  border: 2px solid #f97796;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 0 10px;
+  transition: background 0.3s;
 ;
 }
 
