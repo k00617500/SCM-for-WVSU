@@ -107,8 +107,8 @@ body {
 .footer-btn {
   margin-top: 10px;
   padding: 8px 16px;
-  background-color: #000;
-  color: #fff;
+  background-color: #f97796;
+  color: #000;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -116,7 +116,7 @@ body {
 }
 
 .footer-btn:hover {
-  background-color: #333;
+  background-color: #f97796;
 }
 
 .footer-bottom {
@@ -127,7 +127,7 @@ body {
   padding-top: 20px;
   margin-top: 20px;
   font-size: 0.85rem;
-  color: #666;
+  color: #f97796;
 }
 
 .footer-links a {
