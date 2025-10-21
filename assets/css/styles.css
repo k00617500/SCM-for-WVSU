@@ -1,11 +1,14 @@
-/* WeChain Landing — Dark Theme
-   Font: Helvetica
-   Accent: #FF0B55
-*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap");
 
+/*index*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
 
-/* Reset & base */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
@@ -17,16 +20,26 @@ body{
   line-height:1.5;
 }
 
-/* helper container */
 .container{
   max-width:1150px;
   margin:0 auto;
   padding:28px;
 }
 
+.logo-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+
+
+
 /* navbar */
 .navbar{
   position:sticky;
+  margin-top: 0px;
   top:0;
   z-index:40;
   display:flex;
@@ -62,8 +75,10 @@ body{
 }
 
 /* hero */
+
 .hero{
   padding:72px 0;
+  background: url("assets/img/wechain.png") center/cover no-repeat;
   min-height:560px;
   display:flex;
   align-items:center;
@@ -253,7 +268,7 @@ body{
   gap:24px; 
   align-items:start; 
   margin-top:16px; }
-  
+
 .video-wrap{ 
   background: #000; 
   border-radius:8px; 
