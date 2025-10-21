@@ -1,5 +1,6 @@
 <div align="center">
-<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/de6ed1d6-5c78-4ebd-8895-c006e88bbcac" />
+<img width="7813" height="3375" alt="wechain" src="https://github.com/user-attachments/assets/3c81d73c-fcec-4291-8f94-52294fb0be3c" />
+
 
 
 # WeChain: An AI-driven Supply Chain Management and Logistics Tracker for WVSU using Blockchain and Trend Analysis
