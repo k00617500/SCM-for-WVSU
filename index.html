@@ -172,9 +172,10 @@
       <div class="demo-grid">
         <div class="demo-video">
           <div class="video-wrap">
+            
             <!-- Video -->
             <video controls playsinline poster="assets/img/video-poster.jpg" class="responsive-video">
-              <source src="assets/video/demo.mp4" type="video/mp4" />
+              <source src="assets\vid\demo.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -219,50 +220,55 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-      <div class="footer-container">
-          <div class="footer-company">
-              <h2>WECHAIN</h2>
-              <p>Empowering universities and organizations with secure digital ecosystems.</p>
-          </div>
+<footer class="footer" id="footer">
+  <div class="footer-container">
+    <div class="footer-company">
+      <h2>WECHAIN</h2>
+      <p>Empowering universities and organizations with secure digital ecosystems.</p>
+    </div>
 
-          <div class="footer-columns">
-              <div class="footer-col">
-                  <h4>NAVIGATION</h4>
-                  <ul>
-                      <li><a href="#">Home</a></li>
-                      <li><a href="login.html">Login</a></li>
-                      <li><a href="register.html">Register</a></li>
-                  </ul>
-              </div>
-              
-              <div class="footer-col">
-                  <h4>COMPANY</h4>
-                  <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Team</a></li>
-                  </ul>
-                  <button class="footer-btn">Contact Us</button>
-              </div>
-
-              <div class="footer-col">
-                  <h4>SUPPORT</h4>
-                  <ul>
-                      <li><a href="#">Documentation</a></li>
-                  </ul>
-                  <button class="footer-btn">Request Support</button>
-              </div>
-          </div>
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h4>NAVIGATION</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
       </div>
 
-      <div class="footer-bottom">
-          <p>© 2025 WECHAIN. All rights reserved.</p>
-          <div class="footer-links">
-              <a href="#">Terms Of Services</a>
-              <a href="#">Privacy Policy</a>
-          </div>
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Team</a></li>
+        </ul>
+        <button class="footer-btn" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'});">
+          Contact Us
+        </button>
       </div>
-  </footer>
+
+      <div class="footer-col">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="#docs">Documentation</a></li>
+        </ul>
+        <button class="footer-btn" onclick="document.querySelector('#support').scrollIntoView({behavior: 'smooth'});">
+          Request Support
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 WECHAIN. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#terms">Terms Of Service</a>
+      <a href="#privacy">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
 
   <!-- JS -->
   <script>
