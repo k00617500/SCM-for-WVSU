@@ -269,13 +269,6 @@ body.light-mode .theme-toggle:hover {
   box-shadow: 0 6px 20px rgba(0,0,0,0.6); 
 }
 
-.logo{ 
-  color:#FF0B55; 
-  font-weight:800; 
-  letter-spacing:1px; 
-  font-size:1.2rem; 
-}
-
 .nav-links a{
   color: #d7e6ee; 
   text-decoration:none; 
@@ -287,6 +280,11 @@ body.light-mode .theme-toggle:hover {
   color:#FF0B55; 
 }
 
+.btn-primary a:hover{
+    transition: padding 0.2s ease, box-shadow 0.2s ease;
+    color: #000;
+}
+
 /* hero */
 
 .hero{
@@ -296,6 +294,7 @@ body.light-mode .theme-toggle:hover {
   display:flex;
   align-items:center;
 }
+
 .hero-inner{ 
   display:grid; 
   grid-template-columns: 

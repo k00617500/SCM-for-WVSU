@@ -71,6 +71,30 @@ body {
     color: #c40000; 
 }
 
+
+.login-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('assets/img/supply.jpg') no-repeat center center / cover;
+    border-radius: 0 23px 23px 0;
+    transition: background-image 1s ease-in-out;
+    z-index: 1;
+  }
+  
+  .login-img .side-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+
 .login-container h3 {
   text-align: center;
   margin-bottom: 25px;
