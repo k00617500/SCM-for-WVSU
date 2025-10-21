@@ -25,9 +25,7 @@ body{
   line-height:1.5;
 }
 
-/* ===========================
-   THEME TOGGLE
-=========================== */
+/* theme changer*/
 .theme-toggle {
   background: none;
   border: 2px solid rgba(255,255,255,0.2);
@@ -45,15 +43,13 @@ body{
   transform: rotate(15deg);
 }
 
-/* ===========================
-   LIGHT MODE
-=========================== */
+/* light mode theme */
 body.light-mode {
   background: linear-gradient(180deg, #ffffff 0%, #f3f6f9 100%);
   color: #1a1a1a;
 }
 
-/* Navbar */
+/* navbar */
 body.light-mode .navbar {
   background: rgba(255,255,255,0.9);
   color: #111;
@@ -82,7 +78,7 @@ body.light-mode .hero-stats li {
   color: #222;
 }
 
-/* Buttons */
+/* buttons */
 body.light-mode .btn.primary {
   background: #FF0B55;
   color: #fff;
@@ -94,7 +90,7 @@ body.light-mode .btn.outline {
   background: transparent;
 }
 
-/* Panels and Cards */
+/* cards*/
 body.light-mode .panel,
 body.light-mode .why-card,
 body.light-mode .card {
@@ -107,7 +103,7 @@ body.light-mode .why-card h4 {
   color: #FF0B55;
 }
 
-/* Sections */
+/* sections */
 body.light-mode .section {
   background: linear-gradient(180deg, #f9fbfc, #e9eff3);
 }
@@ -121,7 +117,7 @@ body.light-mode .section .muted {
   color: rgba(0,0,0,0.6);
 }
 
-/* Two-column and Lists */
+/* column */
 body.light-mode .two-col ul {
   color: #333;
 }
@@ -132,13 +128,13 @@ body.light-mode .why-card {
   border-left: 4px solid rgba(255,11,85,0.2);
 }
 
-/* Info Grid */
+/* info */
 body.light-mode .card.dark-card {
   background: rgba(255,255,255,0.95);
   border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Roles Table */
+/* roles */
 body.light-mode .roles-table {
   color: #222;
 }
@@ -150,16 +146,24 @@ body.light-mode .roles-table td {
   border-top: 1px dashed rgba(0,0,0,0.08);
 }
 
-/* Video Container */
+/* video */
 body.light-mode .video-wrap {
   background: #fafafa;
   border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Map */
+/* map */
 body.light-mode .map-wrap {
-  border: 1px solid rgba(0,0,0,0.08);
+  background: #e6edf3;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
+body.light-mode .map-wrap iframe {
+  filter: brightness(0.9) contrast(1.05);
+}
+
+
 
 /* contact light mode */
 body.light-mode .contact-cta h2 {
