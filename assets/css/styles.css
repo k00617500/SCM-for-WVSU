@@ -1,12 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&display=swap');
 
-/*index*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-  box-sizing: border-box;
+  font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 html {
@@ -548,3 +546,6 @@ body.light-mode .theme-toggle:hover {
 
 /* adjustment*/
 .big{ font-size:22px; font-weight:800; color:#fff; }
+
+
+
