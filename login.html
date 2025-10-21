@@ -3,202 +3,182 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WeChain | Secure Login</title>
-  <link rel="stylesheet" href="assets\css\login-styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>WeChain User Login</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/login-styles.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="login-bg">
+
   <div class="login-box" id="loginBox">
+
     <div class="login-container">
+
       <div class="brand">
-        <img src="assets\img\logo-black.png" alt="WeChain Logo" class="brand-mark">
+        <img src="assets/img/logo-black.png" alt="WeChain Logo" class="brand-mark">
       </div>
 
-      <h3 id="loginTitle">Login</h3>
-      <select name="role" id="roleSelect">
-        <option value="Staff">Staff</option>
-        <option value="DepartmentHead">Department Head</option>
-        <option value="Admin">Admin</option>
-      </select>
+      <!-- Login Form -->
+      <form id="uform" action="wechain_users.php" method="GET">
+        <h3>Login</h3>
 
-      <!-- Staff / Department Head Login -->
-      <form id="uform" action="actions/user_login.php" method="POST">
-        <label for="uid"><strong>Email or ID</strong></label>
-        <input type="text" id="uid" name="uid" placeholder="Enter your Email or ID" required>
+        <select name="role" id="roleSelect">
+          <option value="Admin">Admin</option>
+          <option value="DeptHead">Dept. Head</option>
+          <option value="Staff">Staff</option>
+        </select>
 
-        <label for="upassword"><strong>Password</strong></label>
+        <label for="facultyId"><strong>Faculty ID</strong></label>
+        <input type="text" id="facultyId" name="facultyId" placeholder="Enter your Faculty ID" required>
+
+        <label for="userPassword"><strong>Password</strong></label>
         <div class="password-container">
-          <input type="password" id="upassword" name="pw" placeholder="Enter your password" required>
-          <img src="assets/svg/eye-password-hide-svgrepo-com.svg" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility('upassword')">
+          <input type="password" id="userPassword" name="pw" placeholder="Enter your password" required>
+          <img src="assets/svg/eye-password-hide-svgrepo-com.svg" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility('userPassword')">
         </div>
 
-        <button type="submit" id="userLoginBtn">Login</button>
+        <button type="submit" id="userLoginBtn">Enter</button>
+
+        <p class="form-switch-text">No account yet? <a href="#" id="showRegister">Register here</a></p>
         <p class="error-message" id="u-error-message"></p>
-        <p class="form-switch-text">No account yet? <a href="#" id="showRegister">Register</a></p>
       </form>
 
-      <!-- Registration (for new staff users) -->
+      <!-- Registration Form -->
       <form id="regform" action="actions/register_user.php" method="POST" class="hidden">
-        <h3>WeChain Registration</h3>
-        <label for="fname"><strong>First Name</strong></label>
-        <input type="text" id="fname" name="fname" placeholder="Enter your First Name" required>
-
-        <label for="lname"><strong>Last Name</strong></label>
-        <input type="text" id="lname" name="lname" placeholder="Enter your Last Name" required>
-
-        <label for="dept"><strong>Department</strong></label>
-        <input type="text" id="dept" name="dept" placeholder="Enter your Department" required>
-
-        <label for="email"><strong>Email Address</strong></label>
-        <input type="email" id="email" name="email" placeholder="Enter your Email" required>
-
-        <label for="phone"><strong>Phone Number</strong></label>
-        <input type="text" id="phone" name="phone" placeholder="Enter your Phone Number" required>
-
+        <h3>Register Your Account</h3>
+      
+        <div class="name-row">
+            <div class="name-field">
+              <label for="fname"><strong>First Name</strong></label>
+              <input type="text" id="fname" name="fname" placeholder="Enter your First Name" required>
+            </div>
+            <div class="name-field">
+              <label for="lname"><strong>Last Name</strong></label>
+              <input type="text" id="lname" name="lname" placeholder="Enter your Last Name" required>
+            </div>
+          </div>
+          
+        <label for="email"><strong>School Email</strong></label>
+        <input type="email" id="email" name="email" placeholder="Enter your school email" required>
+          
+      
+        <label for="facultyIdReg"><strong>Faculty ID</strong></label>
+        <input type="text" id="facultyIdReg" name="facultyId" placeholder="Enter your Faculty ID" required>
+      
         <label for="reg_password"><strong>Password</strong></label>
         <div class="password-container">
           <input type="password" id="reg_password" name="pw" placeholder="Enter your password" required>
           <img src="assets/svg/eye-password-hide-svgrepo-com.svg" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility('reg_password')">
         </div>
-
+      
         <label for="confirm_password"><strong>Confirm Password</strong></label>
         <div class="password-container">
           <input type="password" id="confirm_password" name="pw_confirm" placeholder="Confirm your password" required>
           <img src="assets/svg/eye-password-hide-svgrepo-com.svg" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility('confirm_password')">
         </div>
-
+      
         <button type="submit">Register</button>
-        <p class="error-message" id="register-error-message"></p>
+      
         <p class="form-switch-text">Already have an account? <a href="#" id="showLogin">Login</a></p>
-      </form>
-
-      <!-- Admin Login -->
-      <form id="adminform" action="actions/admin_login.php" method="POST" class="hidden">
-        <label for="aid"><strong>Admin ID</strong></label>
-        <input type="text" id="aid" name="aid" placeholder="Enter your Admin ID" required>
-
-        <label for="apassword"><strong>Password</strong></label>
-        <div class="password-container">
-          <input type="password" id="apassword" name="pw" placeholder="Enter your password" required>
-          <img src="assets/svg/eye-password-hide-svgrepo-com.svg" alt="Toggle Password Visibility" class="toggle-password" onclick="togglePasswordVisibility('apassword')">
-        </div>
-
-        <button type="submit">Login</button>
-        <p class="error-message" id="a-error-message"></p>
+        <p class="error-message" id="register-error-message"></p>
       </form>
 
       <p class="footer-text" id="footerText">
-        By logging in, you agree to WeChain’s <a href="#" id="showPrivacyModal">Terms of Service and Privacy Policy.</a>
+        By logging in, you agree to WeChain's <a href="#" id="showPrivacyModal">Terms of Service and Privacy Policy.</a>
       </p>
     </div>
 
     <div class="login-img"></div>
   </div>
 
-  <!-- Terms of Service and Privacy Modal -->
-  <div id="privacyModal" class="modal-overlay hidden">
+  <!-- Privacy Modal -->
+<div id="privacyModal" class="modal-overlay hidden">
     <div class="modal-content">
-      <span class="modal-close" id="closePrivacyModal">&times;</span>
-      <h2>Terms of Service and Privacy Policy</h2>
-      <div class="modal-body">
-        <p><strong>1. Introduction</strong></p>
-        <p>Welcome to WeChain. By accessing or using our platform, you agree to comply with these Terms of Service and our Privacy Policy. Please review them carefully before using our system.</p>
+        <span class="modal-close" id="closePrivacyModal">&times;</span>
+        <h2>Terms of Service and Privacy Policy</h2>
+        <div class="modal-body">
+            <p><strong>1. Introduction</strong></p>
+            <p>Welcome to WeChain. By using our services, you agree to these terms. Please read them carefully.</p>
+            
+            <p><strong>2. Use of Service</strong></p>
+            <p>You agree to use WeChain only for lawful purposes and in a way that does not infringe the rights of, restrict or inhibit anyone else's use and enjoyment of the system. Prohibited behavior includes harassing or causing distress to any other user, transmitting offensive content, or disrupting the normal flow of dialogue within our system.</p>
 
-        <p><strong>2. Use of Service</strong></p>
-        <p>You agree to use WeChain responsibly and in accordance with all applicable laws. Any misuse of the platform — including fraudulent procurement transactions, unauthorized data access, or actions that disrupt fair market practices — is strictly prohibited.</p>
+            <p><strong>3. Privacy Policy</strong></p>
+            <p>We are committed to protecting your privacy. We collect information such as your name, school email, and Faculty ID to provide and improve our services. This data is used for user authentication, communication, and analytics to support WeChain's operational and educational purposes.</p>
+            
+            <p><strong>4. Data Security</strong></p>
+            <p>We implement a variety of security measures to maintain the safety of your personal information. Your data is stored securely and is only accessible by authorized personnel who are required to keep the information confidential.</p>
 
-        <p><strong>3. Privacy Policy</strong></p>
-        <p>We value your privacy and transparency. WeChain collects essential information such as your name, contact details, department, and transaction records to facilitate secure procurement processes, supplier verification, and analytics to enhance supply chain efficiency.</p>
+            <p><strong>5. User-Generated Content</strong></p>
+            <p>If you provide feedback or other content, you grant us a non-exclusive, royalty-free, perpetual, and irrevocable right to use, reproduce, modify, and display such content in connection with the service.</p>
 
-        <p><strong>4. Data Security</strong></p>
-        <p>All user data and transaction records are encrypted and stored securely within our blockchain-integrated system. Access to sensitive information is restricted to authorized personnel only, ensuring data integrity and confidentiality at all times.</p>
-
-        <p><strong>5. User-Generated Content</strong></p>
-        <p>By submitting supplier information, feedback, or other data through WeChain, you grant us a non-exclusive, royalty-free, and perpetual license to process and display this information solely for operational and analytical purposes within the platform.</p>
-
-        <p><strong>6. Changes to Terms</strong></p>
-        <p>WeChain reserves the right to update these Terms and the Privacy Policy as needed. Continued use of the platform after any changes indicates your acceptance of the updated terms.</p>
-      </div>
+            <p><strong>6. Changes to Terms</strong></p>
+            <p>We reserve the right to make changes to these terms at any time. Your continued use of the service will signify your acceptance of any adjustments to these terms.</p>
+        </div>
     </div>
-  </div>
+</div>
 
-  <!-- Scripts -->
+  <!-- JS -->
   <script>
-    const roleSelect = document.getElementById("roleSelect");
-    const uform = document.getElementById("uform");
-    const adminform = document.getElementById("adminform");
-    const regform = document.getElementById("regform");
+    const loginBox = document.getElementById('loginBox');
+    const uform = document.getElementById('uform');
+    const regform = document.getElementById('regform');
     const showRegisterLink = document.getElementById('showRegister');
     const showLoginLink = document.getElementById('showLogin');
-    const loginTitle = document.getElementById('loginTitle');
-    const footerText = document.getElementById('footerText');
-    const privacyModal = document.getElementById('privacyModal');
-    const showPrivacyLink = document.getElementById('showPrivacyModal');
-    const closePrivacyBtn = document.getElementById('closePrivacyModal');
+    const body = document.body;
 
-    // Role switching
-    roleSelect.addEventListener("change", function () {
-      if (this.value === "Admin") {
-        adminform.classList.remove("hidden");
-        uform.classList.add("hidden");
-        regform.classList.add("hidden");
-      } else {
-        adminform.classList.add("hidden");
-        uform.classList.remove("hidden");
-        regform.classList.add("hidden");
-      }
+    // Slide to Registration
+    showRegisterLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginBox.classList.add('switched');
+      uform.classList.add('hidden');
+      regform.classList.remove('hidden');
+      body.style.backgroundImage = "url('assets/img/office.jpg')";
     });
 
-    // Switch to registration
-    if (showRegisterLink) {
-      showRegisterLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        uform.classList.add('hidden');
-        regform.classList.remove('hidden');
-        loginTitle.classList.add('hidden');
-        footerText.classList.add('hidden');
-      });
-    }
-
-    // Switch back to login
-    if (showLoginLink) {
-      showLoginLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        regform.classList.add('hidden');
-        uform.classList.remove('hidden');
-        loginTitle.classList.remove('hidden');
-        footerText.classList.remove('hidden');
-      });
-    }
-
-    // Privacy Modal Logic
-    if (showPrivacyLink && privacyModal) {
-      showPrivacyLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        privacyModal.classList.remove('hidden');
-      });
-    }
-
-    if (closePrivacyBtn && privacyModal) {
-      closePrivacyBtn.addEventListener('click', () => {
-        privacyModal.classList.add('hidden');
-      });
-    }
-
-    if (privacyModal) {
-      privacyModal.addEventListener('click', (e) => {
-        if (e.target === privacyModal) {
-          privacyModal.classList.add('hidden');
-        }
-      });
-    }
+    // Slide to Login
+    showLoginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginBox.classList.remove('switched');
+      regform.classList.add('hidden');
+      uform.classList.remove('hidden');
+      body.style.backgroundImage = "url('assets/img/supply.jpg')";
+    });
 
     function togglePasswordVisibility(inputId) {
       const input = document.getElementById(inputId);
       input.type = input.type === "password" ? "text" : "password";
     }
+
+     // Privacy Modal Logic
+     const privacyModal = document.getElementById('privacyModal');
+     const showPrivacyLink = document.getElementById('showPrivacyModal');
+     const closePrivacyBtn = document.getElementById('closePrivacyModal');
+ 
+     if (showPrivacyLink && privacyModal) {
+         showPrivacyLink.addEventListener('click', (e) => {
+             e.preventDefault();
+             privacyModal.classList.remove('hidden');
+         });
+     }
+ 
+     if (closePrivacyBtn && privacyModal) {
+         closePrivacyBtn.addEventListener('click', () => {
+             privacyModal.classList.add('hidden');
+         });
+     }
+ 
+     if (privacyModal) {
+         privacyModal.addEventListener('click', (e) => {
+             if (e.target === privacyModal) {
+                 privacyModal.classList.add('hidden');
+             }
+         });
+     }
   </script>
 </body>
-
 </html>

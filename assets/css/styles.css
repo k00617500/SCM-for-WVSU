@@ -455,11 +455,21 @@ body.light-mode .theme-toggle:hover {
   border:1px solid rgba(0, 0, 0, 0.03); 
 }
 
+.workflow-list {
+  list-style: decimal;
+  padding-left: 2rem; 
+}
+
+.workflow-list li {
+  margin-bottom: 0.5rem;
+}
+
 /* roles table */
 .roles-table{ 
   width:100%; 
   border-collapse:collapse; 
-  margin-top:10px; color:#dfefff; 
+  margin-top:0; 
+  color:#dfefff; 
 }
 
 .roles-table th{ 
@@ -471,8 +481,14 @@ body.light-mode .theme-toggle:hover {
 .roles-table td{ 
   padding:8px; 
   border-top:1px dashed rgba(0, 0, 0, 0.03); 
-  font-size:14px; color:#dbeaf5; 
+  font-size:14px; 
+  color:#dbeaf5; 
 }
+
+.card.dark-card.mt {
+  margin-top:0;
+}
+
 
 /* demo grid */
 .demo-grid{ 
