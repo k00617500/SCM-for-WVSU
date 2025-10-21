@@ -21,7 +21,11 @@
       <a href="#demo">Demo</a>
       <a href="#contact">Contact</a>
     </nav>
+  
+    <!-- Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
   </header>
+  
 
   <!-- Hero -->
   <section id="hero" class="hero">
@@ -299,6 +303,24 @@
       else navbar.classList.remove('scrolled');
       lastScroll = sc;
     });
+    
+      const toggleBtn = document.getElementById('theme-toggle');
+      const currentTheme = localStorage.getItem('theme');
+
+      if (currentTheme === 'light') {
+        document.body.classList.add('light-mode');
+        toggleBtn.textContent = '☀️';
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        toggleBtn.textContent = isLight ? '☀️' : '🌙';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+
+
+
   </script>
 
 </body>
