@@ -57,7 +57,20 @@ body {
     flex: 1;
   }
 
-  
+  .back-arrow {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.back-arrow:hover {
+    color: #c40000; 
+}
+
 .login-container h3 {
   text-align: center;
   margin-bottom: 25px;
