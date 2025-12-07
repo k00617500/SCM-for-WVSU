@@ -36,9 +36,9 @@ Ultimately, LitLatté aims to **streamline tasks, reduce manual workload, elevat
 
 | Name | Role | Email |
 |------|------|--------|
-| **Meryll Klaryze Polaron** | UI/UX Designer / Frontend Developer / Project Lead | meryllklaryze.polaron@wvsu.edu.ph (mailto:meryllklaryze.polaron@wvsu.edu.ph) | 
-| **Jester Galfo** | Backend Developer / Database Architect | jester.galfo@wvsu.edu.ph  (mailto:jester.galfo@wvsu.edu.ph )|
-| **Zalve Mae Magsael** | Backend Developer / Database Architect | zalvemae.magsael@wvsu.edu.ph (mailto:zalvemae.magsael@wvsu.edu.ph) |
+| **Meryll Klaryze Polaron** | UI/UX Designer / Frontend Developer / Project Lead | meryllklaryze.polaron@wvsu.edu.ph (mail to:meryllklaryze.polaron@wvsu.edu.ph) | 
+| **Jester Galfo** | Backend Developer / Database Architect | jester.galfo@wvsu.edu.ph  (mail to:jester.galfo@wvsu.edu.ph )|
+| **Zalve Mae Magsael** | Backend Developer / Database Architect | zalvemae.magsael@wvsu.edu.ph (mail to:zalvemae.magsael@wvsu.edu.ph) |
 
 <img width="1920" height="1080" alt="developers" src="https://github.com/user-attachments/assets/e71332f1-360c-4bec-b4d6-42c858023409" />
 
