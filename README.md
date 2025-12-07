@@ -3,7 +3,7 @@
 
 
 
-# WeChain: An AI-driven Supply Chain Management and Logistics Tracker for WVSU using Blockchain and Trend Analysis
+# LitLatté Suite for BookLatté Iloilo
 
 A **smart, transparent, and AI-powered Supply Chain Management System** designed for **West Visayas State University (WVSU)**.
 
