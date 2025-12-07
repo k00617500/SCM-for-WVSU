@@ -1,25 +1,23 @@
 <div align="center">
-<img width="7813" height="3375" alt="wechain" src=""C:\Users\MERYLL KLARYZE\Downloads\LitLatte.png"" />
+<img width="2500" height="1374" alt="LitLatte" src="https://github.com/user-attachments/assets/78b3c634-7d69-4d0c-8337-34eff6d81324" />
 
-
-
-# LitLatté Suite for BookLatté Iloilo
-
-A **smart, transparent, and AI-powered Supply Chain Management System** designed for **West Visayas State University (WVSU)**.
+# LitLatté POS Suite for BookLatté Iloilo
+A **smart, seamless, and AI-powered Point-of-Sale & Café Suite System designed specifically for BookLatté Iloilo.**
 
 </div>
 
-WeChain will be utilized by the **WVSU Supply Management Office** to modernize and centralize all supply and demand operations across the university.  It integrates **AI-driven forecasting** to intelligently analyze logistics trends—identifying which colleges have the highest supply requests, consumption rates, and funding allocations—while leveraging **blockchain technology** to ensure transparent, tamper-proof records of all procurement and distribution activities.
+LitLatté Suite is a **centralized POS and café management system** built to modernize ordering, inventory tracking, sales analytics, and customer engagement for BookLatté Iloilo.  
+It integrates **demand forecasting, real-time stock monitoring, and operational insights** to help baristas, cashiers, and managers accelerate workflow and improve customer service.
 
-The system promotes **accountability, efficiency, and reliability** in managing university resources.  It allows the Supply Management Office to monitor inventory levels, supplier transactions, and fund usage for each college. Through blockchain-backed tracking, the university can verify where supplies go, how they are utilized, and how unused or malfunctioning items are properly disposed of.
+The system ensures **accuracy, speed, and reliability** across all café processes—from ordering to payment handling, inventory deduction, staff activity logs, and menu performance tracking.  
+With automated syncing and real-time analytics, BookLatté can reduce waste, anticipate peak hours, identify best-selling items, and optimize overall café operations.
 
-Ultimately, WeChain aims to **streamline processes, reduce workload, prevent redundant requests, and automate validation tasks**, enabling WVSU Supply Management to focus on **strategic planning and equitable distribution of resources** across all departments.
+Ultimately, LitLatté aims to **streamline tasks, reduce manual workload, elevate customer experience, and provide actionable business insights.**
 
 ---
+
 ## Table of Contents
-
-
-- [Project Overview](#wechain-an-ai-driven-supply-chain-management-and-logistics-tracker-for-wvsu-using-blockchain-and-trend-analysis)
+- [Project Overview](#litlatté-pos-suite-for-booklatté-iloilo)
 - [Developers](#developed-by)
 - [Installation Guide](#installation-guide)
 - [System Features](#system-features)
@@ -30,42 +28,38 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 - [GitHub Statistics](#github-statistics)
 - [License](#license)
 
-
-
 ---
 
 <div align="center">
-  
-## Developed by
 
+## Developed by
 
 | Name | Role | Email |
 |------|------|--------|
-| **Meryll Klaryze Polaron** | UI/UX Designer / Frontend Developer / Project Lead | [polaron.mk@gmail.com](mailto:meryllklaryze.polaron@wvsu.edu.ph) |
-| **Jester Galfo** | Backend Developer / AI Integration & Database Architect | [jester.galfo@wvsu.edu.ph](mailto:jester.galfo@wvsu.edu.ph) |
-| **Zalve Mae Magsael** | Backend Developer / Blockchain Integrator | [zalvemae.magsael@wvsu.edu.ph](mailto:zalvemae.magsael@wvsu.edu.ph) |
+| **Meryll Klaryze Polaron** | UI/UX Designer / Frontend Developer / Project Lead | meryllklaryze.polaron@wvsu.edu.ph (mailto:meryllklaryze.polaron@wvsu.edu.ph) | 
+| **Jester Galfo** | Backend Developer / Database Architect | jester.galfo@wvsu.edu.ph  (mailto:jester.galfo@wvsu.edu.ph )|
+| **Zalve Mae Magsael** | Backend Developer / Database Architect | zalvemae.magsael@wvsu.edu.ph (mailto:zalvemae.magsael@wvsu.edu.ph) |
 
-<img width="1920" height="1080" alt="14" src="https://github.com/user-attachments/assets/d9f61a95-f5f5-4c32-8281-bda0200abff4" />
+<img width="1920" height="1080" alt="developers" src="https://github.com/user-attachments/assets/e71332f1-360c-4bec-b4d6-42c858023409" />
 
 </div>
 
-**Course:** CC 206 – Application Development and Emerging Technologies  
-**Institution:** West Visayas State University - Main Campus
-**Course/Year/Section:** Bachelor of Science in Information Systems 3B
+---
+
+## Installation Guide 
+
+1. Clone the repository:
+bash
+   git clone https://github.com/k00617500/LitLatté-POS-Suite.git
+   cd LitLatté-POS-Suite
+
+
+<img width="1920" height="1080" alt="features" src="https://github.com/user-attachments/assets/1ea2bd5d-2561-4f5f-a40d-37a817eb91b8" />
+
+
 
 ---
 
-## Installation Guide
-
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/k00617500/SCM-for-WVSU.git
-   cd SCM-for-WVSU
-
-<img width="1920" height="1080" alt="10" src="https://github.com/user-attachments/assets/de589c00-37c8-4d33-8a28-5f84db647987" />
-
-
----
 
 ## System Features
 - **Centralized Procurement:** Digital purchase request, approval, and tracking.
@@ -76,7 +70,8 @@ Ultimately, WeChain aims to **streamline processes, reduce workload, prevent red
 - **Analytics Dashboard:** Visual reports for smarter decision-making.
 
 ---
-<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/0009e279-02a7-44e3-b849-b9f8d9713ff3" />
+<img width="1920" height="1080" alt="system name" src="https://github.com/user-attachments/assets/0b3e8536-6f4d-4ee1-8ea8-884215c23a90" />
+
 
 ## User Manual & Instructions
 
