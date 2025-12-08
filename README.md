@@ -233,20 +233,18 @@ bash
 
 
 ---
-
 ## License
-This project is being developed for **academic and research purposes only** under **West Visayas State University**.  
-Unauthorized reproduction or commercial use is prohibited.
+This project is developed strictly for **academic and research purposes** under **West Visayas State University-CICT**.  
+Any unauthorized reproduction, distribution, or commercial use is strictly prohibited.
 
 ---
 
 ## Academic Context
 
-WeChain is being developed as a course requirement under **CC 206 – Application Development and Emerging Technologies**.  
+LitLatté POS Suite is developed as a course requirement for **CC 206 – Application Development and Emerging Technologies**.  
+The project demonstrates the integration of **AI-driven demand forecasting, real-time inventory management, and POS operations automation** in a café environment.  
+It aligns with WVSU’s objective of promoting **digital innovation and efficient operational management** in academic and small business contexts.
 
-It showcases the integration of **AI, blockchain, and data-driven forecasting** in university-level logistics systems.  
-
-The project aligns with WVSU’s goal of promoting **digital transformation and sustainable resource management**.
 
 ---
 
