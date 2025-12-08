@@ -1,7 +1,7 @@
 <div align="center">
 <img width="2500" height="1374" alt="LitLatte" src="https://github.com/user-attachments/assets/78b3c634-7d69-4d0c-8337-34eff6d81324" />
 
-# LitLatté POS Suite for BookLatté Iloilo
+# LitLatté POS System Suite for BookLatté Iloilo
 A **smart, seamless, and AI-powered Point-of-Sale & Café Suite System designed specifically for BookLatté Iloilo.**
 
 </div>
