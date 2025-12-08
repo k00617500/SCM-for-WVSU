@@ -62,12 +62,12 @@ bash
 
 
 ## System Features
-- **Centralized Procurement:** Digital purchase request, approval, and tracking.
-- **Smart Inventory Management:** Real-time stock monitoring and replenishment alerts.
-- **AI-Driven Forecasting:** Predicts supply and demand trends for better planning.
-- **Blockchain Transparency:** Immutable logs for transaction traceability and security.
-- **Vendor Management:** Streamlined supplier evaluation and data handling.
-- **Analytics Dashboard:** Visual reports for smarter decision-making.
+- **Centralized Order Management:** Unified interface for order taking, billing, and transaction processing.
+- **Smart Inventory Management:** Tracks ingredient usage in real-time and issues low-stock alerts automatically.
+- **AI-Powered Demand Forecasting:** Predicts peak hours and best-selling items to optimize staffing and stock levels.
+- **Salces and Performace Monitoring** Ensures transparent, tamper-proof records for audits and accountability.
+- **Product Menu & Pricing Management:** Easily update items, categories, and prices across the POS system.
+
 
 ---
 <img width="1920" height="1080" alt="system name" src="https://github.com/user-attachments/assets/0b3e8536-6f4d-4ee1-8ea8-884215c23a90" />
@@ -76,83 +76,90 @@ bash
 ## User Manual & Instructions
 
 ### 1. Account Setup
-- **Admin Login:** Use credentials provided by the system administrator.  
-- **Department Head / Staff:**
-      - Click **Register** or request an account from admin.
-      - After approval, you can log in using your credentials.  
+
+- **Admin Login:** Administrators access the system using the master credentials issued upon deployment.
+
+- **Cashier / Employee Accounts:**
+  - All employee accounts are **created and provisioned exclusively by the system administrator**.
+  - Cashiers and other staff members will **receive their assigned login credentials** directly from the manager or administrator.
+  - Users may immediately access the system using the provided username and password; **self-registration is not permitted** to maintain system security and integrity.
+
+- **New Employees:**
+  - For any newly hired personnel, the **administrator is responsible for registering their account** and issuing their initial login credentials.
+
 - **Password Reset:**
-      - Click **Forgot Password**
-      - Enter your email -> Check inbox for reset link
+  - Select **Forgot Password**
+  - Enter the registered email address → A secure password reset link will be sent to your inbox.
 
 ---
 
-### 2. Procurement Workflow
-1. **Create Request:**  
-   - Go to *Procurement > New Request*  
-   - Fill in item details, quantity, purpose, and department  
-   - Click **Submit for Approval**
-2. **Approval Process:**  
-   - Department Head reviews the request  
-   - Approve or reject with remarks  
-   - Approved requests automatically proceed to AI validation
-3. **AI Validation:**  
-   - After approval, the system checks:
-       - Is stock still available?
-       - Has a similar request already been placed?
-       - Is the request aligned with forecasted needs?
-  - If there is an issue, you will be notified.
+### 2. POS Operations Workflow
+
+- Navigate to *POS > New Order*.
+- Select menu items, apply add-ons or custom notes, and confirm quantities.
+- Proceed to **Checkout** to finalize the transaction using the customer’s selected payment method.
 
 ---
 
-### 3. Inventory Management
-- View live inventory under *Inventory Dashboard*  
-- If items are almost out of stock, a **Low Stock Alert** will appear  
-- Add or update items via *Inventory > Manage Items*  
-- Incoming deliveries automatically sync to inventory after blockchain logging
+### 3. Order Processing
+
+- Upon order completion, the system automatically deducts ingredient quantities from inventory.
+- Confirmed orders are automatically queued in the Barista Station.
+- Baristas update each order’s status: *Preparing*, *Completed*, or *Served*.
+- All actions are logged under the corresponding employee for accountability.
+     
+---
+
+### 4. Inventory Management
+
+- Upon order completion, the system automatically deducts ingredient quantities from inventory.
+   - The system checks for:
+     - Real-time stock availability  
+     - Potential low-stock or out-of-stock conditions  
+     - Forecasted supply needs based on sales trends
+     - If discrepancies or shortages are detected, the system will notify the admin or manager.
+---
 
 ---
 
-### 4. Blockchain Ledger Tracking
-- Each approved transaction is hashed and recorded  
-- Access ledger via *Reports > Blockchain Log*  
-- You can see **time, status, and proof of transaction**  
-- These records **cannot be changed or deleted**
+### 5. AI-Powered Demand Forecasting
+
+- Navigate to the *Analytics Dashboard*.
+- Review AI-generated insights such as:
+  - Best-selling menu items and peak order times
+  - Predicted high-demand periods based on historical sales
+  - Inventory usage trends for beverages, food items, and ingredients
+- Apply filters (e.g., Month, Category, Item Type) to refine and compare performance data.
+- Click **Export** to download reports in **CSV or PDF** format for managerial review and planning.
 
 ---
 
-### 5. Analytics & Forecasting
-- Go to *Analytics Dashboard*  
-- View charts for:
-  - Most requested items  
-  - Which department uses supplies the most  
-  - Vendor performance and reliability 
-- Use filters (Example: Month, Department, Category) to refine data  
-- Click **Export** to save as **CSV or PDF**
+### 6. Product Menu & Pricing Management
 
----
+- Access the *Menu Management* module.
+- Add, update, or remove products, including beverages, food items, and specials.
+- Set or adjust prices, apply discounts, and manage seasonal offerings.
+- Organize products by category for easy navigation and reporting.
+- Changes automatically sync across all POS terminals in real-time.
 
-### 6. Vendor Management
-- Access under *Vendors > List / Add Vendor*  
-- Record supplier contact info, ratings, and past transactions  
-- The system will **suggest the best suppliers** based on history and ratings
-- Use blockchain logs to verify supplier fulfillment history
 
 ---
 
 ### 7. Security & Roles
+
 | Role | Permissions |
 |------|--------------|
-| **Admin** | Full access to system settings, users, and database |
-| **Department Head** | Approve/reject procurement requests, view analytics |
-| **Staff** | Create and track requests, view inventory status |
+| **Admin / Manager** | Full access to system settings, user management, employee credentials, and POS configuration |
+| **Cashier / Staff** | Access assigned POS terminals, process sales transactions, manage orders, and view relevant reports |
 
 ---
 
 ### 8. Troubleshooting
-- **Error “Database Connection Failed”:** Check `.env` or `config.php` for MySQL credentials  
-- **Forecast not loading:** Ensure Python AI microservice is running (`python ai_module.py`)  
-- **Blockchain log missing:** Confirm blockchain service is active or restart from admin panel  
-- **UI issues:** Clear browser cache or use Chrome/Edge for best compatibility
+
+- **Error “Database Connection Failed”:** Check Firebase configuration in `firebaseConfig.js` or ensure Firebase project credentials are correct  
+- **Sales/Inventory not syncing:** Verify internet connectivity and that Firebase services are operational  
+- **UI issues:** Clear browser cache or use Chrome/Edge for optimal compatibility  
+- **Receipt or transaction not recorded:** Check Firebase Firestore rules and confirm the POS user has proper write permissions
 
 ---
 
@@ -165,24 +172,22 @@ bash
 
 ## System Architecture 
 
-- **Frontend:** Responsive UI with Bootstrap; optional React components for SPA interactions.  
-- **Backend:** PHP modular structure. Authentication, sessions, input validation.  
-- **Database:** MySQL with normalized schema (users, inventory, vendors, requests, logs).  
-- **AI Module:** Python microservice for ML forecasting (ARIMA, Prophet, scikit-learn).  
-- **Blockchain Layer:** Private SHA-256 ledger; expandable to Ethereum or Hyperledger.  
-- **Integration:** RESTful API for AI forecasting and blockchain logging.
+- **Frontend:** PHP, CSS, and JavaScript for responsive and interactive user interfaces.  
+- **Backend:** PHP modular structure for business logic, authentication, and input validation.  
+- **Database:** Firebase Realtime Database / Firestore for real-time sales, inventory, and transaction tracking.  
+- **Security:** Role-based access control for Admin, Cashiers, and Customers; secure data transmission via HTTPS.
 
 ---
 
 ## Data Flow
 
-1. User interacts via **Frontend**  
-2. Request goes to **PHP Backend** 
-3. Backend logs request & sends to **AI module**  
-4. AI module validates demand -> returns decision 
-5. If approved, backend hashes transaction & stores on blockchain ledger  
-6. **MySQL** updates inventory & logs final status
-7. Analytics Dashboard visualizes usage and blockchain audit history 
+1. User interacts via **Frontend (PHP, CSS, JS)**  
+2. Transaction or order data is sent to **PHP Backend**  
+3. Backend logs the transaction and updates **Firebase Database** in real-time  
+4. Backend generates the receipt and records transaction details  
+5. Inventory is automatically updated in **Firebase**  
+6. Analytics Dashboard visualizes sales, inventory status, and customer activity
+
 
 ---
 <div align="center">
