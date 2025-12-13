@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manager Panel - Café POS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
+      authDomain: "pos2-27d04.firebaseapp.com",
+      projectId: "pos2-27d04",
+      storageBucket: "pos2-27d04.firebasestorage.app",
+      messagingSenderId: "394720721108",
+      appId: "1:394720721108:web:b0d8decc48bc01abfba341",
+      measurementId: "G-KLWC55M3BW"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.Firebase = { app, analytics, auth, db };
+  </script>
+</head>
+<body>
+  <header class="header">
+    <h1>Manager Panel</h1>
+    <div id="headerInfo">Welcome, Manager</div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar">
+      <button id="manageCrewBtn">Manage Crew</button>
+      <button id="salesHistoryBtn">Sales History</button>
+      <button id="returnToPosBtn">Return to POS</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+    <div class="content" id="mainContent">
+      <h2>Dashboard</h2>
+      <p>Select an option from the menu.</p>
+    </div>
+  </div>
+
+  <script>
+    // Auth guard: prevent direct access if logged out
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = "login.html";
+    }
+
+    const manageCrewBtn = document.getElementById("manageCrewBtn");
+    const receiptHistoryBtn = document.getElementById("receiptHistoryBtn");
+    const returnToPosBtn = document.getElementById("returnToPosBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const mainContent = document.getElementById("mainContent");
+
+    manageCrewBtn.addEventListener("click", async () => {
+      mainContent.innerHTML = `
+        <h2>Manage Crew</h2>
+        <p>Loading crew data...</p>
+      `;
+      await loadCrewData();
+    });
+
+    salesHistoryBtn.addEventListener("click", async () => {
+      mainContent.innerHTML = `
+        <h2>Sales History</h2>
+        <p>Loading sales data...</p>
+      `;
+      await loadSalesHistory();
+    });
+
+    returnToPosBtn.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem('loggedIn');
+      window.location.href = "login.html";
+    });
+
+    async function loadCrewData() {
+      try {
+        const employeesCollection = collection(window.Firebase.db, "employees");
+        const employeesSnapshot = await getDocs(employeesCollection);
+        const employeesList = employeesSnapshot.docs.map(doc => doc.data());
+
+        let html = `<h2>Manage Crew</h2><table border="1"><tr><th>Crew ID</th><th>First Name</th><th>Last Name</th><th>MI</th></tr>`;
+        employeesList.forEach(employee => {
+          html += `<tr><td>${employee.crewId}</td><td>${employee.firstName}</td><td>${employee.lastName}</td><td>${employee.MI}</td></tr>`;
+        });
+        html += `</table>`;
+        mainContent.innerHTML = html;
+      } catch (error) {
+        console.error("Error loading crew data:", error);
+        mainContent.innerHTML = `<h2>Manage Crew</h2><p>Error loading crew data.</p>`;
+      }
+    }
+
+    async function loadSalesHistory() {
+      try {
+        const ordersCollection = collection(window.Firebase.db, "orders");
+        const ordersSnapshot = await getDocs(ordersCollection);
+        const ordersList = ordersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        let html = `<h2>Sales History</h2><table border="1"><tr><th>Order ID</th><th>Date</th><th>Total</th><th>Items</th><th>Payment Method</th></tr>`;
+        ordersList.forEach(order => {
+          const date = order.createdAt ? new Date(order.createdAt.seconds * 1000).toLocaleString() : 'N/A';
+          const items = order.items ? order.items.map(item => `${item.name} x${item.qty}`).join(', ') : 'N/A';
+          html += `<tr><td>${order.id}</td><td>${date}</td><td>₱${order.totals ? order.totals.total.toFixed(2) : '0.00'}</td><td>${items}</td><td>${order.paymentMethod || 'N/A'}</td></tr>`;
+        });
+        html += `</table>`;
+        mainContent.innerHTML = html;
+      } catch (error) {
+        console.error("Error loading sales history:", error);
+        mainContent.innerHTML = `<h2>Sales History</h2><p>Error loading sales data.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
