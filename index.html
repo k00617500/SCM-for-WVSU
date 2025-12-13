@@ -1,379 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WeChain | SCM for WVSU</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta charset="UTF-8" />
+  <title>Café POS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
+      authDomain: "pos2-27d04.firebaseapp.com",
+      projectId: "pos2-27d04",
+      storageBucket: "pos2-27d04.firebasestorage.app",
+      messagingSenderId: "394720721108",
+      appId: "1:394720721108:web:b0d8decc48bc01abfba341",
+      measurementId: "G-KLWC55M3BW"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.Firebase = { app, analytics, auth, db };
+
+    // Check login status
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = "login.html";
+    }
+  </script>
 </head>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const managerBtn = document.getElementById("managerBtn");
+    const MANAGER_PIN = "1234";
+
+    if (managerBtn) {
+      managerBtn.addEventListener("click", () => {
+        const pin = prompt("Enter Manager PIN:");
+
+        if (pin === null) return;
+
+        if (pin !== MANAGER_PIN) {
+          alert("❌ Incorrect Manager PIN");
+          return;
+        }
+
+        // Correct PIN → go to manager page
+        window.location.href = "manager.html";
+      });
+    }
+  });
+</script>
+
 <body>
-
-  <!-- Navbar -->
-  <header class="navbar" id="navbar">
-    <div class="logo">
-      <img src="assets/img/logo.png" alt="WeChain Logo" class="logo-img">
+  <header>
+    <h1>Café POS</h1>
+    <div class="manager-area">
+    <button id="managerBtn" class="manager-btn">Manager</button>
     </div>
-    <nav class="nav-links">
-      <a href="#hero">Home</a>
-      <a href="#about">About</a>
-      <a href="#why">Why Use</a>
-      <a href="#info">System Info</a>
-      <a href="#demo">Demo</a>
-      <a href="#contact">Contact</a>
-      <a href="reg" class="btn primary" href="#demo">Get Started</a>
-      <a href="login.html" class="btn primary" href="#demo">Login</a>
-    </nav>
-  
-    <!-- Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
   </header>
-  
 
-<!-- Hero -->
-<section id="hero" class="hero" style="position: relative; background: url('assets/img/supply.jpg') center/cover no-repeat; height: 100vh;">
-  <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
-  <div class="container hero-inner" style="position: relative; z-index: 2;">
-    <div class="hero-left reveal">
-      <h1>Smart · Transparent · AI-Powered</h1>
-      <p class="lead">
-        WeChain — a Supply Chain Management System for <strong>West Visayas State University</strong>.
-        Centralize procurement, forecast demand with AI, and secure every transaction via blockchain.
-      </p>
-      <div class="hero-cta">
-        <a class="btn primary" href="#demo">Watch demo</a>
-        <a class="btn outline" href="#info">Learn more</a>
-      </div>
-
-      <ul class="hero-stats">
-        <li><strong>Centralized</strong><span> Procurement & Inventory</span></li>
-        <li><strong>Predictive</strong><span> AI Forecasting</span></li>
-        <li><strong>Immutable</strong><span> Blockchain Ledger</span></li>
-      </ul>
+  <div class="wrap">
+    <!-- Cart ABOVE products -->
+    <div class="cart">
+      <section class="panel">
+        <h2>Cart items</h2>
+        <div class="content">
+          <div class="cart-items" id="cartItems"></div>
+          <button class="remove" id="clearCart">Clear cart</button>
+        </div>
+      </section>
+      <section class="cart-summary">
+        <p><strong>Total: ₱<span id="cart-total">0.00</span></strong></p>
+        <button type="button" id="doneBtn" class="done-btn">Done</button>
+      </section>
     </div>
 
-    <div class="hero-right reveal delay">
-
-      <!-- Card -->
-      <div class="panel large">
-        <h4>WeChain in numbers</h4>
-        <div class="panel-stats">
-          <div><span class="big">—</span><small>Campus-wide coverage</small></div>
-          <div><span class="big">AI </span><small>Demand forecasting</small></div>
-          <div><span class="big">LOCK </span><small>Blockchain audit</small></div>
-        </div>
-      </div>
-
-      <div class="panel small-grid">
-        <div class="card info-card">
-          <h5>Inventory</h5>
-          <p>Live stock levels, auto-reorder alerts, disposal tracking.</p>
-        </div>
-        <div class="card info-card">
-          <h5>Vendors</h5>
-          <p>Ratings, fulfillment history & verification.</p>
-        </div>
-      </div>
+    <!-- Category bar -->
+    <div class="category-bar">
+      <button data-category="all" class="active">All</button>
+      <button data-category="All Day Breakfast">All Day Breakfast</button>
+      <button data-category="Nibblers">Nibblers</button>
+      <button data-category="Specialties">Specialties</button>
+      <button data-category="Pasta Pride">Pasta Pride</button>
+      <button data-category="Salads">Salads</button>
+      <button data-category="Drinks">Drinks</button>
+      <button data-category="Desserts">Desserts</button>
+      <button data-category="Soups">Soups</button>
     </div>
+
+    <!-- Products BELOW cart -->
+    <div class="products grid" id="productsGrid"></div>
   </div>
-</section>
 
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal">
+    <div class="box">
+      <h2>Your Cart</h2>
+      <div id="modalCartItems"></div>
+      <p><strong>Total: ₱<span id="modalTotal">0.00</span></strong></p>
 
+      <h3>Choose payment method</h3>
+      <form id="paymentForm">
+        <label><input type="radio" name="payment" value="cash" required> Cash</label><br>
+        <label><input type="radio" name="payment" value="card"> Card</label><br>
+        <label><input type="radio" name="payment" value="gcash"> GCash</label><br><br>
 
-  <!-- About -->
-  <section id="about" class="section dark-section">
-    <div class="container reveal">
-      <div class="section-head">
-        <h2>About WeChain</h2>
-        <p class="muted">A smart, transparent, and AI-powered Supply Chain Management System designed for WVSU to centralize and modernize all supply & demand operations across the university.</p>
-      </div>
+        <h3>Discount card?</h3>
+        <label><input type="radio" name="discount_card_type" value="none" checked> No Discount Card</label><br>
+        <label><input type="radio" name="discount_card_type" value="senior"> Senior Citizen</label><br>
+        <label><input type="radio" name="discount_card_type" value="pwd"> PWD</label><br><br>
 
-      <div class="two-col">
-        <div>
-          <h3>Purpose</h3>
-          <p>WeChain helps the Supply Management Office monitor inventory levels, supplier transactions, and fund usage for each college. It provides tamper-proof tracking of procurement and distribution so the university can verify where supplies go and how they're used.</p>
-        </div>
-        <div>
-          <h3>Outcomes</h3>
-          <ul>
-            <li>Reduce redundant requests and manual workload</li>
-            <li>Improve equitable allocation of resources</li>
-            <li>Enable strategic planning with AI-driven insights</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why -->
-  <section id="why" class="section">
-    <div class="container reveal">
-      <h2>Why Use WeChain?</h2>
-      <div class="why-grid">
-        <div class="why-card">
-          <h4>Accountability</h4>
-          <p>Blockchain-backed logs make approvals and distribution auditable and tamper-proof.</p>
-        </div>
-        <div class="why-card">
-          <h4>Efficiency</h4>
-          <p>Automated validations and workflows speed up procurement and reduce bottlenecks.</p>
-        </div>
-        <div class="why-card">
-          <h4>Data-Driven</h4>
-          <p>AI forecasting predicts demand trends per college to minimize stockouts and overstocking.</p>
-        </div>
-        <div class="why-card">
-          <h4>Transparency</h4>
-          <p>Clear transaction trails for fund usage and supplier fulfillment history.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- System -->
-  <section id="info" class="section dark-section">
-    <div class="container reveal">
-      <h2>System Info</h2>
-
-      <div class="info-grid">
-        <div class="info-left">
-          <h3>Core Capabilities</h3>
-          <ul>
-            <li>Centralized procurement: request, approval, tracking.</li>
-            <li>Smart inventory: real-time stock & replenishment rules.</li>
-            <li>AI validation: checks stock, duplicates, and forecast alignment.</li>
-            <li>Vendor management: scorecards and history verified by blockchain.</li>
-            <li>Analytics: exportable reports, dashboards, and filters.</li>
-          </ul>
-
-          <h3 style="margin-top:18px">Tech Summary</h3>
-          <p class="muted">Frontend: Responsive UI (Bootstrap / optional React). Backend: PHP & REST API. DB: MySQL. AI: Python microservice (ARIMA/Prophet). Blockchain: Private SHA-256 ledger.</p>
+        <div id="cashPaymentDetails" style="display:none; margin-top: 15px;">
+          <label for="cashReceivedInput">Cash Received (₱):</label>
+          <input type="number" id="cashReceivedInput" name="cash_received_amount" step="0.01" min="0" placeholder="Enter amount received" style="width:100%;padding:8px;margin-top:5px;box-sizing:border-box;">
+          <p style="margin-top:10px;">Change Due: ₱<span id="changeDueSpan">0.00</span></p>
         </div>
 
-        <div class="info-right">
-          <div class="card dark-card">
-            <h4>Procurement Workflow</h4>
-            <ol class="workflow-list">
-              <li>Create Request → Department Head Review</li>
-              <li>AI Validation</li>
-              <li>Inventory Management</li>
-              <li>Blockchain Tracking</li>
-              <li>Analytics & Forecasting </li>
-              <li>Vendor Management</li>
-              <li>Roles & Security </li>
-            </ol>
-          </div>
+        <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
+          <button type="submit" id="confirmPayment" class="primary">Confirm payment</button>
+          <button type="button" id="cancelPayment">Cancel</button>
         </div>
-        
-        
-              
-        
-
-        <div class="card dark-card mt">
-          <h4>About WeChain</h4>
-          <p><br>
-            WeChain is a smart, AI-powered, and blockchain-based Supply Chain Management System designed for WVSU. 
-            It centralizes and modernizes all supply and demand operations, allowing the Supply Management Office 
-            to monitor inventory levels, track supplier transactions, and manage fund usage across colleges. 
-            AI-driven forecasting identifies trends in supply requests and consumption, while blockchain ensures 
-            transparent, tamper-proof records. By streamlining processes, reducing redundant requests, and automating 
-            validation tasks, WeChain promotes efficiency, accountability, and reliability in managing university resources.
-          </p>
-        </div>
-        
-        
-
-
-          <div class="card dark-card mt">
-            <h4>WeChain Roles & Permissions</h4>
-            <table class="roles-table">
-              <tr>
-                <th>Role</th>
-                <th>Permission</th>
-              </tr>
-              <tr>
-                <td>Administrator</td>
-                <td>Manage all nodes, user accounts, and system settings</td>
-              </tr>
-              <tr>
-                <td>Procurement Manager</td>
-                <td>Approve/reject purchase orders and track supplier transactions</td>
-              </tr>
-              <tr>
-                <td>Department Head</td>
-                <td>Review and authorize departmental requests</td>
-              </tr>
-              <tr>
-                <td>Staff</td>
-                <td>Create requests, submit documents, and monitor request status</td>
-              </tr>
-              <tr>
-                <td>Supplier</td>
-                <td>Update order fulfillment and track delivery progress</td>
-              </tr>
-            </table>
-          </div>
-          
-   
-        </div>
-      </div>
-    </div>
-
-
-  </section>
-
-  <!-- Demo -->
-  <section id="demo" class="section">
-    <div class="container reveal">
-      <h2>Demo & Location</h2>
-      <div class="demo-grid">
-        <div class="demo-video">
-          <div class="video-wrap">
-            
-            <!-- Video -->
-            <video autoplay muted loop playsinline controls poster="assets/img/video-poster.jpg" class="responsive-video">
-              <source src="assets\vid\demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <p class="muted" style="margin-top:10px">Short preview of WeChain's dashboard and procurement flow.</p>
-        </div>
-
-          <!-- Map -->
-        <div class="map-container" style="width:100%;height:400px;overflow:hidden;border-radius:12px;">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.4126831848127!2d122.56287721428087!3d10.71698279238108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aee4b4a93123c3%3A0xf8c15a4c51ec3e71!2sWest%20Visayas%20State%20University%20-%20Main%20Campus!5e0!3m2!1sen!2sph!4v1715927264642!5m2!1sen!2sph"
-            style="border:0;width:100%;height:100%;filter:grayscale(20%) brightness(95%) saturate(60%) hue-rotate(-20deg);"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-
-        <div class="map-location" style="margin-top:1rem;color:#f51c4b;">
-          <strong>West Visayas State University — Main Campus</strong><br>
-          Luna St, La Paz, Iloilo City, Philippines
-          <div class="map-actions" style="margin-top:0.5rem;">
-            <a class="btn small" 
-              href="https://www.google.com/maps?q=West+Visayas+State+University,+La+Paz,+Iloilo+City"
-              target="_blank"
-              style="background-color:#f51c4b;color:black;padding:6px 12px;border-radius:8px;text-decoration:none;font-weight:600;">
-              Open in Maps
-            </a>
-          </div>
-        </div>
-
-    </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section dark-section">
-    <div class="container reveal">
-      <div class="contact-cta">
-        <h2>Ready to modernize WVSU's supply chain?</h2>
-        <p class="muted">Contact the development team for demo, deployment, or collaboration.</p>
-        <br><a class="btn primary" href="mailto:polaron.mk@gmail.com">Contact the Team</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-<footer class="footer" id="footer">
-  <div class="footer-container">
-    <div class="footer-company">
-      <h2>WECHAIN</h2>
-      <p>Empowering universities and organizations with secure digital ecosystems.</p>
-    </div>
-
-    <div class="footer-columns">
-      <div class="footer-col">
-        <h4>NAVIGATION</h4>
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>COMPANY</h4>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#team">Team</a></li>
-        </ul>
-        <button class="footer-btn" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'});">
-          Contact Us
-        </button>
-      </div>
-
-      <div class="footer-col">
-        <h4>SUPPORT</h4>
-        <ul>
-          <li><a href="#docs">Documentation</a></li>
-        </ul>
-        <button class="footer-btn" onclick="document.querySelector('#support').scrollIntoView({behavior: 'smooth'});">
-          Request Support
-        </button>
-      </div>
+      </form>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <p>© 2025 WECHAIN. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="#terms">Terms Of Service</a>
-      <a href="#privacy">Privacy Policy</a>
-    </div>
-  </div>
-</footer>
-
-
-  <!-- JS -->
+  <!-- App script -->
   <script>
-    
-    document.querySelectorAll('.nav-links a[href^="#"]').forEach(link=>{
-      link.addEventListener('click', function(e){
-        e.preventDefault();
-        const id = this.getAttribute('href');
-        document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
-      });
-    });
-
-    
-    const revealEls = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting) entry.target.classList.add('revealed');
-      });
-    }, {threshold:0.12});
-    revealEls.forEach(el=>obs.observe(el));
-
-   
-    const navbar = document.getElementById('navbar');
-    let lastScroll = 0;
-    window.addEventListener('scroll', ()=>{
-      const sc = window.scrollY;
-      if (sc > 60) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-      lastScroll = sc;
-    });
-    
-      const toggleBtn = document.getElementById('theme-toggle');
-      const currentTheme = localStorage.getItem('theme');
-
-      if (currentTheme === 'light') {
-        document.body.classList.add('light-mode');
-        toggleBtn.textContent = '☀️';
+    const MENU = {
+      "All Day Breakfast": {
+        "All Day Pancake": { item_id: 1, price: 180, image: "images/pancake.jpg" },
+        "Breakfast Sandwich": { item_id: 2, price: 150, image: "images/breakfast_sandwich.jpg" },
+        "Egg Benedict": { item_id: 3, price: 220, image: "images/egg_benedict.jpg" }
+      },
+      "Nibblers": {
+        "Cheese Sticks": { item_id: 8, price: 85, image: "images/cheese_sticks.jpg" },
+        "Spring Rolls": { item_id: 9, price: 95, image: "images/spring_rolls.jpg" }
+      },
+      "Specialties": {
+        "Chicken Adobo": { item_id: 10, price: 250, image: "images/chicken_adobo.jpg" },
+        "Pork Sinigang": { item_id: 11, price: 270, image: "images/pork_sinigang.jpg" }
+      },
+      "Pasta Pride": {
+        "Pasta Puttanesca": { item_id: 12, price: 198, image: "images/puttanesca.jpg" },
+        "Mac and Cheese": { item_id: 13, price: 188, image: "images/mac_cheese.jpg" },
+        "Carbonara": { item_id: 14, price: 188, image: "images/carbonara.jpg" },
+        "Molo Blanca": { item_id: 15, price: 188, image: "images/molo_blanca.jpg" },
+        "Birthday Spaghetti": { item_id: 16, price: 188, image: "images/spaghetti.jpg" },
+        "Shrimp Aglio Spaghetti": { item_id: 17, price: 188, image: "images/aglio_spaghetti.jpg" }
+      },
+      "Salads": {
+        "Chicken Caesar Salad": { item_id: 18, price: 188, image: "images/caesar_salad.jpg" },
+        "Pan Fried Breaded Fish with Apple Garden Salad": { item_id: 19, price: 188, image: "images/fish_salad.jpg" }
+      },
+      "Drinks": {
+        "Cappuccino": { item_id: 20, price: 98, image: "images/cappuccino.jpg" },
+        "Latte": { item_id: 21, price: 118, image: "images/latte.jpg" },
+        "Iced Coffee": { item_id: 22, price: 148, image: "images/iced_coffee.jpg" },
+        "Espresso": { item_id: 23, price: 58, image: "images/Espresso.jpg" }
+      },
+      "Desserts": {
+        "Chocolate Lava Cake": { item_id: 24, price: 180, image: "images/lava_cake.jpg" },
+        "Vanilla Cheesecake": { item_id: 25, price: 150, image: "images/cheesecake.jpg" }
+      },
+      "Soups": {
+        "Pancit Molo": { item_id: 26, price: 238, image: "images/pancit_molo.jpg" },
+        "Kansi Linaga": { item_id: 27, price: 130, image: "images/kansi_linaga.jpg" },
+        "Beef Pochero": { item_id: 28, price: 328, image: "images/pochero.jpg" },
+        "Macaroni Soup": { item_id: 29, price: 238, image: "images/macaroni_soup.jpg" }
       }
+    };
 
-      toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        const isLight = document.body.classList.contains('light-mode');
-        toggleBtn.textContent = isLight ? '☀️' : '🌙';
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const VAT_RATE = 0.12;
+    const DISCOUNT_MAP = { none: 0, senior: 0.20, pwd: 0.20 };
+
+    const productsGrid = document.getElementById('productsGrid');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cart-total');
+    const clearCartBtn = document.getElementById('clearCart');
+    const doneBtn = document.getElementById('doneBtn');
+    const paymentModal = document.getElementById('paymentModal');
+    const modalCartItems = document.getElementById('modalCartItems');
+    const modalTotalSpan = document.getElementById('modalTotal');
+    const paymentForm = document.getElementById('paymentForm');
+    const cancelPaymentBtn = document.getElementById('cancelPayment');
+    const cashDetails = document.getElementById('cashPaymentDetails');
+    const cashReceivedInput = document.getElementById('cashReceivedInput');
+    const changeDueSpan = document.getElementById('changeDueSpan');
+
+    let cart = [];
+    window.cart = cart;
+    let activeCategory = 'all';
+
+    function renderProducts(category="all"){
+      productsGrid.innerHTML = "";
+      const cats = category==="all" ? Object.keys(MENU) : [category];
+      cats.forEach(cat=>{
+        Object.entries(MENU[cat]).forEach(([name,item])=>{
+          const div = document.createElement("div");
+          div.className="product";
+          div.innerHTML=`
+            <img src="${item.image}" alt="${name}" onerror="this.style.display='none'">
+            <div class="info">
+              <div class="name">${name}</div>
+              <div class="note">${cat}</div>
+              <div class="price">₱${item.price.toFixed(2)}</div>
+              <button>Add</button>
+            </div>`;
+          div.querySelector("button").addEventListener("click",()=>addToCart({id:item.item_id,name,price:item.price,category:cat}));
+          productsGrid.appendChild(div);
+        });
+      });
+    }
+
+    function addToCart(product){
+      const existing = cart.find(i=>i.id===product.id);
+      if(existing){ existing.qty++; }
+      else{ cart.push({...product, qty:1}); }
+      renderCart();
+    }
+
+    function renderCart(){
+      cartItemsEl.innerHTML = "";
+      let subtotal=0;
+
+      cart.forEach(item=>{
+        subtotal += item.price * item.qty;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div class="meta"><strong>${item.name}</strong><span class="note">${item.category}</span></div>
+          <div class="qty">
+            <input type="number" min="1" value="${item.qty}">
+            <span><strong>₱${(item.price*item.qty).toFixed(2)}</strong></span>
+            <button class="remove">Remove</button>
+          </div>`;
+
+        row.querySelector("input").addEventListener("input", e => {
+          const v = parseInt(e.target.value,10);
+          item.qty = Number.isFinite(v) && v>0 ? v : 1;
+          renderCart();
+        });
+
+        row.querySelector(".remove").addEventListener("click", () => {
+          cart = cart.filter(c=>c.id!==item.id);
+          renderCart();
+        });
+
+        cartItemsEl.appendChild(row);
       });
 
+      // PATCHED — correct computed totals for display
+      const totals = computeTotals(getSelectedDiscount());
+      cartTotalEl.textContent = totals.total.toFixed(2);
+    }
 
+    document.querySelectorAll(".category-bar button").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        document.querySelectorAll(".category-bar button").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCategory = btn.dataset.category;
+        renderProducts(activeCategory);
+      });
+    });
 
+    clearCartBtn.addEventListener("click", ()=> { cart=[]; renderCart(); });
+
+    function computeTotals(discountType='none'){
+      const subtotal = cart.reduce((s,i)=> s + i.price*i.qty, 0);
+      const discountRate = DISCOUNT_MAP[discountType] || 0;
+      const discountAmt = subtotal * discountRate;
+      const taxable = Math.max(0, subtotal - discountAmt);
+      const vat = taxable * VAT_RATE;
+      const total = taxable + vat;
+      return { subtotal, discountRate, discountAmt, vat, total };
+    }
+
+    doneBtn.addEventListener("click", () => {
+      if (cart.length === 0) { alert("Your cart is empty."); return; }
+
+      paymentForm.reset();
+      cashDetails.style.display = "none";
+      cashReceivedInput.value = "";
+      changeDueSpan.textContent = "0.00";
+
+      modalCartItems.innerHTML = "";
+      cart.forEach(item => {
+        const line = document.createElement("div");
+        line.className = "cart-line";
+        line.innerHTML = `<span>${item.name} x${item.qty}</span><span>₱${(item.price*item.qty).toFixed(2)}</span>`;
+        modalCartItems.appendChild(line);
+      });
+
+      const t = computeTotals('none');
+      modalTotalSpan.textContent = t.total.toFixed(2);
+
+      paymentModal.style.display = "flex";
+    });
+
+    paymentForm.querySelectorAll('input[name="payment"]').forEach(r=>{
+      r.addEventListener('change', ()=>{
+        const method = getSelectedPayment();
+        cashDetails.style.display = method === 'cash' ? 'block' : 'none';
+        updateModalTotals();
+      });
+    });
+
+    paymentForm.querySelectorAll('input[name="discount_card_type"]').forEach(r=>{
+      r.addEventListener('change', updateModalTotals);
+    });
+
+    cashReceivedInput.addEventListener('input', ()=>{
+      const t = computeTotals(getSelectedDiscount());
+      const cash = parseFloat(cashReceivedInput.value || '0');
+      const change = Math.max(0, cash - t.total);
+      changeDueSpan.textContent = change.toFixed(2);
+    });
+
+    function updateModalTotals(){
+      const t = computeTotals(getSelectedDiscount());
+      modalTotalSpan.textContent = t.total.toFixed(2);
+
+      if(getSelectedPayment()==='cash'){
+        const cash = parseFloat(cashReceivedInput.value || '0');
+        const change = Math.max(0, cash - t.total);
+        changeDueSpan.textContent = change.toFixed(2);
+      }else{
+        changeDueSpan.textContent = "0.00";
+      }
+    }
+
+    function getSelectedPayment(){
+      const r = paymentForm.querySelector('input[name="payment"]:checked');
+      return r ? r.value : null;
+    }
+    function getSelectedDiscount(){
+      const r = paymentForm.querySelector('input[name="discount_card_type"]:checked');
+      return r ? r.value : 'none';
+    }
+
+    cancelPaymentBtn.addEventListener("click", ()=> paymentModal.style.display = "none");
+    paymentModal.addEventListener("click", (e) => { if (e.target === paymentModal) paymentModal.style.display = "none"; });
+
+    renderProducts();
+    renderCart();
   </script>
 
+  <script type="module">
+    import { addDoc, collection, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    paymentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if(window.cart.length===0){
+        alert('Cart is empty.');
+        return;
+      }
+
+      const method = getSelectedPayment();
+      if(!method){
+        alert('Choose a payment method.');
+        return;
+      }
+
+      const discountType = getSelectedDiscount();
+      const t = computeTotals(discountType);
+
+      if(method==='cash'){
+        const cash = parseFloat(cashReceivedInput.value || '0');
+        if(cash < t.total){
+          alert('Cash received is less than total.');
+          return;
+        }
+      }
+
+      // PATCHED — deep copy cart to avoid reference loss
+      const safeCart = window.cart.map(i => ({
+        id: i.id,
+        name: i.name,
+        price: i.price,
+        qty: i.qty,
+        category: i.category
+      }));
+
+      try {
+        const orderRef = await addDoc(collection(window.Firebase.db, "orders"), {
+          items: safeCart,
+          totals: t,
+          paymentMethod: method,
+          discountType,
+          cashierUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+          createdAt: serverTimestamp()
+        });
+
+        await addDoc(collection(window.Firebase.db, "logs"), {
+          whoUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+          action: "ORDER_CREATED",
+          details: { orderId: orderRef.id, total: t.total },
+          createdAt: serverTimestamp()
+        });
+
+        alert(`Payment successful. Order saved with ID: ${orderRef.id}`);
+
+        cart.length = 0;
+        renderCart();
+        paymentModal.style.display = "none";
+
+      } catch(err) {
+        console.error("Error saving order:", err);
+        alert("Failed to save order. Check console for details.");
+      }
+    });
+  </script>
 </body>
 </html>
