@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/styles.css">
 
-  <!-- Firebase SDKs -->
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
@@ -17,7 +17,7 @@
       apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
       authDomain: "pos2-27d04.firebaseapp.com",
       projectId: "pos2-27d04",
-      storageBucket: "pos2-27d04.appspot.com",   // ✅ fixed
+      storageBucket: "pos2-27d04.appspot.com",   
       messagingSenderId: "394720721108",
       appId: "1:394720721108:web:b0d8decc48bc01abfba341",
       measurementId: "G-KLWC55M3BW"
@@ -30,7 +30,7 @@
 
     window.Firebase = { app, analytics, auth, db };
 
-    // ✅ wrap top-level await
+    
     (async () => {
       try {
         await signInAnonymously(auth);
@@ -40,7 +40,7 @@
       }
     })();
 
-    // Register new crew
+    
     async function registerCrew(e) {
       e.preventDefault();
       const fname = document.getElementById("fname").value.trim();
@@ -55,7 +55,7 @@
       }
 
       try {
-        // Generate next crew ID
+        
         const q = query(collection(db, "employees"), orderBy("crewId", "desc"));
         const snap = await getDocs(q);
         let nextId = "001";
@@ -83,13 +83,13 @@
       }
     }
 
-    // Old crew login (✅ fixed to require crewId + manager PIN)
+    
     async function oldCrewLogin(e) {
       e.preventDefault();
       const empId = document.getElementById("empId").value.trim();
       const pin = document.getElementById("oldPin").value.trim();
 
-      // Require manager PIN
+      
       if (pin !== "1234") {
         alert("Invalid manager PIN.");
         return;
@@ -114,7 +114,7 @@
       }
     }
 
-    // Expose functions globally
+    
     window.registerCrew = registerCrew;
     window.oldCrewLogin = oldCrewLogin;
 
@@ -135,7 +135,7 @@
         <button onclick="document.getElementById('oldForm').style.display='block';document.getElementById('registerForm').style.display='none';">Old Crew Login</button>
       </div>
 
-      <!-- Register Form -->
+      
       <form id="registerForm" style="display:none; margin-top:20px;">
         <input type="text" id="fname" placeholder="First Name" required />
         <input type="text" id="lname" placeholder="Last Name" required />
@@ -145,7 +145,7 @@
         <button type="submit">Register</button>
       </form>
 
-      <!-- Old Crew Login Form -->
+      
       <form id="oldForm" style="display:none; margin-top:20px;">
         <input type="text" id="empId" placeholder="Employee ID (e.g. 001)" required />
         <input type="password" id="oldPin" placeholder="Manager PIN" required />

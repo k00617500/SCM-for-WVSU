@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/styles.css">
 
-  <!-- Firebase SDKs -->
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
@@ -30,7 +30,7 @@
 
     window.Firebase = { app, analytics, auth, db };
 
-    // Check login status
+ 
     if (localStorage.getItem('loggedIn') !== 'true') {
       window.location.href = "login.html";
     }
@@ -52,7 +52,7 @@
           return;
         }
 
-        // Correct PIN → go to manager page
+
         window.location.href = "manager.html";
       });
     }
@@ -68,7 +68,7 @@
   </header>
 
   <div class="wrap">
-    <!-- Cart ABOVE products -->
+
     <div class="cart">
       <section class="panel">
         <h2>Cart items</h2>
@@ -83,7 +83,7 @@
       </section>
     </div>
 
-    <!-- Category bar -->
+
     <div class="category-bar">
       <button data-category="all" class="active">All</button>
       <button data-category="All Day Breakfast">All Day Breakfast</button>
@@ -96,11 +96,10 @@
       <button data-category="Soups">Soups</button>
     </div>
 
-    <!-- Products BELOW cart -->
+
     <div class="products grid" id="productsGrid"></div>
   </div>
 
-  <!-- Payment Modal -->
   <div id="paymentModal" class="modal">
     <div class="box">
       <h2>Your Cart</h2>
@@ -132,7 +131,7 @@
     </div>
   </div>
 
-  <!-- App script -->
+
   <script>
     const MENU = {
       "All Day Breakfast": {
@@ -258,7 +257,7 @@
         cartItemsEl.appendChild(row);
       });
 
-      // PATCHED — correct computed totals for display
+      
       const totals = computeTotals(getSelectedDiscount());
       cartTotalEl.textContent = totals.total.toFixed(2);
     }
@@ -383,7 +382,7 @@
         }
       }
 
-      // PATCHED — deep copy cart to avoid reference loss
+      
       const safeCart = window.cart.map(i => ({
         id: i.id,
         name: i.name,
