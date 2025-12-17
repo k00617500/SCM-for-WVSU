@@ -172,7 +172,7 @@ bash
 
 ## System Architecture 
 
-- **Frontend:** PHP, CSS, and JavaScript for responsive and interactive user interfaces.  
+- **Frontend:** HTML, CSS, and JavaScript for responsive and interactive user interfaces.  
 - **Backend:** PHP modular structure for business logic, authentication, and input validation.  
 - **Database:** Firebase Realtime Database / Firestore for real-time sales, inventory, and transaction tracking.  
 - **Security:** Role-based access control for Admin, Cashiers, and Customers; secure data transmission via HTTPS.
@@ -181,7 +181,7 @@ bash
 
 ## Data Flow
 
-1. User interacts via **Frontend (PHP, CSS, JS)**  
+1. User interacts via **Frontend (HTML, CSS, JS)**  
 2. Transaction or order data is sent to **PHP Backend**  
 3. Backend logs the transaction and updates **Firebase Database** in real-time  
 4. Backend generates the receipt and records transaction details  
