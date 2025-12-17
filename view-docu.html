@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="LitLatté POS Suite - AI-powered POS & Café Management System Documentation">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LitLatté POS Suite Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="litlat-global.css">
+  <link rel="stylesheet" href="litlat-doc.css">
+  <link rel="author" href="humans.txt">
+</head>
+<body>
+  <div class="doc__bg"></div>
+
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="assets\img\logo-name.png" alt="LitLatté" class="logo-img"></a>
+        </div>
+        <nav class="nav-links">
+          <a href="docu.html">Back</a>
+       
+    
+      </header>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <aside class="doc__nav">
+        <ul>
+        <li class="js-btn selected" data-target="overview">Project Overview</li>
+        <li class="js-btn" data-target="developers">Developers</li>
+        <li class="js-btn" data-target="installation">Installation Guide</li>
+        <li class="js-btn" data-target="features">System Features</li>
+        <li class="js-btn" data-target="user-manual">User Manual</li>
+        <li class="js-btn" data-target="architecture">System Architecture</li>
+        <li class="js-btn" data-target="data-flow">Data Flow</li>
+        <li class="js-btn" data-target="tech-stack">Tech Stack</li>
+        <li class="js-btn" data-target="github">GitHub Statistics</li>
+        <li class="js-btn" data-target="license">License</li>
+        </ul>
+    </aside>
+
+
+    <!-- Documentation Content -->
+    <article class="doc__content">
+
+      <!-- Project Overview -->
+      <section class="js-section" data-section="overview">
+        <h3 class="section__title">Project Overview</h3>
+        <p>LitLatté POS Suite is a smart, seamless, and AI-powered Point-of-Sale & Café Suite System designed specifically for <strong>BookLatté Iloilo</strong>.</p>
+        <p>It centralizes ordering, inventory tracking, sales analytics, and customer engagement. The system integrates demand forecasting, real-time stock monitoring, and operational insights to help baristas, cashiers, and managers streamline workflows and improve service quality.</p>
+        <p>With automated syncing and real-time analytics, BookLatté can reduce waste, anticipate peak hours, track best-selling items, and optimize café operations. LitLatté ensures accuracy, speed, and reliability across all café processes—from ordering to payment handling, inventory updates, staff activity logs, and menu performance tracking.</p>
+      </section>
+
+      <!-- Developers -->
+      <section class="js-section" data-section="developers">
+        <h3 class="section__title">Developers</h3>
+        <table id="developers">
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Email</th>
+          </tr>
+          <tr>
+            <td>Meryll Klaryze Polaron</td>
+            <td>UI/UX Designer / Frontend Developer / Project Lead</td>
+            <td>meryllklaryze.polaron@wvsu.edu.ph</td>
+          </tr>
+          <tr>
+            <td>Jester Galfo</td>
+            <td>Backend Developer / Database Architect</td>
+            <td>jester.galfo@wvsu.edu.ph</td>
+          </tr>
+          <tr>
+            <td>Zalve Mae Magsael</td>
+            <td>Backend Developer / Database Architect</td>
+            <td>zalvemae.magsael@wvsu.edu.ph</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Installation Guide -->
+      <section class="js-section" data-section="installation">
+        <h3 class="section__title">Installation Guide</h3>
+        <p>Clone the repository using the following commands:</p>
+        <pre><code class="bash">git clone https://github.com/k00617500/LitLatté-POS-Suite.git
+cd LitLatté-POS-Suite</code></pre>
+      </section>
+
+      <!-- System Features -->
+      <section class="js-section" data-section="features">
+        <h3 class="section__title">System Features</h3>
+        <ul>
+          <li><strong>Centralized Order Management:</strong> Unified interface for order taking, billing, and transaction processing.</li>
+          <li><strong>Smart Inventory Management:</strong> Tracks ingredient usage in real-time and issues low-stock alerts automatically.</li>
+          <li><strong>AI-Powered Demand Forecasting:</strong> Predicts peak hours and best-selling items to optimize staffing and stock levels.</li>
+          <li><strong>Sales and Performance Monitoring:</strong> Ensures transparent, tamper-proof records for audits and accountability.</li>
+          <li><strong>Product Menu & Pricing Management:</strong> Easily update items, categories, and prices across the POS system.</li>
+        </ul>
+      </section>
+
+      <!-- User Manual -->
+      <section class="js-section" data-section="user-manual">
+        <h3 class="section__title">User Manual & Instructions</h3>
+
+        <h4>1. Account Setup</h4>
+        <p><strong>Admin Login:</strong> Administrators access the system using master credentials issued upon deployment.</p>
+        <p><strong>Cashier / Employee Accounts:</strong> Accounts are created by the administrator. Employees receive credentials directly from the manager. Self-registration is not allowed.</p>
+        <p><strong>New Employees:</strong> Admins register new employees and issue initial credentials.</p>
+        <p><strong>Password Reset:</strong> Use "Forgot Password" and enter your registered email to receive a secure reset link.</p>
+
+        <h4>2. POS Operations Workflow</h4>
+        <ol>
+          <li>Navigate to POS &gt; New Order.</li>
+          <li>Select menu items, add add-ons or custom notes, and confirm quantities.</li>
+          <li>Proceed to checkout and finalize the transaction.</li>
+        </ol>
+
+        <h4>3. Order Processing</h4>
+        <p>Completed orders automatically deduct ingredients from inventory and queue in the Barista Station. Baristas update order status: Preparing, Completed, or Served. All actions are logged per employee.</p>
+
+        <h4>4. Inventory Management</h4>
+        <p>The system monitors stock in real-time, checks for low or out-of-stock items, and forecasts supply needs. Admins are notified of discrepancies.</p>
+
+        <h4>5. AI-Powered Demand Forecasting</h4>
+        <p>Analytics Dashboard provides insights on best-selling items, peak hours, inventory trends, and allows CSV/PDF exports.</p>
+
+        <h4>6. Product Menu & Pricing Management</h4>
+        <p>Manage products, categories, prices, discounts, and seasonal offerings. Changes sync across all POS terminals in real-time.</p>
+
+        <h4>7. Security & Roles</h4>
+        <table id="roles">
+          <tr>
+            <th>Role</th>
+            <th>Permissions</th>
+          </tr>
+          <tr>
+            <td>Admin / Manager</td>
+            <td>Full access to system settings, user management, employee credentials, and POS configuration</td>
+          </tr>
+          <tr>
+            <td>Cashier / Staff</td>
+            <td>Access assigned POS terminals, process sales, manage orders, view relevant reports</td>
+          </tr>
+        </table>
+
+        <h4>8. Troubleshooting</h4>
+        <ul>
+          <li>Database Connection Failed: Check firebaseConfig.js credentials.</li>
+          <li>Sales/Inventory not syncing: Verify internet and Firebase status.</li>
+          <li>UI issues: Clear browser cache or use Chrome/Edge.</li>
+          <li>Receipt missing: Confirm POS user has write permissions in Firestore.</li>
+        </ul>
+
+        <h4>9. Feedback & Contributions</h4>
+        <p>Report bugs via GitHub Issues. Submit improvements via Pull Request. Contact developers listed above for setup assistance.</p>
+      </section>
+
+      <!-- System Architecture -->
+      <section class="js-section" data-section="architecture">
+        <h3 class="section__title">System Architecture</h3>
+        <ul>
+          <li><strong>Frontend:</strong> HTML, CSS, JavaScript for responsive interfaces</li>
+          <li><strong>Backend:</strong> PHP modular structure handling business logic and authentication</li>
+          <li><strong>Database:</strong> Firebase Realtime Database / Firestore for real-time tracking</li>
+          <li><strong>Security:</strong> Role-based access control, HTTPS for data transmission</li>
+        </ul>
+      </section>
+
+      <!-- Data Flow -->
+      <section class="js-section" data-section="data-flow">
+        <h3 class="section__title">Data Flow</h3>
+        <ol>
+          <li>User interacts with frontend (HTML, CSS, JS)</li>
+          <li>Transaction/order data sent to PHP backend</li>
+          <li>Backend logs transaction and updates Firebase in real-time</li>
+          <li>Receipt generated and inventory updated automatically</li>
+          <li>Analytics Dashboard visualizes sales, inventory, and customer activity</li>
+        </ol>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="js-section" data-section="tech-stack">
+        <h3 class="section__title">Tech Stack</h3>
+        <p>HTML5 | CSS3 | JavaScript | PHP | Firebase | GitHub</p>
+      </section>
+
+      <!-- GitHub Statistics -->
+      <section class="js-section" data-section="github">
+        <h3 class="section__title">GitHub Statistics</h3>
+        <ul>
+          <li>Meryll Klaryze Polaron: <a href="https://github.com/k00617500">@k00617500</a></li>
+          <li>Jester Galfo: <a href="https://github.com/m-gj">@m-gj</a></li>
+          <li>Zalve Mae Magsael: <a href="https://github.com/zalvemaemagsael-cmyk">@zalvemaemagsael-cmyk</a></li>
+        </ul>
+      </section>
+
+      <!-- License -->
+      <section class="js-section" data-section="license">
+        <h3 class="section__title">License</h3>
+        <p>This project is developed strictly for academic and research purposes under West Visayas State University-CICT. Unauthorized reproduction, distribution, or commercial use is prohibited.</p>
+        <p>LitLatté POS Suite is a course requirement for CC 206 – Application Development and Emerging Technologies. It demonstrates AI-driven forecasting, real-time inventory management, and POS automation.</p>
+      </section>
+
+    </article>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="litlatte-docu.js"></script>
+</body>
+</html>

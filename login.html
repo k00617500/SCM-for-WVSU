@@ -76,7 +76,7 @@
 
         alert(`Crew registered with ID ${nextId}`);
         localStorage.setItem('loggedIn', 'true');
-        window.location.href = "index.html";
+        window.location.href = "main.html";
       } catch (error) {
         console.error("Error registering crew:", error);
         alert("Failed to register crew. Check console for details.");
@@ -107,7 +107,7 @@
         const employee = foundDoc.data();
         alert(`Welcome back, ${employee.firstName} (ID: ${employee.crewId})!`);
         localStorage.setItem('loggedIn', 'true');
-        window.location.href = "index.html";
+        window.location.href = "main.html";
       } catch (error) {
         console.error("Error logging in:", error);
         alert("Failed to login. Check console for details.");

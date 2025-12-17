@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Documentation</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="litlat-global.css">
+      <link rel="stylesheet" href="litlat-landing.css">
+  </head>
+
+  <body>
+   
+    <!-- Navbar -->
+<header class="navbar" id="navbar">
+    <div class="logo">
+        <a href="index.html"><img src="assets\img\logo-name.png" alt="LitLatté" class="logo-img"></a>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="view-docu.html">
+        <i class="fa fa-book"></i> Documentation
+      </a>
+   
+
+  </header>
+
+
+    <div class="hero">
+
+    </div>
+
+    <div class="hero__terminal">
+      <pre>
+        <!-- Demo code here -->
+        <code class="shell-session demo">
+LitLatté POS initialized...
+Syncing inventory...
+Loading analytics dashboard...
+System ready.
+
+$ litlatte login --role=admin
+
+✔ Admin authenticated
+# Logs in the administrator to access full system features
+
+$ setup pos
+
+✔ POS terminals initialized
+✔ Menu and pricing loaded
+✔ Payment methods activated
+# Prepares the POS system for operations
+
+$ start new-order
+
+→ Select items
+→ Confirm quantities
+→ Process payment
+✔ Order dispatched to Barista Station
+# Guides the user through creating and completing a customer order
+
+$ inventory sync
+
+✔ Real-time ingredient deduction
+✔ Low-stock notifications enabled
+# Ensures inventory is updated and alerts are active
+
+$ analytics view
+
+✔ Top-selling items highlighted
+✔ Peak-hour trends forecasted
+# Provides sales insights and operational forecasting
+
+$ logout
+
+✔ Session securely terminated
+# Ends the admin session safely
+        </code>
+      </pre>
+    </div>
+
+    <div class="wrapper">
+      <div class="toc">
+        <h3 id="section__title">TABLE OF CONTENTS</h3>
+
+        <div class="feature">
+          <div class="feature__item">
+            <h3 class="section__title">Getting Started</h3>
+            <p>
+              How administrators <span class="code code--inline">log in, configure the POS</span>,
+              and onboard cashiers and baristas into the system.
+            </p>
+          </div>
+
+          <div class="feature__item">
+            <h3 class="section__title">User Roles & Permissions</h3>
+            <p>
+              <span class="code code--inline">Admin / Manager and Cashier / Staff</span> roles
+              with clearly defined POS and management-level permissions.
+            </p>
+          </div>
+
+          <div class="feature__item">
+            <h3 class="section__title">POS Operations</h3>
+            <p>
+              Step-by-step guide to <span class="code code--inline">order processing, checkout,
+              payment handling, and barista queue management</span>.
+            </p>
+          </div>
+
+          <div class="feature__item">
+            <h3 class="section__title">Inventory & Menu Management</h3>
+            <p>
+              Manage <span class="code code--inline">products, ingredients, pricing, and stock levels</span>
+              with real-time deductions and low-stock alerts.
+            </p>
+          </div>
+
+          <div class="feature__item">
+            <h3 class="section__title">Analytics & AI Forecasting</h3>
+            <p>
+              View AI-generated insights on <span class="code code--inline">best-selling items,
+              peak hours, and demand trends</span> to support operational decisions.
+            </p>
+          </div>
+
+          <div class="feature__item">
+            <h3 class="section__title">Support & Troubleshooting</h3>
+            <p>
+              Common system issues, Firebase sync checks, and
+              <span class="code code--inline">technical support resources</span>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="litlatte-docu.js"></script>
+  </body>
+</html>

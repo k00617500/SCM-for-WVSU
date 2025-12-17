@@ -1,1440 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Food Order - LitLatte POS</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Firebase SDKs -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
-      authDomain: "pos2-27d04.firebaseapp.com",
-      projectId: "pos2-27d04",
-      storageBucket: "pos2-27d04.firebasestorage.app",
-      messagingSenderId: "394720721108",
-      appId: "1:394720721108:web:b0d8decc48bc01abfba341",
-      measurementId: "G-KLWC55M3BW"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    window.Firebase = { app, analytics, auth, db };
-
-    // Check login status
-    if (localStorage.getItem('loggedIn') !== 'true') {
-      window.location.href = "login.html";
-    }
-  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LitLatté POS Suite | for BookLatté Iloilo</title>
+  <link rel="stylesheet" href="assets/css/main-style.css" />
 </head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar" id="navbar">
+  <div class="logo">
+    <img src="assets\img\logo-name.png" alt="LitLatté" class="logo-img">
+  </div>
+  <nav class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#why">Why Use</a>
+    <a href="#demo">Demo</a>
+    <a href="#contact">Contact</a>
+    <a href="reg" class="btn primary">Get Started</a>
+    <a href="login.html" class="btn primary">Login</a>
+  </nav>
+
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+</header>
+
+<!-- Hero -->
+<section id="hero" class="hero" style="position: relative; background: url('assets/img/coffee-background.jpg') center/cover no-repeat; height: 100vh;">
+  <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
+  <div class="container hero-inner" style="position: relative; z-index: 2;">
+
+    <div class="hero-left reveal">
+      <h1>Brewing Seamless Sales</h1>
+      <p class="lead">
+        <strong>LitLatté POS Suite</strong> — a smart, seamless, and AI-powered
+        <strong>Point-of-Sale & Café Management System</strong> designed specifically for
+        <strong>BookLatté Iloilo</strong>.
+        Centralize ordering, speed up checkout, track inventory in real time,
+        and gain actionable insights to improve café operations and customer service.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn primary" href="#demo">Watch demo</a>
+        <a class="btn outline" href="#info">Learn more</a>
+      </div>
+
+      <ul class="hero-stats">
+        <li><strong>Unified</strong><span> POS & Order Management</span></li>
+        <li><strong>Real-Time</strong><span> Inventory Monitoring</span></li>
+        <li><strong>Insight-Driven</strong><span> Sales Analytics</span></li>
+      </ul>
+    </div>
+
+    <div class="hero-right reveal delay">
+
+    
+
+      <div class="panel small-grid">
+        <div class="card info-card">
+          <h5>Inventory</h5>
+          <p>Real-time ingredient tracking, automatic deduction, and low-stock alerts.</p>
+        </div>
+        <div class="card info-card">
+          <h5>Sales</h5>
+          <p>Monitor revenue, best-selling items, peak hours, and staff performance.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Why -->
+<section id="why" class="section">
+  <div class="container reveal">
+    <h2>Why Use LitLatté POS Suite?</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h4>Accuracy</h4>
+        <p>Automated order handling and inventory deduction reduce human error.</p>
+      </div>
+      <div class="why-card">
+        <h4>Efficiency</h4>
+        <p>Optimized POS workflows accelerate checkout and barista order processing.</p>
+      </div>
+      <div class="why-card">
+        <h4>Data-Driven</h4>
+        <p>AI-powered insights identify peak hours and best-selling menu items.</p>
+      </div>
+      <div class="why-card">
+        <h4>Operational Transparency</h4>
+        <p>Clear tracking of sales, inventory usage, and staff activity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Demo -->
+<section id="demo" class="section">
+  <div class="container reveal">
+    <h2>Demo & Location</h2>
+
+    <div class="demo-grid">
+      <div class="demo-video">
+        <div class="video-wrap">
+          <video autoplay muted loop playsinline controls poster="assets/img/video-poster.jpg" class="responsive-video">
+            <source src="assets\vid\demo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <p class="muted" style="margin-top:10px">
+          Short preview of LitLatté POS Suite’s Flow.
+        </p>
+      </div>
+
+      <div class="map-container" style="width:100%;height:400px;overflow:hidden;border-radius:12px;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.566489189992!2d122.56602921428104!3d10.712345192345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aee5edd3eed8a3%3A0x26dd3488146a02fa!2sBook%20Latt%C3%A9%20Caf%C3%A9%2C%20Library%20%26%20Art%20Space!5e0!3m2!1sen!2sph!4v1715927264642!5m2!1sen!2sph"
+          style="border:0;width:100%;height:100%;filter:grayscale(20%) brightness(95%) saturate(60%) hue-rotate(-20deg);"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      
+      <div class="map-location" style="margin-top:1rem;color:#76001a;">
+        <strong>Book Latté Café, Library & Art Space</strong><br>
+        Business Park, G/F Festivewalk Parade, Megaworld Blvd, Mandurriao, Iloilo City, 5000
+        <div class="map-actions" style="margin-top:0.5rem;">
+          <a class="btn small"
+             href="https://www.google.com/maps/place/booklatte/data=!4m2!3m1!1s0x33aee5edd3eed8a3:0x26dd3488146a02fa?sa=X&ved=1t:242&ictx=111"
+             target="_blank"
+             style="background-color:#82001c;color:rgb(255, 255, 255);padding:6px 12px;border-radius:8px;text-decoration:none;font-weight:600;">
+            Open in Maps
+          </a>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section dark-section">
+  <div class="container reveal">
+    <div class="contact-cta">
+      <h2>Ready to streamline BookLatté’s café operations?</h2>
+      <p class="muted">Contact the development team for demo, deployment, or collaboration.</p>
+      <br>
+      <a class="btn primary" href="mailto:polaron.mk@gmail.com">Contact the Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer" id="footer">
+  <div class="footer-container">
+    <div class="footer-company">
+      <h2>LitLatté POS Suite</h2>
+      <p>Powering smarter café operations through intelligent POS technology.</p>
+    </div>
+
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h4>NAVIGATION</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>COMPANY</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Team</a></li>
+        </ul>
+        <button class="footer-btn" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'});">
+          Contact Us
+        </button>
+      </div>
+
+      <div class="footer-col">
+        <h4>SUPPORT</h4>
+        <ul>
+          <li><a href="docu.html">Documentation</a></li>
+        </ul>
+        <button class="footer-btn" onclick="document.querySelector('#support').scrollIntoView({behavior: 'smooth'});">
+          Request Support
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 LitLatté POS Suite. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#terms">Terms Of Service</a>
+      <a href="#privacy">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- JS (UNCHANGED) -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const managerBtn = document.getElementById("managerBtn");
-    const MANAGER_PIN = "1234";
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(link=>{
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      const id = this.getAttribute('href');
+      document.querySelector(id).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
 
-    if (managerBtn) {
-      managerBtn.addEventListener("click", () => {
-        const pin = prompt("Enter Manager PIN:");
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add('revealed');
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>obs.observe(el));
 
-        if (pin === null) return;
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', ()=>{
+    const sc = window.scrollY;
+    if (sc > 60) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  });
 
-        if (pin !== MANAGER_PIN) {
-          alert("❌ Incorrect Manager PIN");
-          return;
-        }
+  const toggleBtn = document.getElementById('theme-toggle');
+  const currentTheme = localStorage.getItem('theme');
 
-        // Correct PIN → go to manager page
-        window.location.href = "manager.html";
-      });
-    }
+  if (currentTheme === 'light') {
+    document.body.classList.add('light-mode');
+    toggleBtn.textContent = '☀️';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    const isLight = document.body.classList.contains('light-mode');
+    toggleBtn.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
   });
 </script>
 
-<body>
-  <!-- Top Header -->
-  <header class="top-header">
-    <div class="header-left">
-      <h1>LitLatte POS</h1>
-    </div>
-    <div class="header-right">
-      <button id="managerBtn" class="manager-btn"><i class="fas fa-user-shield"></i> Manager</button>
-    </div>
-  </header>
-
-  <div class="main-container">
-    <!-- Left Sidebar -->
-    <aside class="sidebar">
-      <nav class="sidebar-nav">
-        <a href="#" class="nav-item active">
-          <i class="fas fa-shopping-bag"></i>
-          <span>Food Order</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-clock"></i>
-          <span>Order History</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-boxes"></i>
-          <span>Inventory</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-chart-bar"></i>
-          <span>Reports</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-cog"></i>
-          <span>Settings</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <!-- Search -->
-      <div class="search-filter-bar">
-        <div class="search-box">
-          <i class="fas fa-search"></i>
-          <input type="text" placeholder="Search food" id="searchInput">
-        </div>
-      </div>
-
-      <!-- Explore Categories -->
-      <div class="categories-section">
-        <div class="categories-scroll">
-          <button class="category-btn active" data-category="all">All</button>
-          <button class="category-btn" data-category="All Day Breakfast">All Day Breakfast</button>
-          <button class="category-btn" data-category="Nibblers">Nibblers</button>
-          <button class="category-btn" data-category="Specialties">Specialties</button>
-          <button class="category-btn" data-category="Pasta Pride">Pasta Pride</button>
-          <button class="category-btn" data-category="Salads">Salads</button>
-          <button class="category-btn" data-category="Drinks">Drinks</button>
-          <button class="category-btn" data-category="Desserts">Desserts</button>
-          <button class="category-btn" data-category="Soups">Soups</button>
-        </div>
-      </div>
-
-      <!-- Product Tabs -->
-      <div class="product-tabs">
-        <button class="tab-btn active" data-tab="popular">Popular</button>
-        <button class="tab-btn" data-tab="recent">Recent</button>
-      </div>
-
-      <!-- Products Grid -->
-      <div class="products-grid" id="productsGrid"></div>
-    </main>
-
-    <!-- Right Invoice Sidebar -->
-    <aside class="invoice-sidebar">
-      <div class="invoice-card">
-        <h2 class="invoice-title">Invoice</h2>
-        
-        <div class="invoice-items" id="invoiceItems">
-          <!-- Items will be dynamically added here -->
-        </div>
-
-        <div class="payment-summary">
-          <h3>Payment Summary</h3>
-          <div class="summary-row">
-            <span>Sub Total</span>
-            <span id="invoiceSubtotal">₱0.00</span>
-          </div>
-          <div class="summary-row">
-            <span>Tax</span>
-            <span id="invoiceTax">-₱0.00</span>
-          </div>
-          <div class="summary-row total-row">
-            <span>Total Payment</span>
-            <span id="invoiceTotal">₱0.00</span>
-          </div>
-        </div>
-
-        <div class="payment-methods">
-          <h3>Payment Method</h3>
-          <div class="payment-buttons-sidebar">
-            <button class="payment-method-btn-sidebar" data-method="cash">
-              <div class="payment-icon-sidebar cash-icon-sidebar">
-                <i class="fas fa-money-bill-wave"></i>
-              </div>
-              <span>Cash</span>
-            </button>
-            <button class="payment-method-btn-sidebar" data-method="gcash">
-              <div class="payment-icon-sidebar gcash-icon-sidebar">
-                <span style="font-weight: bold;">GC</span>
-              </div>
-              <span>GCash</span>
-            </button>
-            <button class="payment-method-btn-sidebar" data-method="card">
-              <div class="payment-icon-sidebar card-icon-sidebar">
-                <i class="fab fa-cc-visa"></i>
-              </div>
-              <span>Card</span>
-            </button>
-          </div>
-        </div>
-
-        <button class="place-order-btn" id="doneBtn">
-          Place An Order Now
-        </button>
-      </div>
-    </aside>
-  </div>
-
-  <!-- Product Ordering Modal -->
-  <div id="productModal" class="product-modal">
-    <div class="product-modal-content">
-      <button class="modal-close-btn" id="closeProductModal">
-        <i class="fas fa-times"></i>
-      </button>
-      
-      <!-- Product Identity -->
-      <div class="product-modal-header">
-        <div class="product-modal-image">
-          <img id="modalProductImage" src="" alt="">
-        </div>
-        <div class="product-modal-info">
-          <h2 id="modalProductName"></h2>
-          <p class="product-modal-category" id="modalProductCategory"></p>
-          <p class="product-modal-price" id="modalProductBasePrice"></p>
-        </div>
-      </div>
-
-      <!-- Quantity Control -->
-      <div class="product-modal-section">
-        <label class="section-label">Quantity</label>
-        <div class="quantity-control">
-          <button class="qty-btn" id="decreaseQty">-</button>
-          <input type="number" id="productQuantity" value="1" min="1" max="99">
-          <button class="qty-btn" id="increaseQty">+</button>
-        </div>
-        <p class="stock-indicator">In stock: <span id="stockCount">50</span></p>
-      </div>
-
-      <!-- Required Options -->
-      <div class="product-modal-section" id="sizeSection" style="display: none;">
-        <label class="section-label">Size <span class="required-badge">Required</span></label>
-        <div class="options-group" id="requiredOptions">
-          <!-- Dynamically populated -->
-        </div>
-      </div>
-
-      <!-- Optional Add-ons -->
-      <div class="product-modal-section">
-        <label class="section-label">Add-ons (Optional)</label>
-        <div class="options-group" id="optionalAddons">
-          <!-- Dynamically populated -->
-        </div>
-      </div>
-
-      <!-- Modifiers -->
-      <div class="product-modal-section">
-        <label class="section-label">Modifiers</label>
-        <div class="modifier-buttons" id="modifierButtons">
-          <!-- Dynamically populated -->
-        </div>
-      </div>
-
-      <!-- Special Instructions -->
-      <div class="product-modal-section">
-        <label class="section-label">Special Instructions</label>
-        <textarea id="specialInstructions" placeholder="Special instructions (kitchen will see this)" maxlength="100"></textarea>
-        <p class="char-count"><span id="charCount">0</span>/100</p>
-      </div>
-
-      <!-- Price Breakdown -->
-      <div class="product-modal-section price-breakdown">
-        <div class="breakdown-row">
-          <span>Base price</span>
-          <span id="breakdownBase">₱0.00</span>
-        </div>
-        <div class="breakdown-row">
-          <span>Quantity</span>
-          <span id="breakdownQty">× 1</span>
-        </div>
-        <div class="breakdown-row total-breakdown">
-          <span>Total</span>
-          <span id="breakdownTotal">₱0.00</span>
-        </div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="product-modal-actions">
-        <button class="btn-secondary" id="cancelProductModal">Cancel</button>
-        <button class="btn-primary" id="addToOrderBtn" disabled>Add to Order - <span id="addToOrderPrice">₱0.00</span></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- GCash QR Code Modal -->
-  <div id="gcashModal" class="modal">
-    <div class="payment-process-modal">
-      <button class="modal-close-btn" id="closeGCashModal">
-        <i class="fas fa-times"></i>
-      </button>
-      <h2>GCash Payment</h2>
-      <div class="qr-code-container">
-        <div class="qr-code-placeholder">
-          <i class="fas fa-qrcode" style="font-size: 120px; color: #3B82F6;"></i>
-          <p style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">QR Code will appear here</p>
-        </div>
-      </div>
-      <div class="timer-display">
-        <p>Time remaining: <span id="gcashTimer">10</span> seconds</p>
-      </div>
-      <div class="payment-verification">
-        <p>Please wait for customer to scan the QR code...</p>
-        <div class="verification-buttons">
-          <button class="btn-secondary" id="gcashCancel">Cancel</button>
-          <button class="btn-success" id="gcashSuccess">Payment Successful</button>
-          <button class="btn-danger" id="gcashFailed">Payment Failed</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card Payment Modal -->
-  <div id="cardModal" class="modal">
-    <div class="payment-process-modal">
-      <div class="payment-modal-header">
-        <h2>Card Payment</h2>
-        <button class="modal-close-btn" id="closeCardModal">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="card-payment-form">
-        <div class="form-group" id="accountTypeGroup">
-          <label>Account Type</label>
-          <div class="account-type-buttons">
-            <button type="button" class="account-type-btn" data-type="savings">Savings</button>
-            <button type="button" class="account-type-btn" data-type="debit">Debit</button>
-            <button type="button" class="account-type-btn" data-type="checking">Checking</button>
-          </div>
-        </div>
-        <div class="form-group" id="pinGroup" style="display: none;">
-          <label>Enter 6-Digit PIN</label>
-          <input type="password" id="cardPin" maxlength="6" pattern="[0-9]{6}" placeholder="000000" class="pin-input">
-        </div>
-        <div class="form-group" id="amountGroup" style="display: none;">
-          <label>Enter Amount to Pay</label>
-          <input type="text" id="cardAmount" readonly placeholder="₱ 0.00" class="amount-input">
-          <div class="keypad-container">
-            <div class="keypad">
-              <button type="button" class="keypad-btn" data-value="1">1</button>
-              <button type="button" class="keypad-btn" data-value="2">2</button>
-              <button type="button" class="keypad-btn" data-value="3">3</button>
-              <button type="button" class="keypad-btn" data-value="4">4</button>
-              <button type="button" class="keypad-btn" data-value="5">5</button>
-              <button type="button" class="keypad-btn" data-value="6">6</button>
-              <button type="button" class="keypad-btn" data-value="7">7</button>
-              <button type="button" class="keypad-btn" data-value="8">8</button>
-              <button type="button" class="keypad-btn" data-value="9">9</button>
-              <button type="button" class="keypad-btn" data-value=".">.</button>
-              <button type="button" class="keypad-btn" data-value="0">0</button>
-              <button type="button" class="keypad-btn keypad-backspace" data-action="backspace">
-                <i class="fas fa-backspace"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="payment-verification" id="confirmGroup" style="display: none;">
-          <div class="verification-buttons">
-            <button type="button" class="btn-secondary" id="cardCancel">Cancel</button>
-            <button type="button" class="btn-success" id="cardConfirm">Confirm</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Payment Modal -->
-  <div id="paymentModal" class="modal">
-    <div class="payment-modal-box">
-      <div class="payment-modal-header">
-        <h2>Complete Payment</h2>
-        <button class="modal-close-btn" id="closePaymentModal">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      
-      <div class="payment-modal-body">
-        <div class="order-summary-section">
-          <h3>Order Summary</h3>
-          <div class="payment-cart-items" id="modalCartItems"></div>
-          
-          <div class="payment-total-section">
-            <div class="payment-summary-row">
-              <span>Subtotal</span>
-              <span id="modalSubtotal">₱0.00</span>
-            </div>
-            <div class="payment-summary-row">
-              <span>VAT (12%)</span>
-              <span id="modalVat">₱0.00</span>
-            </div>
-            <div class="payment-summary-row payment-total">
-              <span>Total</span>
-              <span id="modalTotal">₱0.00</span>
-            </div>
-          </div>
-        </div>
-
-        <form id="paymentForm">
-          <div class="payment-method-section">
-            <h3>Payment Method</h3>
-            <div class="payment-method-grid">
-              <label class="payment-method-card">
-                <input type="radio" name="payment" value="cash" required>
-                <div class="payment-card-content">
-                  <div class="payment-icon-wrapper cash-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                  </div>
-                  <div class="payment-text">
-                    <span class="payment-name">Cash</span>
-                    <span class="payment-desc">Pay with cash</span>
-                  </div>
-                  <i class="fas fa-check payment-check"></i>
-                </div>
-              </label>
-              <label class="payment-method-card">
-                <input type="radio" name="payment" value="gcash">
-                <div class="payment-card-content">
-                  <div class="payment-icon-wrapper gcash-icon">
-                    <span style="font-weight: bold; font-size: 24px;">GC</span>
-                  </div>
-                  <div class="payment-text">
-                    <span class="payment-name">GCash</span>
-                    <span class="payment-desc">Mobile wallet</span>
-                  </div>
-                  <i class="fas fa-check payment-check"></i>
-                </div>
-              </label>
-              <label class="payment-method-card">
-                <input type="radio" name="payment" value="card">
-                <div class="payment-card-content">
-                  <div class="payment-icon-wrapper card-icon">
-                    <i class="fab fa-cc-visa"></i>
-                  </div>
-                  <div class="payment-text">
-                    <span class="payment-name">Card</span>
-                    <span class="payment-desc">Credit/Debit</span>
-                  </div>
-                  <i class="fas fa-check payment-check"></i>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div class="discount-section">
-            <h3>Discount Card</h3>
-            <div class="discount-options">
-              <label class="discount-option">
-                <input type="radio" name="discount_card_type" value="none" checked>
-                <span>None</span>
-              </label>
-              <label class="discount-option">
-                <input type="radio" name="discount_card_type" value="senior">
-                <span>Senior (20%)</span>
-              </label>
-              <label class="discount-option">
-                <input type="radio" name="discount_card_type" value="pwd">
-                <span>PWD (20%)</span>
-              </label>
-            </div>
-          </div>
-
-          <div id="cashPaymentDetails" class="cash-details" style="display:none;">
-            <h3>Cash Received</h3>
-            <input type="number" id="cashReceivedInput" name="cash_received_amount" step="0.01" min="0" placeholder="₱ 0.00" class="cash-input">
-            <div class="change-due-section">
-              <h3>Change Due</h3>
-              <span id="changeDueSpan" class="change-amount">₱0.00</span>
-            </div>
-          </div>
-
-          <div class="payment-modal-actions">
-            <button type="button" id="cancelPayment" class="btn-secondary">Cancel</button>
-            <button type="submit" id="confirmPayment" class="btn-primary">Confirm Payment</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- App script -->
-  <script>
-    const MENU = {
-      "All Day Breakfast": {
-        "All Day Pancake": { item_id: 1, price: 180, image: "assets/img/pancake.jpg" },
-        "Breakfast Sandwich": { item_id: 2, price: 150, image: "assets/img//breakfast_sandwich.jpg" },
-        "Eggs Benedict": { item_id: 3, price: 220, image: "assets/img//egg_benedict.jpg" }
-      },
-      "Nibblers": {
-        "Mozarella Cheese Sticks": { item_id: 8, price: 85, image: "assets/img//cheese_sticks.jpg" },
-        "Spring Rolls": { item_id: 9, price: 95, image: "assets/img//spring_rolls.jpg" }
-      },
-      "Specialties": {
-        "Chicken Adobo": { item_id: 10, price: 250, image: "assets/img//chicken_adobo.jpg" },
-        "Pork Sinigang": { item_id: 11, price: 270, image: "assets/img//pork_sinigang.jpg" }
-      },
-      "Pasta Pride": {
-        "Pasta Puttanesca": { item_id: 12, price: 198, image: "assets/img//puttanesca.jpg" },
-        "Mac and Cheese": { item_id: 13, price: 188, image: "assets/img//mac_cheese.jpg" },
-        "Carbonara": { item_id: 14, price: 188, image: "assets/img//carbonara.jpg" },
-        "Molo Blanca": { item_id: 15, price: 188, image: "assets/img//molo_blanca.jpg" },
-        "Birthday Spaghetti": { item_id: 16, price: 188, image: "assets/img//spaghetti.jpg" },
-        "Shrimp Aglio Spaghetti": { item_id: 17, price: 188, image: "assets/img//aglio_spaghetti.jpg" }
-      },
-      "Salads": {
-        "Chicken Caesar Salad": { item_id: 18, price: 188, image: "assets/img//caesar_salad.jpg" },
-        "Pan Fried Breaded Fish with Apple Garden Salad": { item_id: 19, price: 188, image: "assets/img//fish_salad.jpg" }
-      },
-      "Drinks": {
-        "Cappuccino": { item_id: 20, price: 98, image: "assets/img//cappuccino.jpg" },
-        "Latte": { item_id: 21, price: 118, image: "assets/img//latte.jpg" },
-        "Iced Coffee": { item_id: 22, price: 148, image: "assets/img//iced_coffee.jpg" },
-        "Espresso": { item_id: 23, price: 58, image: "assets/img//Espresso.jpg" }
-      },
-      "Desserts": {
-        "Chocolate Lava Cake": { item_id: 24, price: 180, image: "assets/img//lava_cake.jpg" },
-        "Vanilla Cheesecake": { item_id: 25, price: 150, image: "assets/img//cheesecake.jpg" }
-      },
-      "Soups": {
-        "Pancit Molo": { item_id: 26, price: 238, image: "assets/img//pancit_molo.jpg" },
-        "Beef Pochero": { item_id: 28, price: 328, image: "assets/img//pochero.jpg" },
-        "Macaroni Soup": { item_id: 29, price: 238, image: "assets/img//macaroni_soup.jpg" }
-      }
-    };
-
-    const VAT_RATE = 0.12;
-    const DISCOUNT_MAP = { none: 0, senior: 0.20, pwd: 0.20 };
-
-    // Product-specific add-ons and options
-    const PRODUCT_ADDONS = {
-      "All Day Breakfast": {
-        addons: [
-          { name: "Extra Eggs", value: "extra-eggs", price: 25 },
-          { name: "Extra Bacon", value: "extra-bacon", price: 35 },
-          { name: "Hash Browns", value: "hash-browns", price: 40 },
-          { name: "Toast", value: "toast", price: 20 }
-        ],
-        sizes: true,
-        modifiers: ["No-salt", "well-done", "Less-butter", "No-syrup"]
-      },
-      "Nibblers": {
-        addons: [
-          { name: "Extra Dip", value: "extra-dip", price: 15 },
-          { name: "Extra Sauce", value: "extra-sauce", price: 10 }
-        ],
-        sizes: false,
-        modifiers: ["extra-crispy", "less-salt"]
-      },
-      "Specialties": {
-        addons: [
-          { name: "Extra Rice", value: "extra-rice", price: 25 },
-          { name: "Extra Sauce", value: "extra-sauce", price: 15 },
-          { name: "Extra Vegetables", value: "extra-vegetables", price: 30 }
-        ],
-        sizes: false,
-        modifiers: ["less-spicy", "no-onions", "extra-garlic"]
-      },
-      "Pasta Pride": {
-        addons: [
-          { name: "Extra Cheese", value: "extra-cheese", price: 25 },
-          { name: "Extra Sauce", value: "extra-sauce", price: 20 },
-          { name: "Extra Meat", value: "extra-meat", price: 50 },
-          { name: "Garlic Bread", value: "garlic-bread", price: 45 }
-        ],
-        sizes: true,
-        modifiers: ["less-cheese", "no-onions", "extra-garlic", "al-dente"]
-      },
-      "Salads": {
-        addons: [
-          { name: "Extra Dressing", value: "extra-dressing", price: 15 },
-          { name: "Extra Protein", value: "extra-protein", price: 60 },
-          { name: "Extra Vegetables", value: "extra-vegetables", price: 25 }
-        ],
-        sizes: true,
-        modifiers: ["no-dressing", "dressing-on-side", "no-croutons"]
-      },
-      "Drinks": {
-        addons: [
-          { name: "Extra Shot", value: "extra-shot", price: 30 },
-          { name: "Extra Sugar", value: "extra-sugar", price: 5 },
-          { name: "Extra Cream", value: "extra-cream", price: 15 },
-          { name: "Whipped Cream", value: "whipped-cream", price: 20 }
-        ],
-        sizes: true,
-        modifiers: ["no-sugar", "less-ice", "no-ice", "decaf"]
-      },
-      "Desserts": {
-        addons: [
-          { name: "Extra Scoop", value: "extra-scoop", price: 40 },
-          { name: "Whipped Cream", value: "whipped-cream", price: 20 },
-          { name: "Caramel Drizzle", value: "caramel-drizzle", price: 25 },
-          { name: "Chocolate Sauce", value: "chocolate-sauce", price: 25 }
-        ],
-        sizes: false,
-        modifiers: ["less-sweet", "no-nuts"]
-      },
-      "Soups": {
-        addons: [
-          { name: "Extra Bread", value: "extra-bread", price: 20 },
-          { name: "Extra Vegetables", value: "extra-vegetables", price: 25 },
-          { name: "Extra Meat", value: "extra-meat", price: 50 }
-        ],
-        sizes: true,
-        modifiers: ["less-spicy", "no-onions", "extra-garlic"]
-      }
-    };
-
-    const productsGrid = document.getElementById('productsGrid');
-    const invoiceItems = document.getElementById('invoiceItems');
-    const invoiceSubtotal = document.getElementById('invoiceSubtotal');
-    const invoiceTax = document.getElementById('invoiceTax');
-    const invoiceTotal = document.getElementById('invoiceTotal');
-    const doneBtn = document.getElementById('doneBtn');
-    const paymentModal = document.getElementById('paymentModal');
-    const modalCartItems = document.getElementById('modalCartItems');
-    const modalTotalSpan = document.getElementById('modalTotal');
-    const paymentForm = document.getElementById('paymentForm');
-    const cancelPaymentBtn = document.getElementById('cancelPayment');
-    const cashDetails = document.getElementById('cashPaymentDetails');
-    const cashReceivedInput = document.getElementById('cashReceivedInput');
-    const changeDueSpan = document.getElementById('changeDueSpan');
-    const searchInput = document.getElementById('searchInput');
-    
-    // Product Modal Elements
-    const productModal = document.getElementById('productModal');
-    const modalProductImage = document.getElementById('modalProductImage');
-    const modalProductName = document.getElementById('modalProductName');
-    const modalProductCategory = document.getElementById('modalProductCategory');
-    const modalProductBasePrice = document.getElementById('modalProductBasePrice');
-    const productQuantity = document.getElementById('productQuantity');
-    const decreaseQty = document.getElementById('decreaseQty');
-    const increaseQty = document.getElementById('increaseQty');
-    const addToOrderBtn = document.getElementById('addToOrderBtn');
-    const closeProductModal = document.getElementById('closeProductModal');
-    const cancelProductModal = document.getElementById('cancelProductModal');
-    const specialInstructions = document.getElementById('specialInstructions');
-    const charCount = document.getElementById('charCount');
-    const breakdownBase = document.getElementById('breakdownBase');
-    const breakdownAddons = document.getElementById('breakdownAddons');
-    const breakdownQty = document.getElementById('breakdownQty');
-    const breakdownTotal = document.getElementById('breakdownTotal');
-    
-    // Payment Modal Elements
-    const closePaymentModal = document.getElementById('closePaymentModal');
-    const modalSubtotal = document.getElementById('modalSubtotal');
-    const modalVat = document.getElementById('modalVat');
-
-    let cart = [];
-    window.cart = cart;
-    let activeCategory = 'all';
-    let activeTab = 'popular';
-    let currentProduct = null;
-
-    function renderProducts(category="all", searchTerm=""){
-      productsGrid.innerHTML = "";
-      const cats = category==="all" ? Object.keys(MENU) : [category];
-      
-      let items = [];
-      cats.forEach(cat=>{
-        Object.entries(MENU[cat]).forEach(([name,item])=>{
-          if (!searchTerm || name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            items.push({name, item, cat});
-          }
-        });
-      });
-
-      items.forEach(({name, item, cat})=>{
-        const div = document.createElement("div");
-        div.className="product-card";
-        div.innerHTML=`
-          <div class="product-image">
-            <img src="${item.image}" alt="${name}" onerror="this.style.display='none'">
-          </div>
-          <div class="product-info">
-            <h3 class="product-name">${name}</h3>
-            <div class="product-price">
-              <span class="current-price">₱${item.price.toFixed(2)}</span>
-            </div>
-            <div class="product-actions">
-              <button class="order-btn" data-item-id="${item.item_id}" data-name="${name}" data-price="${item.price}" data-category="${cat}">
-                Order Now
-              </button>
-            </div>
-          </div>`;
-        
-        div.querySelector(".order-btn").addEventListener("click",()=>openProductModal({
-          id:item.item_id,
-          name,
-          price:item.price,
-          category:cat,
-          image:item.image
-        }));
-        
-        productsGrid.appendChild(div);
-      });
-    }
-
-    function openProductModal(product){
-      currentProduct = {...product};
-      modalProductImage.src = product.image || '';
-      modalProductImage.alt = product.name;
-      modalProductName.textContent = product.name;
-      modalProductCategory.textContent = product.category;
-      modalProductBasePrice.textContent = `₱${product.price.toFixed(2)}`;
-      productQuantity.value = 1;
-      specialInstructions.value = '';
-      charCount.textContent = '0';
-      
-      // Get product configuration
-      const productConfig = PRODUCT_ADDONS[product.category] || {
-        addons: [],
-        sizes: false,
-        modifiers: []
-      };
-      
-      // Setup Size Options
-      const sizeSection = document.getElementById('sizeSection');
-      const requiredOptions = document.getElementById('requiredOptions');
-      if(productConfig.sizes){
-        sizeSection.style.display = 'block';
-        requiredOptions.innerHTML = `
-          <label class="option-radio">
-            <input type="radio" name="size" value="small" data-price="0">
-            <span>Small</span>
-          </label>
-          <label class="option-radio">
-            <input type="radio" name="size" value="medium" data-price="0" checked>
-            <span>Medium</span>
-          </label>
-          <label class="option-radio">
-            <input type="radio" name="size" value="large" data-price="30">
-            <span>Large (+₱30)</span>
-          </label>
-        `;
-      } else {
-        sizeSection.style.display = 'none';
-        requiredOptions.innerHTML = '';
-      }
-      
-      // Setup Add-ons
-      const optionalAddons = document.getElementById('optionalAddons');
-      if(productConfig.addons && productConfig.addons.length > 0){
-        optionalAddons.innerHTML = productConfig.addons.map(addon => `
-          <label class="option-radio">
-            <input type="radio" name="addon" value="${addon.value}" data-price="${addon.price}">
-            <span>${addon.name} P${addon.price}</span>
-          </label>
-        `).join('');
-      } else {
-        optionalAddons.innerHTML = '<p style="color: rgba(255,255,255,0.6); font-size: 14px;">No add-ons available for this item.</p>';
-      }
-      
-      // Setup Modifiers
-      const modifierButtons = document.getElementById('modifierButtons');
-      const modifierLabels = {
-        "no-sugar": "No Sugar",
-        "less-salt": "Less Salt",
-        "well-done": "Well Done",
-        "no-onions": "No Onions",
-        "extra-crispy": "Extra Crispy",
-        "less-spicy": "Less Spicy",
-        "extra-garlic": "Extra Garlic",
-        "less-cheese": "Less Cheese",
-        "al-dente": "Al Dente",
-        "no-dressing": "No Dressing",
-        "dressing-on-side": "Dressing on Side",
-        "no-croutons": "No Croutons",
-        "less-ice": "Less Ice",
-        "no-ice": "No Ice",
-        "decaf": "Decaf",
-        "less-sweet": "Less Sweet",
-        "no-nuts": "No Nuts",
-        "less-butter": "Less Butter",
-        "no-syrup": "No Syrup"
-      };
-      
-      if(productConfig.modifiers && productConfig.modifiers.length > 0){
-        modifierButtons.innerHTML = productConfig.modifiers.map(mod => `
-          <button class="modifier-btn" data-modifier="${mod}">${modifierLabels[mod] || mod}</button>
-        `).join('');
-      } else {
-        modifierButtons.innerHTML = '';
-      }
-      
-      // Reset all selections
-      document.querySelectorAll('input[name="size"]').forEach(r => {
-        if(r.value === 'medium') r.checked = true;
-      });
-      document.querySelectorAll('input[name="addon"]').forEach(c => c.checked = false);
-      document.querySelectorAll('.modifier-btn').forEach(b => b.classList.remove('active'));
-      
-      // Re-attach event listeners
-      attachProductModalListeners();
-      
-      updatePriceBreakdown();
-      productModal.style.display = 'flex';
-    }
-    
-    function attachProductModalListeners(){
-      // Size radio buttons
-      document.querySelectorAll('input[name="size"]').forEach(radio => {
-        radio.removeEventListener('change', updatePriceBreakdown);
-        radio.addEventListener('change', updatePriceBreakdown);
-      });
-      
-      // Add-on radio buttons
-      document.querySelectorAll('input[name="addon"]').forEach(radio => {
-        radio.removeEventListener('change', updatePriceBreakdown);
-        radio.addEventListener('change', updatePriceBreakdown);
-      });
-      
-      // Modifier buttons
-      document.querySelectorAll('.modifier-btn').forEach(btn => {
-        btn.removeEventListener('click', function(){});
-        btn.addEventListener('click', () => {
-          btn.classList.toggle('active');
-        });
-      });
-    }
-    
-    function updatePriceBreakdown(){
-      if(!currentProduct) return;
-      
-      const basePrice = parseFloat(currentProduct.price);
-      const qty = parseInt(productQuantity.value) || 1;
-      
-      // Get selected size price (if size section is visible)
-      const sizeSection = document.getElementById('sizeSection');
-      let sizePrice = 0;
-      if(sizeSection.style.display !== 'none'){
-        const selectedSize = document.querySelector('input[name="size"]:checked');
-        sizePrice = selectedSize ? parseFloat(selectedSize.dataset.price || 0) : 0;
-      }
-      
-      // Get add-ons total (radio buttons - only one can be selected)
-      let addonsTotal = 0;
-      const selectedAddon = document.querySelector('input[name="addon"]:checked');
-      if(selectedAddon) {
-        addonsTotal = parseFloat(selectedAddon.dataset.price || 0);
-      }
-      
-      const totalBase = basePrice + sizePrice;
-      const totalAddons = addonsTotal * qty;
-      const total = (totalBase * qty) + totalAddons;
-      
-      breakdownBase.textContent = `₱${totalBase.toFixed(2)}`;
-      breakdownQty.textContent = `× ${qty}`;
-      breakdownTotal.textContent = `₱${total.toFixed(2)}`;
-      
-      // Update button price
-      const addToOrderPrice = document.getElementById('addToOrderPrice');
-      if(addToOrderPrice) {
-        addToOrderPrice.textContent = `₱${total.toFixed(2)}`;
-      }
-      
-      // Enable/disable add button based on required options
-      const sizeSectionVisible = sizeSection.style.display !== 'none';
-      const hasRequiredSize = !sizeSectionVisible || document.querySelector('input[name="size"]:checked');
-      addToOrderBtn.disabled = !hasRequiredSize;
-    }
-    
-    function addToCart(product, quantity = 1, options = {}){
-      const cartItem = {
-        ...product,
-        qty: quantity,
-        size: options.size || null,
-        addons: options.addons || [],
-        modifiers: options.modifiers || [],
-        specialInstructions: options.specialInstructions || ''
-      };
-      
-      // Check if exact same item exists (same product, size, addons, modifiers)
-      const existingIndex = cart.findIndex(i => 
-        i.id === product.id && 
-        i.size === cartItem.size &&
-        JSON.stringify(i.addons) === JSON.stringify(cartItem.addons) &&
-        JSON.stringify(i.modifiers) === JSON.stringify(cartItem.modifiers) &&
-        i.specialInstructions === cartItem.specialInstructions
-      );
-      
-      if(existingIndex >= 0){
-        cart[existingIndex].qty += quantity;
-      } else {
-        cart.push(cartItem);
-      }
-      
-      renderInvoice();
-      productModal.style.display = 'none';
-    }
-    
-    // Product Modal Event Listeners
-    decreaseQty.addEventListener('click', () => {
-      const qty = parseInt(productQuantity.value) || 1;
-      if(qty > 1) productQuantity.value = qty - 1;
-      updatePriceBreakdown();
-    });
-    
-    increaseQty.addEventListener('click', () => {
-      const qty = parseInt(productQuantity.value) || 1;
-      if(qty < 99) productQuantity.value = qty + 1;
-      updatePriceBreakdown();
-    });
-    
-    productQuantity.addEventListener('input', () => {
-      const qty = parseInt(productQuantity.value) || 1;
-      if(qty < 1) productQuantity.value = 1;
-      if(qty > 99) productQuantity.value = 99;
-      updatePriceBreakdown();
-    });
-    
-    // Event listeners are now attached dynamically in attachProductModalListeners()
-    
-    specialInstructions.addEventListener('input', (e) => {
-      charCount.textContent = e.target.value.length;
-    });
-    
-    addToOrderBtn.addEventListener('click', () => {
-      if(!currentProduct) return;
-      
-      const qty = parseInt(productQuantity.value) || 1;
-      const sizeSection = document.getElementById('sizeSection');
-      const size = sizeSection.style.display !== 'none' 
-        ? (document.querySelector('input[name="size"]:checked')?.value || 'medium')
-        : null;
-      const selectedAddon = document.querySelector('input[name="addon"]:checked');
-      const addons = selectedAddon ? [{
-        name: selectedAddon.value,
-        price: parseFloat(selectedAddon.dataset.price || 0)
-      }] : [];
-      const modifiers = Array.from(document.querySelectorAll('.modifier-btn.active')).map(b => b.dataset.modifier);
-      const instructions = specialInstructions.value.trim();
-      
-      addToCart(currentProduct, qty, { size, addons, modifiers, specialInstructions: instructions });
-    });
-    
-    closeProductModal.addEventListener('click', () => {
-      productModal.style.display = 'none';
-    });
-    
-    cancelProductModal.addEventListener('click', () => {
-      productModal.style.display = 'none';
-    });
-    
-    productModal.addEventListener('click', (e) => {
-      if(e.target === productModal) productModal.style.display = 'none';
-    });
-    
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-      if(productModal.style.display === 'flex' && e.key === 'Escape'){
-        productModal.style.display = 'none';
-      }
-      if(paymentModal.style.display === 'flex' && e.key === 'Escape'){
-        paymentModal.style.display = 'none';
-      }
-    });
-
-    function renderInvoice(){
-      invoiceItems.innerHTML = "";
-      let subtotal=0;
-
-      cart.forEach((item, index)=>{
-        // Calculate item total including add-ons
-        const addonsTotal = (item.addons || []).reduce((sum, addon) => sum + addon.price, 0);
-        const sizePrice = item.size === 'large' ? 30 : 0;
-        const itemUnitPrice = item.price + sizePrice + addonsTotal;
-        const itemTotal = itemUnitPrice * item.qty;
-        subtotal += itemTotal;
-
-        const invoiceItem = document.createElement("div");
-        invoiceItem.className = "invoice-item";
-        
-        let itemDetails = item.name;
-        if(item.size) itemDetails += ` (${item.size})`;
-        if(item.addons && item.addons.length > 0){
-          itemDetails += `<br><small style="color: var(--text-muted); font-size: 11px;">+ ${item.addons.map(a => a.name).join(', ')}</small>`;
-        }
-        if(item.modifiers && item.modifiers.length > 0){
-          itemDetails += `<br><small style="color: var(--text-muted); font-size: 11px;">Modifiers: ${item.modifiers.join(', ')}</small>`;
-        }
-        if(item.specialInstructions){
-          itemDetails += `<br><small style="color: var(--text-muted); font-size: 11px; font-style: italic;">Note: ${item.specialInstructions}</small>`;
-        }
-        
-        invoiceItem.innerHTML = `
-          <div class="invoice-item-image">
-            <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
-          </div>
-          <div class="invoice-item-details">
-            <span class="invoice-item-name">${itemDetails}</span>
-            <span class="invoice-item-price">₱${itemTotal.toFixed(2)} ${item.qty > 1 ? `(${item.qty}x)` : ''}</span>
-          </div>
-          <button class="remove-item-btn" data-item-index="${index}">
-            <i class="fas fa-times"></i>
-          </button>`;
-        
-        invoiceItem.querySelector(".remove-item-btn").addEventListener("click", () => {
-          cart.splice(index, 1);
-          renderInvoice();
-        });
-
-        invoiceItems.appendChild(invoiceItem);
-      });
-
-      const totals = computeTotals('none');
-      invoiceSubtotal.textContent = `₱${totals.subtotal.toFixed(2)}`;
-      invoiceTax.textContent = `₱${totals.vat.toFixed(2)}`;
-      invoiceTotal.textContent = `₱${totals.total.toFixed(2)}`;
-    }
-
-    document.querySelectorAll(".category-btn").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        activeCategory = btn.dataset.category;
-        renderProducts(activeCategory, searchInput.value);
-      });
-    });
-
-    document.querySelectorAll(".tab-btn").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        activeTab = btn.dataset.tab;
-        renderProducts(activeCategory, searchInput.value);
-      });
-    });
-
-    searchInput.addEventListener("input", (e) => {
-      renderProducts(activeCategory, e.target.value);
-    });
-
-    function computeTotals(discountType='none'){
-      const subtotal = cart.reduce((s, i) => {
-        const addonsTotal = (i.addons || []).reduce((sum, addon) => sum + addon.price, 0);
-        const sizePrice = i.size === 'large' ? 30 : 0;
-        const itemUnitPrice = i.price + sizePrice + addonsTotal;
-        return s + (itemUnitPrice * i.qty);
-      }, 0);
-      const discountRate = DISCOUNT_MAP[discountType] || 0;
-      const discountAmt = subtotal * discountRate;
-      const taxable = Math.max(0, subtotal - discountAmt);
-      const vat = taxable * VAT_RATE;
-      const total = taxable + vat;
-      return { subtotal, discountRate, discountAmt, vat, total };
-    }
-
-    doneBtn.addEventListener("click", () => {
-      if (cart.length === 0) { alert("Your cart is empty."); return; }
-      
-      // If payment method was selected in sidebar, use it
-      if(selectedPaymentMethod === 'cash') {
-        // Cash payment - show payment modal with cash pre-selected
-      } else if(selectedPaymentMethod === 'gcash' || selectedPaymentMethod === 'card') {
-        // GCash and Card are handled in their respective modals
-        return;
-      }
-
-      paymentForm.reset();
-      cashDetails.style.display = "none";
-      cashReceivedInput.value = "";
-      changeDueSpan.textContent = "0.00";
-      
-      // Pre-select payment method if selected in sidebar
-      if(selectedPaymentMethod === 'cash') {
-        const cashRadio = paymentForm.querySelector('input[name="payment"][value="cash"]');
-        if(cashRadio) cashRadio.checked = true;
-      }
-
-      modalCartItems.innerHTML = "";
-      cart.forEach(item => {
-        const addonsTotal = (item.addons || []).reduce((sum, addon) => sum + addon.price, 0);
-        const sizePrice = item.size === 'large' ? 30 : 0;
-        const itemUnitPrice = item.price + sizePrice + addonsTotal;
-        const itemTotal = itemUnitPrice * item.qty;
-        
-        const cartItem = document.createElement("div");
-        cartItem.className = "payment-cart-item";
-        
-        cartItem.innerHTML = `
-          <div class="payment-item-image">
-            <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
-          </div>
-          <div class="payment-item-details">
-            <div class="payment-item-name">${item.name}</div>
-            ${item.qty > 1 ? `<div class="payment-item-meta">x${item.qty}</div>` : '<div class="payment-item-meta">x1</div>'}
-          </div>
-          <div class="payment-item-price">₱${itemTotal.toFixed(2)}</div>
-        `;
-        modalCartItems.appendChild(cartItem);
-      });
-
-      const t = computeTotals('none');
-      modalSubtotal.textContent = `₱${t.subtotal.toFixed(2)}`;
-      modalVat.textContent = `₱${t.vat.toFixed(2)}`;
-      modalTotalSpan.textContent = `₱${t.total.toFixed(2)}`;
-
-      paymentModal.style.display = "flex";
-    });
-    
-    closePaymentModal.addEventListener("click", () => {
-      paymentModal.style.display = "none";
-    });
-
-    paymentForm.querySelectorAll('input[name="payment"]').forEach(r=>{
-      r.addEventListener('change', ()=>{
-        const method = getSelectedPayment();
-        cashDetails.style.display = method === 'cash' ? 'block' : 'none';
-        updateModalTotals();
-      });
-    });
-
-    paymentForm.querySelectorAll('input[name="discount_card_type"]').forEach(r=>{
-      r.addEventListener('change', updateModalTotals);
-    });
-
-    cashReceivedInput.addEventListener('input', ()=>{
-      const t = computeTotals(getSelectedDiscount());
-      const cash = parseFloat(cashReceivedInput.value || '0');
-      const change = Math.max(0, cash - t.total);
-      changeDueSpan.textContent = change.toFixed(2);
-    });
-
-    function updateModalTotals(){
-      const t = computeTotals(getSelectedDiscount());
-      modalTotalSpan.textContent = t.total.toFixed(2);
-
-      if(getSelectedPayment()==='cash'){
-        const cash = parseFloat(cashReceivedInput.value || '0');
-        const change = Math.max(0, cash - t.total);
-        changeDueSpan.textContent = change.toFixed(2);
-      }else{
-        changeDueSpan.textContent = "0.00";
-      }
-    }
-
-    function getSelectedPayment(){
-      const r = paymentForm.querySelector('input[name="payment"]:checked');
-      return r ? r.value : null;
-    }
-    function getSelectedDiscount(){
-      const r = paymentForm.querySelector('input[name="discount_card_type"]:checked');
-      return r ? r.value : 'none';
-    }
-
-    cancelPaymentBtn.addEventListener("click", ()=> paymentModal.style.display = "none");
-    paymentModal.addEventListener("click", (e) => { if (e.target === paymentModal) paymentModal.style.display = "none"; });
-    
-    // Payment method selection in invoice sidebar
-    let selectedPaymentMethod = null;
-    let gcashTimerInterval = null;
-    let selectedAccountType = null;
-    
-    document.querySelectorAll('.payment-method-btn-sidebar').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const method = btn.dataset.method;
-        selectedPaymentMethod = method;
-        
-        // Remove active class from all buttons
-        document.querySelectorAll('.payment-method-btn-sidebar').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        if(method === 'cash') {
-          // Cash payment - proceed directly to payment modal
-          if (cart.length === 0) {
-            alert("Your cart is empty.");
-            return;
-          }
-          doneBtn.click();
-        } else if(method === 'gcash') {
-          // GCash payment - show QR code modal
-          if (cart.length === 0) {
-            alert("Your cart is empty.");
-            return;
-          }
-          openGCashModal();
-        } else if(method === 'card') {
-          // Card payment - show card payment modal
-          if (cart.length === 0) {
-            alert("Your cart is empty.");
-            return;
-          }
-          openCardModal();
-        }
-      });
-    });
-    
-    function openGCashModal() {
-      const gcashModal = document.getElementById('gcashModal');
-      gcashModal.style.display = 'flex';
-      
-      // Start 10 second timer
-      let timeLeft = 10;
-      const timerSpan = document.getElementById('gcashTimer');
-      timerSpan.textContent = timeLeft;
-      
-      gcashTimerInterval = setInterval(() => {
-        timeLeft--;
-        timerSpan.textContent = timeLeft;
-        
-        if(timeLeft <= 0) {
-          clearInterval(gcashTimerInterval);
-          timerSpan.textContent = '0';
-        }
-      }, 1000);
-    }
-    
-    function closeGCashModal() {
-      const gcashModal = document.getElementById('gcashModal');
-      gcashModal.style.display = 'none';
-      if(gcashTimerInterval) {
-        clearInterval(gcashTimerInterval);
-        gcashTimerInterval = null;
-      }
-    }
-    
-    let cardPaymentStep = 1; // 1: account type, 2: PIN, 3: amount, 4: confirm
-    
-    function openCardModal() {
-      const cardModal = document.getElementById('cardModal');
-      cardModal.style.display = 'flex';
-      selectedAccountType = null;
-      cardPaymentStep = 1;
-      document.querySelectorAll('.account-type-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('pinGroup').style.display = 'none';
-      document.getElementById('amountGroup').style.display = 'none';
-      document.getElementById('confirmGroup').style.display = 'none';
-      document.getElementById('cardPin').value = '';
-      document.getElementById('cardAmount').value = '';
-      document.getElementById('cardConfirm').disabled = true;
-      // Attach keypad listeners
-      setTimeout(() => attachKeypadListeners(), 100);
-    }
-    
-    function closeCardModal() {
-      const cardModal = document.getElementById('cardModal');
-      cardModal.style.display = 'none';
-      selectedAccountType = null;
-      cardPaymentStep = 1;
-    }
-    
-    // GCash Modal Event Listeners
-    document.getElementById('closeGCashModal').addEventListener('click', closeGCashModal);
-    document.getElementById('gcashCancel').addEventListener('click', closeGCashModal);
-    document.getElementById('gcashSuccess').addEventListener('click', () => {
-      closeGCashModal();
-      // Proceed to payment confirmation
-      if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-      }
-      doneBtn.click();
-    });
-    document.getElementById('gcashFailed').addEventListener('click', () => {
-      alert('Payment failed. Please try again.');
-      closeGCashModal();
-    });
-    
-    // Card Modal Event Listeners
-    document.getElementById('closeCardModal').addEventListener('click', closeCardModal);
-    document.getElementById('cardCancel').addEventListener('click', closeCardModal);
-    
-    document.querySelectorAll('.account-type-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.account-type-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedAccountType = btn.dataset.type;
-        cardPaymentStep = 2;
-        document.getElementById('pinGroup').style.display = 'block';
-        document.getElementById('cardPin').value = '';
-      });
-    });
-    
-    document.getElementById('cardPin').addEventListener('input', (e) => {
-      const pin = e.target.value.replace(/\D/g, ''); // Only numbers
-      e.target.value = pin;
-      if(pin.length === 6) {
-        cardPaymentStep = 3;
-        document.getElementById('amountGroup').style.display = 'block';
-        // Get total amount
-        const totals = computeTotals('none');
-        document.getElementById('cardAmount').value = `₱${totals.total.toFixed(2)}`;
-      }
-    });
-    
-    // Keypad functionality
-    function attachKeypadListeners() {
-      document.querySelectorAll('.keypad-btn').forEach(btn => {
-        btn.removeEventListener('click', handleKeypadClick);
-        btn.addEventListener('click', handleKeypadClick);
-      });
-    }
-    
-    function handleKeypadClick(e) {
-      const btn = e.currentTarget;
-      const amountInput = document.getElementById('cardAmount');
-      let currentValue = amountInput.value.replace(/[₱\s,]/g, '');
-      
-      if(btn.dataset.action === 'backspace') {
-        currentValue = currentValue.slice(0, -1);
-        amountInput.value = currentValue ? `₱${parseFloat(currentValue || 0).toFixed(2)}` : '';
-      } else {
-        const newValue = currentValue + btn.dataset.value;
-        if(newValue && !isNaN(parseFloat(newValue))) {
-          amountInput.value = `₱${parseFloat(newValue).toFixed(2)}`;
-        }
-      }
-      
-      // Enable confirm button if amount is entered
-      const amount = parseFloat(amountInput.value.replace(/[₱\s,]/g, ''));
-      const totals = computeTotals('none');
-      if(amount > 0 && amount >= totals.total) {
-        document.getElementById('cardConfirm').disabled = false;
-        cardPaymentStep = 4;
-        document.getElementById('confirmGroup').style.display = 'block';
-      } else {
-        document.getElementById('cardConfirm').disabled = true;
-        document.getElementById('confirmGroup').style.display = 'none';
-      }
-    }
-    
-    // Attach keypad listeners when modal opens
-    const cardModal = document.getElementById('cardModal');
-    if(cardModal) {
-      const observer = new MutationObserver(() => {
-        if(cardModal.style.display === 'flex') {
-          attachKeypadListeners();
-        }
-      });
-      observer.observe(cardModal, { attributes: true, attributeFilter: ['style'] });
-    }
-    
-    document.getElementById('cardConfirm').addEventListener('click', () => {
-      if(!selectedAccountType) {
-        alert('Please select an account type.');
-        return;
-      }
-      const pin = document.getElementById('cardPin').value;
-      if(pin.length !== 6) {
-        alert('Please enter a 6-digit PIN.');
-        return;
-      }
-      const amount = parseFloat(document.getElementById('cardAmount').value.replace(/[₱\s,]/g, ''));
-      const totals = computeTotals('none');
-      if(amount < totals.total) {
-        alert('Amount must be equal to or greater than the total.');
-        return;
-      }
-      
-      // Show payment successful
-      alert('Payment Successful!');
-      closeCardModal();
-      // Proceed to payment confirmation
-      if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-      }
-      doneBtn.click();
-    });
-    
-    // Close modals when clicking outside
-    document.getElementById('gcashModal').addEventListener('click', (e) => {
-      if(e.target.id === 'gcashModal') closeGCashModal();
-    });
-    document.getElementById('cardModal').addEventListener('click', (e) => {
-      if(e.target.id === 'cardModal') closeCardModal();
-    });
-
-    renderProducts();
-    renderInvoice();
-  </script>
-
-  <script type="module">
-    import { addDoc, collection, serverTimestamp }
-      from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
-    paymentForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      if(window.cart.length===0){
-        alert('Cart is empty.');
-        return;
-      }
-
-      let method = getSelectedPayment();
-      
-      // If payment method was selected in sidebar, use it
-      if(!method && selectedPaymentMethod) {
-        method = selectedPaymentMethod;
-        // Pre-select in form
-        const paymentRadio = paymentForm.querySelector(`input[name="payment"][value="${method}"]`);
-        if(paymentRadio) paymentRadio.checked = true;
-      }
-      
-      if(!method){
-        alert('Choose a payment method.');
-        return;
-      }
-
-      const discountType = getSelectedDiscount();
-      const t = computeTotals(discountType);
-
-      if(method==='cash'){
-        const cash = parseFloat(cashReceivedInput.value || '0');
-        if(cash < t.total){
-          alert('Cash received is less than total.');
-          return;
-        }
-      }
-
-      // PATCHED — deep copy cart to avoid reference loss
-      const safeCart = window.cart.map(i => ({
-        id: i.id,
-        name: i.name,
-        price: i.price,
-        qty: i.qty,
-        category: i.category
-      }));
-
-      try {
-        const orderRef = await addDoc(collection(window.Firebase.db, "orders"), {
-          items: safeCart,
-          totals: t,
-          paymentMethod: method,
-          discountType,
-          cashierUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
-          createdAt: serverTimestamp()
-        });
-
-        await addDoc(collection(window.Firebase.db, "logs"), {
-          whoUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
-          action: "ORDER_CREATED",
-          details: { orderId: orderRef.id, total: t.total },
-          createdAt: serverTimestamp()
-        });
-
-        alert(`Payment successful. Order saved with ID: ${orderRef.id}`);
-
-        cart.length = 0;
-        renderInvoice();
-        paymentModal.style.display = "none";
-
-      } catch(err) {
-        console.error("Error saving order:", err);
-        alert("Failed to save order. Check console for details.");
-      }
-    });
-  </script>
 </body>
 </html>

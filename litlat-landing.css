@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+body {
+  display: inline-flexbox;
+  flex-direction: column;
+  align-items: center;
+  margin: 0; 
+  margin: 0 !important; 
+  padding-bottom: 0 !important; 
+}
+
+#navbar {
+    background-color: #2e0000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    margin-right: 40px;
+}
+
+.logo-img {
+    width: 200px;
+    height: 120px;
+    object-fit: contain;
+  }
+
+
+
+/* hero section */
+.hero {
+  text-align: center;
+  background-color: var(--bg-color);
+  padding: 2rem 0 10rem 0;
+}
+
+.hero__title {
+  font-weight: 800px;
+  color: #ffffff;
+}
+
+.hero__description {
+  margin: -1rem auto 2rem auto;
+}
+
+.hero__terminal {
+  width: 60%;
+  margin: -11rem auto 3rem auto;
+  text-align: left;
+  color: rgb(255, 255, 255);
+  padding: 0 1rem;
+  border-radius: 4px;
+  background-color: #2e0000;
+  min-height: 350px;
+  animation: fadeUp 2s;
+  box-shadow: 0px 12px 36.8px 9.2px rgba(0, 0, 0, 0.1);
+}
+
+.hero__terminal pre {
+  white-space: pre-line;
+  padding-top: 1rem;
+}
+
+.section__title{
+  margin-top: 30px;
+  color: #7b0000;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* feature section */
+.feature {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feature__item {
+  max-width: calc(33% - 20px);
+  margin: 0 20px 0 0;
+}
+
+.feature__item .section__title {
+  margin-bottom: 0;
+}
+
+.feature__item p {
+  margin-top: 0.5rem;
+}
+
+
+@media (max-width: 750px) {
+  .hero__terminal {
+    width: 70%;
+  }
+  .tab__container > ul {
+    right: auto;
+    left: 0;
+    padding-left: 0;
+  }
+  .tab__container .code {
+    margin-top: 2rem;
+  }
+  .feature{
+    flex-direction: column;
+  }
+  .feature__item {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+.doc__content {
+    scroll-behavior: smooth; 
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a:hover {
+    font-weight: medium;
+    transform: translateY(-2px);
+}
+
+.nav-links a i {
+    font-size: 14px;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-links a {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
