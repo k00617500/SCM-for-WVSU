@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Crew Login - Café POS</title>
+  <title>Crew Login - LitLatté POS Suite</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/login-styles.css">
 
-
+  <!-- EXISTING SCRIPT: UNCHANGED -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
@@ -30,7 +30,6 @@
 
     window.Firebase = { app, analytics, auth, db };
 
-    
     (async () => {
       try {
         await signInAnonymously(auth);
@@ -40,7 +39,6 @@
       }
     })();
 
-    
     async function registerCrew(e) {
       e.preventDefault();
       const fname = document.getElementById("fname").value.trim();
@@ -55,7 +53,6 @@
       }
 
       try {
-        
         const q = query(collection(db, "employees"), orderBy("crewId", "desc"));
         const snap = await getDocs(q);
         let nextId = "001";
@@ -83,13 +80,11 @@
       }
     }
 
-    
     async function oldCrewLogin(e) {
       e.preventDefault();
       const empId = document.getElementById("empId").value.trim();
       const pin = document.getElementById("oldPin").value.trim();
 
-      
       if (pin !== "1234") {
         alert("Invalid manager PIN.");
         return;
@@ -114,7 +109,6 @@
       }
     }
 
-    
     window.registerCrew = registerCrew;
     window.oldCrewLogin = oldCrewLogin;
 
@@ -125,33 +119,76 @@
   </script>
 </head>
 <body>
-  <div class="login-screen">
-    <div class="login-box">
-      <img src="assets/img//logo.jpg" alt="Logo" class="logo" />
-      <h1>CREW LOG</h1>
 
-      <div class="login-buttons">
-        <button onclick="document.getElementById('registerForm').style.display='block';document.getElementById('oldForm').style.display='none';">Register New Crew</button>
-        <button onclick="document.getElementById('oldForm').style.display='block';document.getElementById('registerForm').style.display='none';">Old Crew Login</button>
+  <body style="
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.55),
+        rgba(0, 0, 0, 0.55)
+      ),
+      url('assets/img/login.jpg') center / cover no-repeat fixed;
+  ">
+
+
+
+
+  <div class="auth-container">
+    <div class="auth-card" style="
+      background: url('assets/img/login.jpg') center / cover no-repeat;
+    ">
+
+      
+      <!-- LEFT: CREW ACCESS / IMAGE PANEL -->
+      <div class="auth-visual" style="
+      background: url('assets/img/login.jpg') center / cover no-repeat;
+    ">
+
+        <div class="brand-badge">
+          <img src="assets/img/logo.jpg" alt="Logo" />
+          <div>
+            <strong>Café POS</strong>
+            <span>Crew Access</span>
+          </div>
+        </div>
       </div>
-
-      
-      <form id="registerForm" style="display:none; margin-top:20px;">
-        <input type="text" id="fname" placeholder="First Name" required />
-        <input type="text" id="lname" placeholder="Last Name" required />
-        <input type="text" id="mi" placeholder="Middle Initial" maxlength="1" />
-        <input type="text" id="role" placeholder="Position / Job Role" required />
-        <input type="password" id="pin" placeholder="Manager PIN" required />
-        <button type="submit">Register</button>
-      </form>
-
-      
-      <form id="oldForm" style="display:none; margin-top:20px;">
-        <input type="text" id="empId" placeholder="Employee ID (e.g. 001)" required />
-        <input type="password" id="oldPin" placeholder="Manager PIN" required />
-        <button type="submit">Login</button>
-      </form>
+  
+      <!-- RIGHT: LOGIN FORM PANEL -->
+      <div class="auth-form">
+        <h1>Hi, Crew</h1>
+        <p class="subtitle">Secure access to the POS system</p>
+  
+        <div class="tab-buttons">
+          <button type="button" class="tab"
+            onclick="registerForm.style.display='block'; oldForm.style.display='none';">
+            New Crew
+          </button>
+  
+          <button type="button" class="tab"
+            onclick="oldForm.style.display='block'; registerForm.style.display='none';">
+            Existing Crew
+          </button>
+        </div>
+  
+        <form id="registerForm" class="form" style="display:none;">
+          <input type="text" id="fname" placeholder="First Name" required /><br>
+          <input type="text" id="lname" placeholder="Last Name" required /><br>
+          <input type="text" id="mi" placeholder="Middle Initial" maxlength="1" /><br>
+          <input type="text" id="role" placeholder="Position / Job Role" required /><br>
+          <input type="password" id="pin" placeholder="Manager PIN" required /><br>
+          <button type="submit" class="primary-btn">Register Crew</button>
+        </form>
+  
+        <form id="oldForm" class="form" style="display:none;">
+          <input type="text" id="empId" placeholder="Employee ID (e.g. 001)" required /><br>
+          <input type="password" id="oldPin" placeholder="Manager PIN" required /><br>
+          <button type="submit" class="primary-btn">Login</button>
+        </form>
+  
+        <p class="footer-text">Authorized personnel only</p>
+      </div>
+  
     </div>
   </div>
+  
 </body>
 </html>

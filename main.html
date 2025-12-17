@@ -111,22 +111,48 @@
       <!-- Explore Categories -->
       <div class="categories-section">
         <div class="categories-scroll">
-          <button class="category-btn active" data-category="all">All</button>
-          <button class="category-btn" data-category="All Day Breakfast">All Day Breakfast</button>
-          <button class="category-btn" data-category="Nibblers">Nibblers</button>
-          <button class="category-btn" data-category="Specialties">Specialties</button>
-          <button class="category-btn" data-category="Pasta Pride">Pasta Pride</button>
-          <button class="category-btn" data-category="Salads">Salads</button>
-          <button class="category-btn" data-category="Drinks">Drinks</button>
-          <button class="category-btn" data-category="Desserts">Desserts</button>
-          <button class="category-btn" data-category="Soups">Soups</button>
+          <button class="category-btn active" data-category="all">
+            <span class="category-emoji">🍽️</span>
+            <span>All Menu</span>
+          </button>
+          <button class="category-btn" data-category="All Day Breakfast">
+            <span class="category-emoji">🍳</span>
+            <span>All Day Breakfast</span>
+          </button>
+          <button class="category-btn" data-category="Nibblers">
+            <span class="category-emoji">🍗</span>
+            <span>Nibblers</span>
+          </button>
+          <button class="category-btn" data-category="Specialties">
+            <span class="category-emoji">⭐</span>
+            <span>Specialties</span>
+          </button>
+          <button class="category-btn" data-category="Pasta Pride">
+            <span class="category-emoji">🍝</span>
+            <span>Pasta Pride</span>
+          </button>
+          <button class="category-btn" data-category="Salads">
+            <span class="category-emoji">🥗</span>
+            <span>Salads</span>
+          </button>
+          <button class="category-btn" data-category="Drinks">
+            <span class="category-emoji">☕</span>
+            <span>Drinks</span>
+          </button>
+          <button class="category-btn" data-category="Desserts">
+            <span class="category-emoji">🍰</span>
+            <span>Desserts</span>
+          </button>
+          <button class="category-btn" data-category="Soups">
+            <span class="category-emoji">🍲</span>
+            <span>Soups</span>
+          </button>
         </div>
       </div>
 
       <!-- Product Tabs -->
       <div class="product-tabs">
         <button class="tab-btn active" data-tab="popular">Popular</button>
-        <button class="tab-btn" data-tab="recent">Recent</button>
       </div>
 
       <!-- Products Grid -->
@@ -136,54 +162,80 @@
     <!-- Right Invoice Sidebar -->
     <aside class="invoice-sidebar">
       <div class="invoice-card">
-        <h2 class="invoice-title">Invoice</h2>
+        <div class="bill-header">
+          <h2 class="invoice-title">Bill Details</h2>
+          <span class="bill-number" id="billNumber"></span>
+        </div>
         
-        <div class="invoice-items" id="invoiceItems">
-          <!-- Items will be dynamically added here -->
+        <div class="customer-section">
+          <label class="section-label">Customer Name</label>
+          <input type="text" id="customerName" class="customer-input" placeholder="Enter customer name">
+        </div>
+        
+        <div class="order-items-section">
+          <h3 class="section-title">Order Details</h3>
+          <div class="invoice-items" id="invoiceItems">
+            <div class="empty-cart-message">
+              <i class="fas fa-shopping-cart"></i>
+              <p>No items in cart</p>
+            </div>
+          </div>
         </div>
 
         <div class="payment-summary">
-          <h3>Payment Summary</h3>
           <div class="summary-row">
-            <span>Sub Total</span>
+            <span>Items</span>
+            <span id="invoiceItemCount">0</span>
+          </div>
+          <div class="summary-row">
+            <span>Subtotal</span>
             <span id="invoiceSubtotal">₱0.00</span>
           </div>
+          <div class="summary-row" id="invoiceDiscountRow" style="display: none;">
+            <span>Discount</span>
+            <span id="invoiceDiscount" style="color: var(--maroon-primary);">-₱0.00</span>
+          </div>
           <div class="summary-row">
-            <span>Tax</span>
-            <span id="invoiceTax">-₱0.00</span>
+            <span>Tax (12%)</span>
+            <span id="invoiceTax">₱0.00</span>
           </div>
           <div class="summary-row total-row">
-            <span>Total Payment</span>
-            <span id="invoiceTotal">₱0.00</span>
+            <span>Total</span>
+            <span id="invoiceTotal" style="color: var(--maroon-primary); font-weight: 700;">₱0.00</span>
           </div>
         </div>
 
+        <div class="table-section">
+          <label class="section-label">Select Table</label>
+          <input type="number" id="tableSelect" class="table-input" placeholder="Enter table number" min="1" max="999">
+        </div>
+
         <div class="payment-methods">
-          <h3>Payment Method</h3>
+          <h3 class="section-title">Select Payment</h3>
           <div class="payment-buttons-sidebar">
             <button class="payment-method-btn-sidebar" data-method="cash">
               <div class="payment-icon-sidebar cash-icon-sidebar">
-                <i class="fas fa-money-bill-wave"></i>
+                <img src="assets/img/cash-logo.png" alt="Cash" class="payment-logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-money-bill-wave\'></i>';">
               </div>
-              <span>Cash</span>
+              <span>Pay with Cash</span>
             </button>
             <button class="payment-method-btn-sidebar" data-method="gcash">
               <div class="payment-icon-sidebar gcash-icon-sidebar">
-                <span style="font-weight: bold;">GC</span>
+                <img src="assets/img/gcash-logo.png" alt="GCash" class="payment-logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<span style=\'font-weight: bold;\'>GC</span>';">
               </div>
-              <span>GCash</span>
+              <span>Pay with GCash</span>
             </button>
             <button class="payment-method-btn-sidebar" data-method="card">
               <div class="payment-icon-sidebar card-icon-sidebar">
-                <i class="fab fa-cc-visa"></i>
+                <img src="assets/img/card-logo.png" alt="Card" class="payment-logo" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<i class=\'fas fa-credit-card\'></i>';">
               </div>
-              <span>Card</span>
+              <span>Pay with Card</span>
             </button>
           </div>
         </div>
 
         <button class="place-order-btn" id="doneBtn">
-          Place An Order Now
+          Process Transaction
         </button>
       </div>
     </aside>
@@ -281,12 +333,18 @@
         <i class="fas fa-times"></i>
       </button>
       <h2>GCash Payment</h2>
+      
       <div class="qr-code-container">
-        <div class="qr-code-placeholder">
-          <i class="fas fa-qrcode" style="font-size: 120px; color: #3B82F6;"></i>
-          <p style="margin-top: 20px; font-size: 14px; color: var(--text-muted);">QR Code will appear here</p>
-        </div>
+        <img 
+          src="assets/img/gcash-qr.png"
+          alt="GCash QR Code"
+          class="gcash-qr-image"
+          style="width: 350px; height: auto; display: block; margin: 0 auto;"
+        >
       </div>
+      
+      
+
       <div class="timer-display">
         <p>Time remaining: <span id="gcashTimer">10</span> seconds</p>
       </div>
@@ -322,34 +380,7 @@
         <div class="form-group" id="pinGroup" style="display: none;">
           <label>Enter 6-Digit PIN</label>
           <input type="password" id="cardPin" maxlength="6" pattern="[0-9]{6}" placeholder="000000" class="pin-input">
-        </div>
-        <div class="form-group" id="amountGroup" style="display: none;">
-          <label>Enter Amount to Pay</label>
-          <input type="text" id="cardAmount" readonly placeholder="₱ 0.00" class="amount-input">
-          <div class="keypad-container">
-            <div class="keypad">
-              <button type="button" class="keypad-btn" data-value="1">1</button>
-              <button type="button" class="keypad-btn" data-value="2">2</button>
-              <button type="button" class="keypad-btn" data-value="3">3</button>
-              <button type="button" class="keypad-btn" data-value="4">4</button>
-              <button type="button" class="keypad-btn" data-value="5">5</button>
-              <button type="button" class="keypad-btn" data-value="6">6</button>
-              <button type="button" class="keypad-btn" data-value="7">7</button>
-              <button type="button" class="keypad-btn" data-value="8">8</button>
-              <button type="button" class="keypad-btn" data-value="9">9</button>
-              <button type="button" class="keypad-btn" data-value=".">.</button>
-              <button type="button" class="keypad-btn" data-value="0">0</button>
-              <button type="button" class="keypad-btn keypad-backspace" data-action="backspace">
-                <i class="fas fa-backspace"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="payment-verification" id="confirmGroup" style="display: none;">
-          <div class="verification-buttons">
-            <button type="button" class="btn-secondary" id="cardCancel">Cancel</button>
-            <button type="button" class="btn-success" id="cardConfirm">Confirm</button>
-          </div>
+          <p class="pin-hint" style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Payment will process automatically after entering 6-digit PIN</p>
         </div>
       </div>
     </div>
@@ -374,6 +405,10 @@
             <div class="payment-summary-row">
               <span>Subtotal</span>
               <span id="modalSubtotal">₱0.00</span>
+            </div>
+            <div class="payment-summary-row" id="discountRow" style="display: none;">
+              <span id="discountLabel">Discount</span>
+              <span id="modalDiscount">-₱0.00</span>
             </div>
             <div class="payment-summary-row">
               <span>VAT (12%)</span>
@@ -464,6 +499,23 @@
             <button type="submit" id="confirmPayment" class="btn-primary">Confirm Payment</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Receipt Modal -->
+  <div id="receiptModal" class="modal">
+    <div class="receipt-modal-box">
+      <div class="receipt-header">
+        <button class="modal-close-btn" id="closeReceiptModal">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="btn-print" id="printReceipt">
+          <i class="fas fa-print"></i> Print Receipt
+        </button>
+      </div>
+      <div class="receipt-content" id="receiptContent">
+        <!-- Receipt content will be dynamically generated -->
       </div>
     </div>
   </div>
@@ -640,6 +692,43 @@
     let activeCategory = 'all';
     let activeTab = 'popular';
     let currentProduct = null;
+    // Get bill number from localStorage or start from 1
+    let billNumberCounter = parseInt(localStorage.getItem('billNumberCounter')) || 1;
+    let billNumber = '#' + billNumberCounter.toString().padStart(5, '0');
+    
+    function generateBillNumber() {
+      billNumberCounter++;
+      localStorage.setItem('billNumberCounter', billNumberCounter.toString());
+      return '#' + billNumberCounter.toString().padStart(5, '0');
+    }
+    
+    function getCategoryBadge(category) {
+      const badgeMap = {
+        "All Day Breakfast": { text: "Breakfast", class: "badge-black" },
+        "Nibblers": { text: "Appetizer", class: "badge-gray" },
+        "Specialties": { text: "Specialty", class: "badge-red" },
+        "Pasta Pride": { text: "Pasta", class: "badge-black" },
+        "Salads": { text: "Salad", class: "badge-gray" },
+        "Drinks": { text: "Beverage", class: "badge-black" },
+        "Desserts": { text: "Dessert", class: "badge-red" },
+        "Soups": { text: "Soup", class: "badge-gray" }
+      };
+      return badgeMap[category] || { text: category, class: "badge-black" };
+    }
+    
+    function getProductDescription(name, category) {
+      const descriptions = {
+        "All Day Breakfast": "Freshly prepared breakfast items served all day. Start your day right with our hearty morning favorites.",
+        "Nibblers": "Perfect appetizers to start your meal. Crispy, flavorful bites that are great for sharing.",
+        "Specialties": "Our signature dishes crafted with care. Special recipes that showcase our culinary expertise.",
+        "Pasta Pride": "Authentic pasta dishes made with premium ingredients. Rich sauces and perfectly cooked noodles.",
+        "Salads": "Fresh, crisp salads with premium ingredients. Healthy and delicious options for every palate.",
+        "Drinks": "Refreshing beverages to complement your meal. From hot coffee to cool refreshments.",
+        "Desserts": "Sweet treats to end your meal perfectly. Indulgent desserts made with quality ingredients.",
+        "Soups": "Warm, comforting soups made from scratch. Hearty and flavorful bowls to warm your soul."
+      };
+      return descriptions[category] || "Delicious food item prepared with fresh ingredients and care.";
+    }
 
     function renderProducts(category="all", searchTerm=""){
       productsGrid.innerHTML = "";
@@ -657,18 +746,19 @@
       items.forEach(({name, item, cat})=>{
         const div = document.createElement("div");
         div.className="product-card";
+        const badgeInfo = getCategoryBadge(cat);
+        const description = getProductDescription(name, cat);
         div.innerHTML=`
+          <div class="product-badge ${badgeInfo.class}">${badgeInfo.text}</div>
           <div class="product-image">
             <img src="${item.image}" alt="${name}" onerror="this.style.display='none'">
           </div>
-          <div class="product-info">
+          <div class="product-overlay">
             <h3 class="product-name">${name}</h3>
-            <div class="product-price">
-              <span class="current-price">₱${item.price.toFixed(2)}</span>
-            </div>
+            <p class="product-description">${description}</p>
             <div class="product-actions">
               <button class="order-btn" data-item-id="${item.item_id}" data-name="${name}" data-price="${item.price}" data-category="${cat}">
-                Order Now
+                ORDER
               </button>
             </div>
           </div>`;
@@ -732,7 +822,7 @@
       if(productConfig.addons && productConfig.addons.length > 0){
         optionalAddons.innerHTML = productConfig.addons.map(addon => `
           <label class="option-radio">
-            <input type="radio" name="addon" value="${addon.value}" data-price="${addon.price}">
+           <input type="checkbox" name="addon" value="${addon.value}" data-price="${addon.price}">
             <span>${addon.name} P${addon.price}</span>
           </label>
         `).join('');
@@ -946,8 +1036,29 @@
     });
 
     function renderInvoice(){
+      const invoiceItemCount = document.getElementById('invoiceItemCount');
+      const invoiceDiscountRow = document.getElementById('invoiceDiscountRow');
+      const invoiceDiscount = document.getElementById('invoiceDiscount');
+      
       invoiceItems.innerHTML = "";
+      
+      if(cart.length === 0) {
+        invoiceItems.innerHTML = `
+          <div class="empty-cart-message">
+            <i class="fas fa-shopping-cart"></i>
+            <p>No items in cart</p>
+          </div>
+        `;
+        invoiceItemCount.textContent = '0';
+        invoiceSubtotal.textContent = '₱0.00';
+        invoiceTax.textContent = '₱0.00';
+        invoiceTotal.textContent = '₱0.00';
+        invoiceDiscountRow.style.display = 'none';
+        return;
+      }
+
       let subtotal=0;
+      let itemCount = 0;
 
       cart.forEach((item, index)=>{
         // Calculate item total including add-ons
@@ -956,33 +1067,69 @@
         const itemUnitPrice = item.price + sizePrice + addonsTotal;
         const itemTotal = itemUnitPrice * item.qty;
         subtotal += itemTotal;
+        itemCount += item.qty;
 
         const invoiceItem = document.createElement("div");
         invoiceItem.className = "invoice-item";
         
-        let itemDetails = item.name;
-        if(item.size) itemDetails += ` (${item.size})`;
+        // Build customization details
+        let customizationDetails = [];
+        if(item.size) {
+          customizationDetails.push(`<div class="invoice-item-customization-item"><strong>Size:</strong> ${item.size.charAt(0).toUpperCase() + item.size.slice(1)}</div>`);
+        }
         if(item.addons && item.addons.length > 0){
-          itemDetails += `<br><small style="color: var(--text-muted); font-size: 11px;">+ ${item.addons.map(a => a.name).join(', ')}</small>`;
+          const addonNames = item.addons.map(a => {
+            const addonName = a.name || a.value || 'Add-on';
+            return addonName;
+          }).join(', ');
+          customizationDetails.push(`<div class="invoice-item-customization-item"><strong>Add-ons:</strong> ${addonNames}</div>`);
         }
         if(item.modifiers && item.modifiers.length > 0){
-          itemDetails += `<br><small style="color: var(--text-muted); font-size: 11px;">Modifiers: ${item.modifiers.join(', ')}</small>`;
+          const modifierLabels = {
+            "no-sugar": "No Sugar",
+            "less-salt": "Less Salt",
+            "well-done": "Well Done",
+            "no-onions": "No Onions",
+            "extra-crispy": "Extra Crispy",
+            "less-spicy": "Less Spicy",
+            "extra-garlic": "Extra Garlic",
+            "less-cheese": "Less Cheese",
+            "al-dente": "Al Dente",
+            "no-dressing": "No Dressing",
+            "dressing-on-side": "Dressing on Side",
+            "no-croutons": "No Croutons",
+            "less-ice": "Less Ice",
+            "no-ice": "No Ice",
+            "decaf": "Decaf",
+            "less-sweet": "Less Sweet",
+            "no-nuts": "No Nuts",
+            "less-butter": "Less Butter",
+            "no-syrup": "No Syrup"
+          };
+          const modifierNames = item.modifiers.map(m => modifierLabels[m] || m).join(', ');
+          customizationDetails.push(`<div class="invoice-item-customization-item"><strong>Modifiers:</strong> ${modifierNames}</div>`);
         }
         if(item.specialInstructions){
-          itemDetails += `<br><small style="color: var(--text-muted); font-size: 11px; font-style: italic;">Note: ${item.specialInstructions}</small>`;
+          customizationDetails.push(`<div class="invoice-item-customization-item"><strong>Note:</strong> ${item.specialInstructions}</div>`);
         }
         
         invoiceItem.innerHTML = `
-          <div class="invoice-item-image">
-            <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
+          <div class="invoice-item-header">
+            <div class="invoice-item-image">
+              <img src="${item.image || ''}" alt="${item.name}" onerror="this.style.display='none'">
+            </div>
+            <div class="invoice-item-details">
+              <div class="invoice-item-name">${item.name}</div>
+              ${customizationDetails.length > 0 ? `<div class="invoice-item-customization">${customizationDetails.join('')}</div>` : ''}
+            </div>
+            <button class="remove-item-btn" data-item-index="${index}">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
-          <div class="invoice-item-details">
-            <span class="invoice-item-name">${itemDetails}</span>
-            <span class="invoice-item-price">₱${itemTotal.toFixed(2)} ${item.qty > 1 ? `(${item.qty}x)` : ''}</span>
-          </div>
-          <button class="remove-item-btn" data-item-index="${index}">
-            <i class="fas fa-times"></i>
-          </button>`;
+          <div class="invoice-item-footer">
+            <span>Amount: ${item.qty}</span>
+            <span class="invoice-item-price">₱${itemTotal.toFixed(2)}</span>
+          </div>`;
         
         invoiceItem.querySelector(".remove-item-btn").addEventListener("click", () => {
           cart.splice(index, 1);
@@ -993,9 +1140,18 @@
       });
 
       const totals = computeTotals('none');
+      invoiceItemCount.textContent = itemCount.toString();
       invoiceSubtotal.textContent = `₱${totals.subtotal.toFixed(2)}`;
       invoiceTax.textContent = `₱${totals.vat.toFixed(2)}`;
       invoiceTotal.textContent = `₱${totals.total.toFixed(2)}`;
+      
+      // Show/hide discount row
+      if(totals.discountAmt > 0) {
+        invoiceDiscountRow.style.display = 'flex';
+        invoiceDiscount.textContent = `-₱${totals.discountAmt.toFixed(2)}`;
+      } else {
+        invoiceDiscountRow.style.display = 'none';
+      }
     }
 
     document.querySelectorAll(".category-btn").forEach(btn=>{
@@ -1049,7 +1205,7 @@
       paymentForm.reset();
       cashDetails.style.display = "none";
       cashReceivedInput.value = "";
-      changeDueSpan.textContent = "0.00";
+      changeDueSpan.textContent = "₱0.00";
       
       // Pre-select payment method if selected in sidebar
       if(selectedPaymentMethod === 'cash') {
@@ -1080,10 +1236,18 @@
         modalCartItems.appendChild(cartItem);
       });
 
+      // Reset discount to none when opening modal
+      const noneDiscount = paymentForm.querySelector('input[name="discount_card_type"][value="none"]');
+      if(noneDiscount) noneDiscount.checked = true;
+      
       const t = computeTotals('none');
       modalSubtotal.textContent = `₱${t.subtotal.toFixed(2)}`;
       modalVat.textContent = `₱${t.vat.toFixed(2)}`;
       modalTotalSpan.textContent = `₱${t.total.toFixed(2)}`;
+      
+      // Hide discount row initially
+      const discountRow = document.getElementById('discountRow');
+      if(discountRow) discountRow.style.display = 'none';
 
       paymentModal.style.display = "flex";
     });
@@ -1108,19 +1272,37 @@
       const t = computeTotals(getSelectedDiscount());
       const cash = parseFloat(cashReceivedInput.value || '0');
       const change = Math.max(0, cash - t.total);
-      changeDueSpan.textContent = change.toFixed(2);
+      changeDueSpan.textContent = `₱${change.toFixed(2)}`;
+      updateModalTotals();
     });
 
     function updateModalTotals(){
-      const t = computeTotals(getSelectedDiscount());
-      modalTotalSpan.textContent = t.total.toFixed(2);
+      const discountType = getSelectedDiscount();
+      const t = computeTotals(discountType);
+      modalSubtotal.textContent = `₱${t.subtotal.toFixed(2)}`;
+      modalVat.textContent = `₱${t.vat.toFixed(2)}`;
+      modalTotalSpan.textContent = `₱${t.total.toFixed(2)}`;
+      
+      // Show/hide discount row
+      const discountRow = document.getElementById('discountRow');
+      const discountLabel = document.getElementById('discountLabel');
+      const modalDiscount = document.getElementById('modalDiscount');
+      
+      if(t.discountAmt > 0) {
+        discountRow.style.display = 'flex';
+        const discountName = discountType === 'senior' ? 'Senior (20%)' : discountType === 'pwd' ? 'PWD (20%)' : 'Discount';
+        discountLabel.textContent = discountName;
+        modalDiscount.textContent = `-₱${t.discountAmt.toFixed(2)}`;
+      } else {
+        discountRow.style.display = 'none';
+      }
 
       if(getSelectedPayment()==='cash'){
         const cash = parseFloat(cashReceivedInput.value || '0');
         const change = Math.max(0, cash - t.total);
-        changeDueSpan.textContent = change.toFixed(2);
+        changeDueSpan.textContent = `₱${change.toFixed(2)}`;
       }else{
-        changeDueSpan.textContent = "0.00";
+        changeDueSpan.textContent = "₱0.00";
       }
     }
 
@@ -1213,13 +1395,7 @@
       cardPaymentStep = 1;
       document.querySelectorAll('.account-type-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('pinGroup').style.display = 'none';
-      document.getElementById('amountGroup').style.display = 'none';
-      document.getElementById('confirmGroup').style.display = 'none';
       document.getElementById('cardPin').value = '';
-      document.getElementById('cardAmount').value = '';
-      document.getElementById('cardConfirm').disabled = true;
-      // Attach keypad listeners
-      setTimeout(() => attachKeypadListeners(), 100);
     }
     
     function closeCardModal() {
@@ -1231,15 +1407,91 @@
     
     // GCash Modal Event Listeners
     document.getElementById('closeGCashModal').addEventListener('click', closeGCashModal);
-    document.getElementById('gcashCancel').addEventListener('click', closeGCashModal);
-    document.getElementById('gcashSuccess').addEventListener('click', () => {
+    document.getElementById('gcashCancel').addEventListener('click', () => {
       closeGCashModal();
-      // Proceed to payment confirmation
+      // Reopen payment modal if it was open before
+      if(selectedPaymentMethod === 'gcash' || paymentModal.style.display === 'flex') {
+        paymentModal.style.display = 'flex';
+      }
+    });
+    document.getElementById('gcashSuccess').addEventListener('click', async () => {
+      closeGCashModal();
+      // Process GCash payment directly
       if (cart.length === 0) {
         alert("Your cart is empty.");
         return;
       }
-      doneBtn.click();
+      
+      // Get discount from payment modal if it was open
+      const discountType = getSelectedDiscount() || 'none';
+      const t = computeTotals(discountType);
+      
+      // Save order to Firebase
+      try {
+        const { addDoc, collection, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js");
+        
+        const safeCart = window.cart.map(i => ({
+          id: i.id,
+          name: i.name,
+          price: i.price,
+          qty: i.qty,
+          category: i.category,
+          size: i.size,
+          addons: i.addons,
+          modifiers: i.modifiers,
+          specialInstructions: i.specialInstructions,
+          image: i.image
+        }));
+
+        const customerName = document.getElementById('customerName')?.value || '';
+        const tableSelect = document.getElementById('tableSelect')?.value || '';
+        const tableNumber = tableSelect ? `Table ${tableSelect}` : '';
+        
+        const orderRef = await addDoc(collection(window.Firebase.db, "orders"), {
+          items: safeCart,
+          totals: t,
+          paymentMethod: 'gcash',
+          discountType,
+          customerName,
+          tableNumber: tableNumber,
+          billNumber: billNumber,
+          cashierUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+          createdAt: serverTimestamp()
+        });
+
+        await addDoc(collection(window.Firebase.db, "logs"), {
+          whoUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+          action: "ORDER_CREATED",
+          details: { orderId: orderRef.id, total: t.total, paymentMethod: 'gcash' },
+          createdAt: serverTimestamp()
+        });
+
+        // Show receipt
+        showReceipt({
+          items: safeCart,
+          totals: t,
+          paymentMethod: 'gcash',
+          discountType,
+          customerName,
+          tableNumber,
+          billNumber,
+          orderId: orderRef.id
+        });
+
+        // Clear cart and reset
+        cart.length = 0;
+        billNumber = generateBillNumber();
+        document.getElementById('billNumber').textContent = billNumber;
+        document.getElementById('customerName').value = '';
+        document.getElementById('tableSelect').value = '';
+        renderInvoice();
+        selectedPaymentMethod = null;
+        document.querySelectorAll('.payment-method-btn-sidebar').forEach(b => b.classList.remove('active'));
+        paymentModal.style.display = "none";
+      } catch(err) {
+        console.error("Error saving order:", err);
+        alert("Failed to save order. Check console for details.");
+      }
     });
     document.getElementById('gcashFailed').addEventListener('click', () => {
       alert('Payment failed. Please try again.');
@@ -1248,7 +1500,13 @@
     
     // Card Modal Event Listeners
     document.getElementById('closeCardModal').addEventListener('click', closeCardModal);
-    document.getElementById('cardCancel').addEventListener('click', closeCardModal);
+    document.getElementById('cardCancel').addEventListener('click', () => {
+      closeCardModal();
+      // Reopen payment modal if it was open before
+      if(selectedPaymentMethod === 'card' || paymentModal.style.display === 'flex') {
+        paymentModal.style.display = 'flex';
+      }
+    });
     
     document.querySelectorAll('.account-type-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1265,88 +1523,94 @@
       const pin = e.target.value.replace(/\D/g, ''); // Only numbers
       e.target.value = pin;
       if(pin.length === 6) {
+        // Skip amount entry, go directly to processing payment
         cardPaymentStep = 3;
-        document.getElementById('amountGroup').style.display = 'block';
-        // Get total amount
-        const totals = computeTotals('none');
-        document.getElementById('cardAmount').value = `₱${totals.total.toFixed(2)}`;
+        processCardPayment();
       }
     });
     
-    // Keypad functionality
-    function attachKeypadListeners() {
-      document.querySelectorAll('.keypad-btn').forEach(btn => {
-        btn.removeEventListener('click', handleKeypadClick);
-        btn.addEventListener('click', handleKeypadClick);
-      });
-    }
-    
-    function handleKeypadClick(e) {
-      const btn = e.currentTarget;
-      const amountInput = document.getElementById('cardAmount');
-      let currentValue = amountInput.value.replace(/[₱\s,]/g, '');
-      
-      if(btn.dataset.action === 'backspace') {
-        currentValue = currentValue.slice(0, -1);
-        amountInput.value = currentValue ? `₱${parseFloat(currentValue || 0).toFixed(2)}` : '';
-      } else {
-        const newValue = currentValue + btn.dataset.value;
-        if(newValue && !isNaN(parseFloat(newValue))) {
-          amountInput.value = `₱${parseFloat(newValue).toFixed(2)}`;
-        }
-      }
-      
-      // Enable confirm button if amount is entered
-      const amount = parseFloat(amountInput.value.replace(/[₱\s,]/g, ''));
-      const totals = computeTotals('none');
-      if(amount > 0 && amount >= totals.total) {
-        document.getElementById('cardConfirm').disabled = false;
-        cardPaymentStep = 4;
-        document.getElementById('confirmGroup').style.display = 'block';
-      } else {
-        document.getElementById('cardConfirm').disabled = true;
-        document.getElementById('confirmGroup').style.display = 'none';
-      }
-    }
-    
-    // Attach keypad listeners when modal opens
-    const cardModal = document.getElementById('cardModal');
-    if(cardModal) {
-      const observer = new MutationObserver(() => {
-        if(cardModal.style.display === 'flex') {
-          attachKeypadListeners();
-        }
-      });
-      observer.observe(cardModal, { attributes: true, attributeFilter: ['style'] });
-    }
-    
-    document.getElementById('cardConfirm').addEventListener('click', () => {
-      if(!selectedAccountType) {
-        alert('Please select an account type.');
-        return;
-      }
-      const pin = document.getElementById('cardPin').value;
-      if(pin.length !== 6) {
-        alert('Please enter a 6-digit PIN.');
-        return;
-      }
-      const amount = parseFloat(document.getElementById('cardAmount').value.replace(/[₱\s,]/g, ''));
-      const totals = computeTotals('none');
-      if(amount < totals.total) {
-        alert('Amount must be equal to or greater than the total.');
-        return;
-      }
-      
-      // Show payment successful
-      alert('Payment Successful!');
-      closeCardModal();
-      // Proceed to payment confirmation
+    async function processCardPayment() {
       if (cart.length === 0) {
         alert("Your cart is empty.");
         return;
       }
-      doneBtn.click();
-    });
+      
+      // Get discount from payment modal if it was open
+      const discountType = getSelectedDiscount() || 'none';
+      const totals = computeTotals(discountType);
+      
+      // Save order to Firebase
+      try {
+        const { addDoc, collection, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js");
+        
+        const safeCart = window.cart.map(i => ({
+          id: i.id,
+          name: i.name,
+          price: i.price,
+          qty: i.qty,
+          category: i.category,
+          size: i.size,
+          addons: i.addons,
+          modifiers: i.modifiers,
+          specialInstructions: i.specialInstructions,
+          image: i.image
+        }));
+
+        const customerName = document.getElementById('customerName')?.value || '';
+        const tableSelect = document.getElementById('tableSelect')?.value || '';
+        const tableNumber = tableSelect ? `Table ${tableSelect}` : '';
+        
+        const orderRef = await addDoc(collection(window.Firebase.db, "orders"), {
+          items: safeCart,
+          totals: totals,
+          paymentMethod: 'card',
+          discountType: discountType,
+          accountType: selectedAccountType,
+          customerName,
+          tableNumber: tableNumber,
+          billNumber: billNumber,
+          cashierUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+          createdAt: serverTimestamp()
+        });
+
+        await addDoc(collection(window.Firebase.db, "logs"), {
+          whoUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+          action: "ORDER_CREATED",
+          details: { orderId: orderRef.id, total: totals.total, paymentMethod: 'card' },
+          createdAt: serverTimestamp()
+        });
+
+        // Show receipt
+        showReceipt({
+          items: safeCart,
+          totals: totals,
+          paymentMethod: 'card',
+          discountType: discountType,
+          accountType: selectedAccountType,
+          customerName,
+          tableNumber,
+          billNumber,
+          orderId: orderRef.id
+        });
+
+        // Clear cart and reset
+        closeCardModal();
+        cart.length = 0;
+        billNumber = generateBillNumber();
+        document.getElementById('billNumber').textContent = billNumber;
+        document.getElementById('customerName').value = '';
+        document.getElementById('tableSelect').value = '';
+        renderInvoice();
+        selectedPaymentMethod = null;
+        document.querySelectorAll('.payment-method-btn-sidebar').forEach(b => b.classList.remove('active'));
+        paymentModal.style.display = "none";
+      } catch(err) {
+        console.error("Error saving order:", err);
+        alert("Failed to save order. Check console for details.");
+      }
+    }
+    
+    // Card payment is now processed automatically after PIN entry
     
     // Close modals when clicking outside
     document.getElementById('gcashModal').addEventListener('click', (e) => {
@@ -1356,6 +1620,142 @@
       if(e.target.id === 'cardModal') closeCardModal();
     });
 
+    // Receipt Modal Functions
+    function showReceipt(orderData) {
+      const receiptContent = document.getElementById('receiptContent');
+      const receiptModal = document.getElementById('receiptModal');
+      
+      const itemsHtml = orderData.items.map(item => {
+        const addonsTotal = (item.addons || []).reduce((sum, addon) => sum + addon.price, 0);
+        const sizePrice = item.size === 'large' ? 30 : 0;
+        const itemUnitPrice = item.price + sizePrice + addonsTotal;
+        const itemTotal = itemUnitPrice * item.qty;
+        
+        let itemDetails = item.name;
+        if(item.size) itemDetails += ` (${item.size})`;
+        if(item.addons && item.addons.length > 0) {
+          itemDetails += ` + ${item.addons.map(a => a.name || a.value).join(', ')}`;
+        }
+        
+        return `
+          <div class="receipt-item">
+            <div class="receipt-item-name">${itemDetails}</div>
+            <div class="receipt-item-qty">${item.qty}x</div>
+            <div class="receipt-item-price">₱${itemTotal.toFixed(2)}</div>
+          </div>
+        `;
+      }).join('');
+      
+      const paymentMethodLabels = {
+        'cash': 'Cash',
+        'gcash': 'GCash',
+        'card': 'Card'
+      };
+      
+      const discountLabels = {
+        'none': '',
+        'senior': 'Senior (20%)',
+        'pwd': 'PWD (20%)'
+      };
+      
+      const receiptHtml = `
+        <div class="receipt-company">
+          <h2>LitLatte</h2>
+          <p>Point of Sale System</p>
+        </div>
+        <div class="receipt-info">
+          <div class="receipt-row">
+            <span>Bill Number:</span>
+            <span>${orderData.billNumber}</span>
+          </div>
+          <div class="receipt-row">
+            <span>Date:</span>
+            <span>${new Date().toLocaleString('en-US', { 
+              year: 'numeric', 
+              month: 'short', 
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            })}</span>
+          </div>
+          ${orderData.customerName ? `<div class="receipt-row"><span>Customer:</span><span>${orderData.customerName}</span></div>` : ''}
+          ${orderData.tableNumber ? `<div class="receipt-row"><span>Table:</span><span>${orderData.tableNumber}</span></div>` : ''}
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-items">
+          ${itemsHtml}
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-totals">
+          <div class="receipt-total-row">
+            <span>Subtotal:</span>
+            <span>₱${orderData.totals.subtotal.toFixed(2)}</span>
+          </div>
+          ${orderData.totals.discountAmt > 0 ? `
+            <div class="receipt-total-row">
+              <span>Discount (${discountLabels[orderData.discountType]}):</span>
+              <span>-₱${orderData.totals.discountAmt.toFixed(2)}</span>
+            </div>
+          ` : ''}
+          <div class="receipt-total-row">
+            <span>VAT (12%):</span>
+            <span>₱${orderData.totals.vat.toFixed(2)}</span>
+          </div>
+          <div class="receipt-total-row receipt-grand-total">
+            <span>Total:</span>
+            <span>₱${orderData.totals.total.toFixed(2)}</span>
+          </div>
+        </div>
+        <div class="receipt-divider"></div>
+        <div class="receipt-payment">
+          <div class="receipt-row">
+            <span>Payment Method:</span>
+            <span>${paymentMethodLabels[orderData.paymentMethod] || orderData.paymentMethod}</span>
+          </div>
+          ${orderData.paymentMethod === 'cash' ? `
+            <div class="receipt-row">
+              <span>Cash Received:</span>
+              <span>₱${orderData.cashReceived.toFixed(2)}</span>
+            </div>
+            <div class="receipt-row">
+              <span>Change:</span>
+              <span>₱${orderData.change.toFixed(2)}</span>
+            </div>
+          ` : ''}
+          ${orderData.paymentMethod === 'card' && orderData.accountType ? `
+            <div class="receipt-row">
+              <span>Account Type:</span>
+              <span>${orderData.accountType.charAt(0).toUpperCase() + orderData.accountType.slice(1)}</span>
+            </div>
+          ` : ''}
+        </div>
+        <div class="receipt-footer">
+          <p>Thank you for your order!</p>
+          <p>Visit us again soon</p>
+        </div>
+      `;
+      
+      receiptContent.innerHTML = receiptHtml;
+      receiptModal.style.display = 'flex';
+    }
+    
+    function closeReceiptModal() {
+      const receiptModal = document.getElementById('receiptModal');
+      receiptModal.style.display = 'none';
+    }
+    
+    document.getElementById('closeReceiptModal').addEventListener('click', closeReceiptModal);
+    document.getElementById('printReceipt').addEventListener('click', () => {
+      window.print();
+    });
+    
+    document.getElementById('receiptModal').addEventListener('click', (e) => {
+      if(e.target.id === 'receiptModal') closeReceiptModal();
+    });
+
+    // Initialize bill number
+    document.getElementById('billNumber').textContent = billNumber;
+    
     renderProducts();
     renderInvoice();
   </script>
@@ -1390,49 +1790,96 @@
       const discountType = getSelectedDiscount();
       const t = computeTotals(discountType);
 
-      if(method==='cash'){
+      // Handle different payment methods
+      if(method === 'gcash') {
+        // Close payment modal and open GCash modal
+        paymentModal.style.display = "none";
+        openGCashModal();
+        return;
+      } else if(method === 'card') {
+        // Close payment modal and open Card modal
+        paymentModal.style.display = "none";
+        openCardModal();
+        return;
+      } else if(method === 'cash') {
+        // Process cash payment
         const cash = parseFloat(cashReceivedInput.value || '0');
         if(cash < t.total){
           alert('Cash received is less than total.');
           return;
         }
-      }
+        
+        const change = cash - t.total;
+        
+        // Process cash payment
+        try {
+          const safeCart = window.cart.map(i => ({
+            id: i.id,
+            name: i.name,
+            price: i.price,
+            qty: i.qty,
+            category: i.category,
+            size: i.size,
+            addons: i.addons,
+            modifiers: i.modifiers,
+            specialInstructions: i.specialInstructions,
+            image: i.image
+          }));
 
-      // PATCHED — deep copy cart to avoid reference loss
-      const safeCart = window.cart.map(i => ({
-        id: i.id,
-        name: i.name,
-        price: i.price,
-        qty: i.qty,
-        category: i.category
-      }));
+          const customerName = document.getElementById('customerName')?.value || '';
+          const tableSelect = document.getElementById('tableSelect')?.value || '';
+          const tableNumber = tableSelect ? `Table ${tableSelect}` : '';
+          
+          const orderRef = await addDoc(collection(window.Firebase.db, "orders"), {
+            items: safeCart,
+            totals: t,
+            paymentMethod: 'cash',
+            discountType,
+            customerName,
+            tableNumber: tableNumber,
+            billNumber: billNumber,
+            cashReceived: cash,
+            change: change,
+            cashierUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+            createdAt: serverTimestamp()
+          });
 
-      try {
-        const orderRef = await addDoc(collection(window.Firebase.db, "orders"), {
-          items: safeCart,
-          totals: t,
-          paymentMethod: method,
-          discountType,
-          cashierUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
-          createdAt: serverTimestamp()
-        });
+          await addDoc(collection(window.Firebase.db, "logs"), {
+            whoUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
+            action: "ORDER_CREATED",
+            details: { orderId: orderRef.id, total: t.total, paymentMethod: 'cash' },
+            createdAt: serverTimestamp()
+          });
 
-        await addDoc(collection(window.Firebase.db, "logs"), {
-          whoUid: window.Firebase.auth.currentUser?.uid || 'anonymous',
-          action: "ORDER_CREATED",
-          details: { orderId: orderRef.id, total: t.total },
-          createdAt: serverTimestamp()
-        });
+          // Show receipt
+          showReceipt({
+            items: safeCart,
+            totals: t,
+            paymentMethod: 'cash',
+            discountType,
+            customerName,
+            tableNumber,
+            billNumber,
+            cashReceived: cash,
+            change: change,
+            orderId: orderRef.id
+          });
 
-        alert(`Payment successful. Order saved with ID: ${orderRef.id}`);
+          // Clear cart and reset
+          cart.length = 0;
+          billNumber = generateBillNumber();
+          document.getElementById('billNumber').textContent = billNumber;
+          document.getElementById('customerName').value = '';
+          document.getElementById('tableSelect').value = '';
+          selectedPaymentMethod = null;
+          document.querySelectorAll('.payment-method-btn-sidebar').forEach(b => b.classList.remove('active'));
+          renderInvoice();
+          paymentModal.style.display = "none";
 
-        cart.length = 0;
-        renderInvoice();
-        paymentModal.style.display = "none";
-
-      } catch(err) {
-        console.error("Error saving order:", err);
-        alert("Failed to save order. Check console for details.");
+        } catch(err) {
+          console.error("Error saving order:", err);
+          alert("Failed to save order. Check console for details.");
+        }
       }
     });
   </script>

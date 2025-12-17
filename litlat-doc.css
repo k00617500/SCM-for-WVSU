@@ -84,7 +84,6 @@ html, body {
     font-size: 14px;
 }
 
-/* Responsive design for mobile */
 @media (max-width: 768px) {
     .nav-links {
         gap: 15px;
@@ -127,7 +126,7 @@ html, body {
 }
 
 .doc__nav li:hover {
-  color: var(--primary-color-light);
+  color: #aa0000;
   cursor: pointer;
   transition: color .5s ease-in-out;
 }

@@ -4,145 +4,301 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LitLatté POS Suite | for BookLatté Iloilo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main-style.css" />
+  <script src="assets/js/products.js" defer></script>
 </head>
 <body>
 
 <!-- Navbar -->
 <header class="navbar" id="navbar">
   <div class="logo">
-    <img src="assets\img\logo-name.png" alt="LitLatté" class="logo-img">
+    <img src="assets/img/logo-name.png" alt="LitLatté" class="logo-img">
   </div>
   <nav class="nav-links">
     <a href="#hero">Home</a>
     <a href="#why">Why Use</a>
+    <a href="#products">Products</a>
     <a href="#demo">Demo</a>
     <a href="#contact">Contact</a>
-    <a href="reg" class="btn primary">Get Started</a>
     <a href="login.html" class="btn primary">Login</a>
   </nav>
-
-  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
 </header>
 
 <!-- Hero -->
-<section id="hero" class="hero" style="position: relative; background: url('assets/img/coffee-background.jpg') center/cover no-repeat; height: 100vh;">
-  <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
-  <div class="container hero-inner" style="position: relative; z-index: 2;">
-
-    <div class="hero-left reveal">
-      <h1>Brewing Seamless Sales</h1>
-      <p class="lead">
-        <strong>LitLatté POS Suite</strong> — a smart, seamless, and AI-powered
-        <strong>Point-of-Sale & Café Management System</strong> designed specifically for
-        <strong>BookLatté Iloilo</strong>.
-        Centralize ordering, speed up checkout, track inventory in real time,
-        and gain actionable insights to improve café operations and customer service.
-      </p>
-
-      <div class="hero-cta">
-        <a class="btn primary" href="#demo">Watch demo</a>
-        <a class="btn outline" href="#info">Learn more</a>
-      </div>
-
-      <ul class="hero-stats">
-        <li><strong>Unified</strong><span> POS & Order Management</span></li>
-        <li><strong>Real-Time</strong><span> Inventory Monitoring</span></li>
-        <li><strong>Insight-Driven</strong><span> Sales Analytics</span></li>
-      </ul>
-    </div>
-
-    <div class="hero-right reveal delay">
-
-    
-
-      <div class="panel small-grid">
-        <div class="card info-card">
-          <h5>Inventory</h5>
-          <p>Real-time ingredient tracking, automatic deduction, and low-stock alerts.</p>
+<section id="hero" class="hero" style="position: relative; height: 100vh; overflow: hidden;">
+    <!-- Video background -->
+    <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <source src="assets/vid/1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  
+    <!-- Dark overlay -->
+    <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
+  
+    <!-- Content -->
+    <div class="container hero-inner" style="position: relative; z-index: 2; height: 100%; display: flex; align-items: center;">
+      <div class="hero-left reveal">
+        <h1>Brewing Seamless Sales</h1>
+        <p class="lead">
+          <strong>LitLatté POS Suite</strong> — a smart, seamless, and AI-powered
+          <strong>Point-of-Sale & Café Management System</strong> designed specifically for
+          <strong>BookLatté Iloilo</strong>. Centralize ordering, speed up checkout, track inventory in real time,
+          and gain actionable insights to improve café operations and customer service.
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#demo">Watch demo</a>
+          <a class="btn outline" href="#why">Learn more</a>
         </div>
-        <div class="card info-card">
-          <h5>Sales</h5>
-          <p>Monitor revenue, best-selling items, peak hours, and staff performance.</p>
+        <ul class="hero-stats">
+          <li><strong>Unified</strong><span> POS & Order Management</span></li>
+          <li><strong>Real-Time</strong><span> Inventory Monitoring</span></li>
+          <li><strong>Insight-Driven</strong><span> Sales Analytics</span></li>
+        </ul>
+      </div>
+  
+      <div class="hero-right reveal delay">
+        <div class="panel small-grid">
+          <div class="card info-card">
+            <h5>Inventory</h5>
+            <p>Real-time ingredient tracking, automatic deduction, and low-stock alerts.</p>
+          </div>
+          <div class="card info-card">
+            <h5>Sales</h5>
+            <p>Monitor revenue, best-selling items, peak hours, and staff performance.</p>
+          </div>
         </div>
       </div>
     </div>
-
-  </div>
-</section>
-
-
+  </section>
+  
 <!-- Why -->
-<section id="why" class="section">
-  <div class="container reveal">
-    <h2>Why Use LitLatté POS Suite?</h2>
-    <div class="why-grid">
-      <div class="why-card">
-        <h4>Accuracy</h4>
-        <p>Automated order handling and inventory deduction reduce human error.</p>
-      </div>
-      <div class="why-card">
-        <h4>Efficiency</h4>
-        <p>Optimized POS workflows accelerate checkout and barista order processing.</p>
-      </div>
-      <div class="why-card">
-        <h4>Data-Driven</h4>
-        <p>AI-powered insights identify peak hours and best-selling menu items.</p>
-      </div>
-      <div class="why-card">
-        <h4>Operational Transparency</h4>
-        <p>Clear tracking of sales, inventory usage, and staff activity.</p>
+<section id="why" class="section" style="position: relative; height: 100vh; overflow: hidden;">
+    <!-- Video background -->
+    <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <source src="assets/vid/2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  
+    <!-- Dark overlay -->
+    <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
+  
+    <!-- Content -->
+    <div class="container reveal" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+      <h2 style="color: white; text-align: center;">Why Use LitLatté POS Suite?</h2>
+      <div class="why-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 2rem;">
+        <div class="why-card" style="background-color: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; color: white;">
+          <h4>Accuracy</h4>
+          <p>Automated order handling and inventory deduction reduce human error.</p>
+        </div>
+        <div class="why-card" style="background-color: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; color: white;">
+          <h4>Efficiency</h4>
+          <p>Optimized POS workflows accelerate checkout and barista order processing.</p>
+        </div>
+        <div class="why-card" style="background-color: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; color: white;">
+          <h4>Data-Driven</h4>
+          <p>AI-powered insights identify peak hours and best-selling menu items.</p>
+        </div>
+        <div class="why-card" style="background-color: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; color: white;">
+          <h4>Operational Transparency</h4>
+          <p>Clear tracking of sales, inventory usage, and staff activity.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
+  
+<!-- Products -->
+<section id="products" class="section" style="position: relative; height: 100vh; overflow: hidden;">
+    <!-- Video background -->
+    <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+      <source src="assets/vid/3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  
+    <!-- Dark overlay -->
+    <div style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
+  
+    <!-- Content -->
+    <div class="container reveal" style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+      <h2 style="color: white; text-align: center;">Featured Food & Drinks</h2>
+      <p class="muted" style="color: #ddd; text-align: center;">Best sellers curated for BookLatté customers</p>
+  
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <div class="carousel-card">
+            <img src="assets/img/aglio_spaghetti.jpg" alt="Aglio Spaghetti">
+            <h4>Aglio Spaghetti</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/bistek.jpg" alt="Bistek">
+            <h4>Bistek</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/breakfast_sandwich.jpg" alt="Breakfast Sandwich">
+            <h4>Breakfast Sandwich</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/caesar_salad.jpg" alt="Caesar Salad">
+            <h4>Caesar Salad</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/cappuccino.jpg" alt="Cappuccino">
+            <h4>Cappuccino</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/carbonara.jpg" alt="Carbonara">
+            <h4>Carbonara</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/cheese_sticks.jpg" alt="Cheese Sticks">
+            <h4>Cheese Sticks</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/cheesecake.jpg" alt="Cheesecake">
+            <h4>Cheesecake</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/chicken_adobo.jpg" alt="Chicken Adobo">
+            <h4>Chicken Adobo</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/danggit.jpg" alt="Danggit">
+            <h4>Danggit</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/egg_benedict.jpg" alt="Egg Benedict">
+            <h4>Egg Benedict</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/Espresso.jpg" alt="Espresso">
+            <h4>Espresso</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/fish_salad.jpg" alt="Fish Salad">
+            <h4>Fish Salad</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/iced_coffee.jpg" alt="Iced Coffee">
+            <h4>Iced Coffee</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/kansi_linaga.jpg" alt="Kansi Linaga">
+            <h4>Kansi Linaga</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/latte.jpg" alt="Latte">
+            <h4>Latte</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/lava_cake.jpg" alt="Lava Cake">
+            <h4>Lava Cake</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/longganisa.jpg" alt="Longganisa">
+            <h4>Longganisa</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/mac_cheese.jpg" alt="Mac & Cheese">
+            <h4>Mac & Cheese</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/macaroni_soup.jpg" alt="Macaroni Soup">
+            <h4>Macaroni Soup</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/molo_blanca.jpg" alt="Molo Blanca">
+            <h4>Molo Blanca</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/pancake.jpg" alt="Pancake">
+            <h4>Pancake</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/pancit_molo.jpg" alt="Pancit Molo">
+            <h4>Pancit Molo</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/pochero.jpg" alt="Pochero">
+            <h4>Pochero</h4>
+          </div>  
+          <div class="carousel-card">
+            <img src="assets/img/pork_sinigang.jpg" alt="Pork Sinigang">
+            <h4>Pork Sinigang</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/puttanesca.jpg" alt="Puttanesca">
+            <h4>Puttanesca</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/spaghetti.jpg" alt="Spaghetti">
+            <h4>Spaghetti</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/spring_rolls.jpg" alt="Spring Rolls">
+            <h4>Spring Rolls</h4>
+          </div>
+          <div class="carousel-card">
+            <img src="assets/img/tabagak.jpg" alt="Tabagak">
+            <h4>Tabagak</h4>
+          </div>
+        </div>
+  
+        <!-- Pagination Dots -->
+        <div class="carousel-controls">
+          <div class="carousel-dots"></div>
+          <button id="carousel-playpause" class="play">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
 
 <!-- Demo -->
 <section id="demo" class="section">
-  <div class="container reveal">
-    <h2>Demo & Location</h2>
-
-    <div class="demo-grid">
-      <div class="demo-video">
-        <div class="video-wrap">
-          <video autoplay muted loop playsinline controls poster="assets/img/video-poster.jpg" class="responsive-video">
-            <source src="assets\vid\demo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+  
+    <!-- Content -->
+    <div class="container reveal" style="position: relative; z-index: 2; height: 80%; display: flex; flex-direction: column; justify-content: center;">
+      <h2 style="color: white; text-align: center;">Demo & Location</h2>
+      <div class="demo-grid" style="display: grid; grid-template-columns: 1fr 1fr; ">
+        <div class="demo-video">
+          <div class="video-wrap">
+            <video autoplay muted loop playsinline controls poster="assets/img/video-poster.jpg" class="responsive-video" style="width: 100%; border-radius: 10px;">
+              <source src="assets/vid/demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p class="muted" style="margin-top:10px; color: #ddd;">Short preview of LitLatté POS Suite’s Flow.</p>
         </div>
-        <p class="muted" style="margin-top:10px">
-          Short preview of LitLatté POS Suite’s Flow.
-        </p>
-      </div>
-
-      <div class="map-container" style="width:100%;height:400px;overflow:hidden;border-radius:12px;">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.566489189992!2d122.56602921428104!3d10.712345192345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aee5edd3eed8a3%3A0x26dd3488146a02fa!2sBook%20Latt%C3%A9%20Caf%C3%A9%2C%20Library%20%26%20Art%20Space!5e0!3m2!1sen!2sph!4v1715927264642!5m2!1sen!2sph"
-          style="border:0;width:100%;height:100%;filter:grayscale(20%) brightness(95%) saturate(60%) hue-rotate(-20deg);"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-      
-      <div class="map-location" style="margin-top:1rem;color:#76001a;">
-        <strong>Book Latté Café, Library & Art Space</strong><br>
-        Business Park, G/F Festivewalk Parade, Megaworld Blvd, Mandurriao, Iloilo City, 5000
-        <div class="map-actions" style="margin-top:0.5rem;">
-          <a class="btn small"
-             href="https://www.google.com/maps/place/booklatte/data=!4m2!3m1!1s0x33aee5edd3eed8a3:0x26dd3488146a02fa?sa=X&ved=1t:242&ictx=111"
-             target="_blank"
-             style="background-color:#82001c;color:rgb(255, 255, 255);padding:6px 12px;border-radius:8px;text-decoration:none;font-weight:600;">
-            Open in Maps
-          </a>
+  
+        <div class="map-container" style="width:100%;height:395px;overflow:hidden;border-radius:12px;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.566489189992!2d122.56602921428104!3d10.712345192345678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aee5edd3eed8a3%3A0x26dd3488146a02fa!2sBook%20Latt%C3%A9%20Caf%C3%A9%2C%20Library%20%26%20Art%20Space!5e0!3m2!1sen!2sph!4v1715927264642!5m2!1sen!2sph"
+            style="border:0;width:100%;height:100%;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+  
+        <div class="map-location" style="grid-column: span 2; margin-top:1rem; color:#fff;">
+          <strong>Book Latté Café, Library & Art Space</strong><br>
+          Business Park, G/F Festivewalk Parade, Megaworld Blvd, Mandurriao, Iloilo City, 5000
+          <div class="map-actions" style="margin-top:0.5rem;">
+            <a class="btn small"
+               href="https://www.google.com/maps/place/booklatte/data=!4m2!3m1!1s0x33aee5edd3eed8a3:0x26dd3488146a02fa?sa=X&ved=1t:242&ictx=111"
+               target="_blank"
+               style="background-color:#82001c;color:#fff;padding:6px 12px;border-radius:15px;text-decoration:none;font-weight:600;">
+              Open in Maps
+            </a>
+          </div>
         </div>
       </div>
-      
-
     </div>
-  </div>
-</section>
+  </section>
+  
 
 <!-- Contact -->
 <section id="contact" class="section dark-section">
@@ -151,7 +307,8 @@
       <h2>Ready to streamline BookLatté’s café operations?</h2>
       <p class="muted">Contact the development team for demo, deployment, or collaboration.</p>
       <br>
-      <a class="btn primary" href="mailto:polaron.mk@gmail.com">Contact the Team</a>
+      <a class="btn primary" id="openContactModalBtn" href="javascript:void(0)">Contact the Team</a>
+
     </div>
   </div>
 </section>
@@ -170,15 +327,15 @@
         <ul>
           <li><a href="#hero">Home</a></li>
           <li><a href="login.html">Login</a></li>
-          <li><a href="register.html">Register</a></li>
+      
         </ul>
       </div>
 
       <div class="footer-col">
         <h4>COMPANY</h4>
         <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#team">Team</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="team.html">Team</a></li>
         </ul>
         <button class="footer-btn" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'});">
           Contact Us
@@ -197,6 +354,37 @@
     </div>
   </div>
 
+
+<section class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2>Get in touch</h2>
+        <p>Want to speak to someone? We'd love to hear from you.</p><br>
+  
+        <form class="contact-form">
+          <div class="form-row">
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Last name" required>
+          </div>
+  
+          <input type="email" placeholder="Email address" required>
+          <input type="tel" placeholder="Phone number">
+          <textarea placeholder="Your message" rows="4"></textarea>
+          <button type="submit">Send message</button>
+        </form>
+      </div>
+  
+      <div class="contact-right">
+        <h4>Call us</h4>
+        <p>Mon–Sat, 8am–10pm<br><strong>0977 693 6081</strong></p>
+  
+        <h4>Visit us</h4>
+        <p>Business Park, G/F Festivewalk Parade,<br>Megaworld Blvd, Mandurriao, Iloilo City, 5000</p>
+      </div>
+    </div>
+  </section>
+
+  
   <div class="footer-bottom">
     <p>© 2025 LitLatté POS Suite. All rights reserved.</p>
     <div class="footer-links">
@@ -206,7 +394,6 @@
   </div>
 </footer>
 
-<!-- JS (UNCHANGED) -->
 <script>
   document.querySelectorAll('.nav-links a[href^="#"]').forEach(link=>{
     link.addEventListener('click', function(e){
@@ -231,20 +418,103 @@
     else navbar.classList.remove('scrolled');
   });
 
-  const toggleBtn = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme');
 
-  if (currentTheme === 'light') {
-    document.body.classList.add('light-mode');
-    toggleBtn.textContent = '☀️';
-  }
+  
+</script>
 
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-mode');
-    const isLight = document.body.classList.contains('light-mode');
-    toggleBtn.textContent = isLight ? '☀️' : '🌙';
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  });
+<script>
+    
+    const track = document.querySelector('.carousel-track');
+    const cards = document.querySelectorAll('.carousel-card');
+    let currentIndex = 0;
+    const intervalTime = 2000; 
+    let interval;
+    
+    // Helper: check if carousel is visible
+    function isCarouselVisible() {
+      const rect = track.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    }
+    
+    // Focus a card
+    function focusCard(index) {
+      cards.forEach((card, i) => {
+        card.classList.toggle('focused', i === index);
+      });
+      if (isCarouselVisible()) {
+        cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+      currentIndex = index;
+    }
+    
+    // Auto-scroll only if visible
+    function startCarousel() {
+      interval = setInterval(() => {
+        if (!isCarouselVisible()) return; 
+        let nextIndex = (currentIndex + 1) % cards.length;
+        focusCard(nextIndex);
+      }, intervalTime);
+    }
+    
+    function stopCarousel() {
+      clearInterval(interval);
+    }
+    
+    // Initialize
+    focusCard(0);
+    startCarousel();
+    
+    // Pause on hover
+    track.addEventListener('mouseenter', stopCarousel);
+    track.addEventListener('mouseleave', startCarousel);
+    
+    // IntersectionObserver for smooth focus detection
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          cards.forEach(card => card.classList.remove('focused'));
+          entry.target.classList.add('focused');
+          currentIndex = Array.from(cards).indexOf(entry.target);
+        }
+      });
+    }, {
+      root: track,
+      threshold: 0.5
+    });
+    
+    cards.forEach(card => observer.observe(card));
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const openModalBtn = document.getElementById('openContactModalBtn'); // Updated ID
+        const closeModalBtn = document.getElementById('closeContactModal');
+        const modal = document.getElementById('contactModal');
+        const contactSection = modal.querySelector('.contact-section');
+      
+        if (!openModalBtn || !closeModalBtn || !modal || !contactSection) return;
+      
+        openModalBtn.addEventListener('click', () => {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+      
+          // Scroll to contact-section inside modal
+          contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      
+        function closeModal() {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeModal();
+        });
+      });
+      
 </script>
 
 </body>
