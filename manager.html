@@ -62,7 +62,6 @@
   </div>
 
   <script>
-    // Auth guard: prevent direct access if logged out
     if (localStorage.getItem('loggedIn') !== 'true') {
       window.location.href = "login.html";
     }
