@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/styles.css">
 
-  
+  <!-- Firebase SDKs -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -29,6 +29,16 @@
     const db = getFirestore(app);
 
     window.Firebase = { app, analytics, auth, db };
+    (async () => {
+      try {
+        await signInAnonymously(auth);
+        console.log("Signed in anonymously");
+      } catch (error) {
+        console.error("Anonymous sign-in failed:", error);
+      }
+    })();
+    // xpose a couple of Firestore helpers so non-module inline scripts can call them
+    window.FirestoreHelpers = { collection, getDocs };
   </script>
 </head>
 <body>
@@ -52,13 +62,13 @@
   </div>
 
   <script>
-    
+    // Auth guard: prevent direct access if logged out
     if (localStorage.getItem('loggedIn') !== 'true') {
       window.location.href = "login.html";
     }
 
     const manageCrewBtn = document.getElementById("manageCrewBtn");
-    const receiptHistoryBtn = document.getElementById("receiptHistoryBtn");
+    const salesHistoryBtn = document.getElementById("salesHistoryBtn");
     const returnToPosBtn = document.getElementById("returnToPosBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const mainContent = document.getElementById("mainContent");
@@ -90,8 +100,8 @@
 
     async function loadCrewData() {
       try {
-        const employeesCollection = collection(window.Firebase.db, "employees");
-        const employeesSnapshot = await getDocs(employeesCollection);
+        const employeesCollection = window.FirestoreHelpers.collection(window.Firebase.db, "employees");
+        const employeesSnapshot = await window.FirestoreHelpers.getDocs(employeesCollection);
         const employeesList = employeesSnapshot.docs.map(doc => doc.data());
 
         let html = `<h2>Manage Crew</h2><table border="1"><tr><th>Crew ID</th><th>First Name</th><th>Last Name</th><th>MI</th></tr>`;
@@ -102,14 +112,14 @@
         mainContent.innerHTML = html;
       } catch (error) {
         console.error("Error loading crew data:", error);
-        mainContent.innerHTML = `<h2>Manage Crew</h2><p>Error loading crew data.</p>`;
+        mainContent.innerHTML = `<h2>Manage Crew</h2><p>Error loading crew data: ${error.message}</p>`;
       }
     }
 
     async function loadSalesHistory() {
       try {
-        const ordersCollection = collection(window.Firebase.db, "orders");
-        const ordersSnapshot = await getDocs(ordersCollection);
+        const ordersCollection = window.FirestoreHelpers.collection(window.Firebase.db, "orders");
+        const ordersSnapshot = await window.FirestoreHelpers.getDocs(ordersCollection);
         const ordersList = ordersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
         let html = `<h2>Sales History</h2><table border="1"><tr><th>Order ID</th><th>Date</th><th>Total</th><th>Items</th><th>Payment Method</th></tr>`;
@@ -122,7 +132,7 @@
         mainContent.innerHTML = html;
       } catch (error) {
         console.error("Error loading sales history:", error);
-        mainContent.innerHTML = `<h2>Sales History</h2><p>Error loading sales data.</p>`;
+        mainContent.innerHTML = `<h2>Sales History</h2><p>Error loading sales data: ${error.message}</p>`;
       }
     }
   </script>
