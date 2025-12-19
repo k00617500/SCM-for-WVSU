@@ -430,13 +430,13 @@
     const intervalTime = 2000; 
     let interval;
     
-    // Helper: check if carousel is visible
+   
     function isCarouselVisible() {
       const rect = track.getBoundingClientRect();
       return rect.top < window.innerHeight && rect.bottom > 0;
     }
     
-    // Focus a card
+  
     function focusCard(index) {
       cards.forEach((card, i) => {
         card.classList.toggle('focused', i === index);
@@ -447,7 +447,7 @@
       currentIndex = index;
     }
     
-    // Auto-scroll only if visible
+    
     function startCarousel() {
       interval = setInterval(() => {
         if (!isCarouselVisible()) return; 
@@ -460,15 +460,15 @@
       clearInterval(interval);
     }
     
-    // Initialize
+   
     focusCard(0);
     startCarousel();
     
-    // Pause on hover
+    
     track.addEventListener('mouseenter', stopCarousel);
     track.addEventListener('mouseleave', startCarousel);
     
-    // IntersectionObserver for smooth focus detection
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
