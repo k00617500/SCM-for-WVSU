@@ -1425,15 +1425,19 @@
       }
     }
     
-    let cardPaymentStep = 1; // 1: account type, 2: PIN, 3: amount, 4: confirm
-    
     function openCardModal() {
       const cardModal = document.getElementById('cardModal');
       cardModal.style.display = 'flex';
-      selectedAccountType = null;
-      cardPaymentStep = 1;
-      document.querySelectorAll('.account-type-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('pinGroup').style.display = 'none';
+
+      // Get current total amount
+      const discountType = getSelectedDiscount() || 'none';
+      const totals = computeTotals(discountType);
+
+      // Populate the total amount field
+      document.getElementById('totalAmount').value = `₱${totals.total.toFixed(2)}`;
+
+      // Clear form fields
+      document.getElementById('accountNumber').value = '';
       document.getElementById('cardPin').value = '';
     }
     
@@ -1566,6 +1570,23 @@
         cardPaymentStep = 3;
         processCardPayment();
       }
+    });
+
+    document.getElementById('cardConfirm').addEventListener('click', () => {
+      const accountNumber = document.getElementById('accountNumber').value.trim();
+      const cardPin = document.getElementById('cardPin').value.trim();
+
+      if(!accountNumber) {
+        alert('Please enter account number.');
+        return;
+      }
+
+      if(!cardPin || cardPin.length !== 6) {
+        alert('Please enter a valid 6-digit PIN.');
+        return;
+      }
+
+      processCardPayment();
     });
     
     async function processCardPayment() {
@@ -1904,7 +1925,7 @@
             orderId: orderRef.id
           });
 
-          // Clear cart and reset
+          
           cart.length = 0;
           billNumber = generateBillNumber();
           document.getElementById('billNumber').textContent = billNumber;
