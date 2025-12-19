@@ -2,16 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Manager Panel - Café POS</title>
+  <title>Manager Dashboard – LitLatte POS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/styles.css">
 
-  <!-- Firebase SDKs -->
+  <!-- Dashboard Styles -->
+  <link rel="stylesheet" href="assets/css/manager-styles.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+
+  <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
@@ -19,121 +30,315 @@
       projectId: "pos2-27d04",
       storageBucket: "pos2-27d04.firebasestorage.app",
       messagingSenderId: "394720721108",
-      appId: "1:394720721108:web:b0d8decc48bc01abfba341",
-      measurementId: "G-KLWC55M3BW"
+      appId: "1:394720721108:web:b0d8decc48bc01abfba341"
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    window.Firebase = { app, analytics, auth, db };
-    (async () => {
-      try {
-        await signInAnonymously(auth);
-        console.log("Signed in anonymously");
-      } catch (error) {
-        console.error("Anonymous sign-in failed:", error);
-      }
-    })();
-    
+    await signInAnonymously(auth);
+
+    window.Firebase = { db };
     window.FirestoreHelpers = { collection, getDocs };
   </script>
 </head>
+
 <body>
-  <header class="header">
-    <h1>Manager Panel</h1>
-    <div id="headerInfo">Welcome, Manager</div>
-  </header>
 
-  <div class="container">
-    <div class="sidebar">
-      <button id="manageCrewBtn">Manage Crew</button>
-      <button id="salesHistoryBtn">Sales History</button>
-      <button id="returnToPosBtn">Return to POS</button>
-      <button id="logoutBtn">Logout</button>
-    </div>
+<header class="header">
+  <h1>Hello, Manager 👋</h1>
+  <div id="headerInfo">LitLatte POS Analytics</div>
+</header>
 
-    <div class="content" id="mainContent">
-      <h2>Dashboard</h2>
-      <p>Select an option from the menu.</p>
-    </div>
-  </div>
+<div class="container">
 
-  <script>
-    if (localStorage.getItem('loggedIn') !== 'true') {
-      window.location.href = "login.html";
-    }
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <button id="dashboardBtn">Dashboard</button>
+    <button id="salesHistoryBtn">Sales History</button>
+    <button id="manageCrewBtn">Manage Crew</button>
+    <button id="returnBtn">Return to POS</button>
+    <button id="logoutBtn">Logout</button>
+  </aside>
 
-    const manageCrewBtn = document.getElementById("manageCrewBtn");
-    const salesHistoryBtn = document.getElementById("salesHistoryBtn");
-    const returnToPosBtn = document.getElementById("returnToPosBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const mainContent = document.getElementById("mainContent");
+  <!-- MAIN CONTENT -->
+  <main class="content" id="mainContent">
 
-    manageCrewBtn.addEventListener("click", async () => {
-      mainContent.innerHTML = `
-        <h2>Manage Crew</h2>
-        <p>Loading crew data...</p>
-      `;
-      await loadCrewData();
+    <!-- DASHBOARD VIEW -->
+    <section id="dashboardView">
+      <h2>Dashboard Overview</h2><br><br>
+
+      <!-- STAT CARDS -->
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <h4>Total Revenue</h4>
+          <div class="value" id="totalRevenue">₱0.00</div>
+        </div>
+
+        <div class="stat-card">
+          <h4>Total Orders</h4>
+          <div class="value" id="totalOrders">0</div>
+        </div>
+
+        <div class="stat-card">
+          <h4>Total Customers</h4>
+          <div class="value" id="totalCustomers">—</div>
+        </div>
+
+        <div class="stat-card">
+          <h4>Net Profit</h4>
+          <div class="value" id="netProfit">₱0.00</div>
+        </div>
+      </div>
+
+      <!-- CHARTS -->
+      <div class="dashboard-grid" style="grid-template-columns: 2fr 1fr;">
+        <div class="stat-card">
+          <h4>Revenue by Day</h4>
+          <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="stat-card">
+          <h4>Sales by Category</h4>
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  /* AUTH GUARD */
+  if (localStorage.getItem('loggedIn') !== 'true') {
+    window.location.href = "login.html";
+  }
+
+  const mainContent = document.getElementById("mainContent");
+  const dashboardView = document.getElementById("dashboardView");
+
+  /* DASHBOARD METRICS */
+  const totalRevenueEl = document.getElementById("totalRevenue");
+  const totalOrdersEl = document.getElementById("totalOrders");
+  const totalCustomersEl = document.getElementById("totalCustomers");
+  const netProfitEl = document.getElementById("netProfit");
+
+  let revenueChart, categoryChart;
+
+  async function loadDashboard() {
+    const ordersRef = window.FirestoreHelpers.collection(window.Firebase.db, "orders");
+    const snapshot = await window.FirestoreHelpers.getDocs(ordersRef);
+    const orders = snapshot.docs.map(d => d.data());
+
+    let revenue = 0;
+    let categories = {};
+    let daily = {};
+    let customers = new Set();
+
+    orders.forEach(o => {
+      const total = o.totals?.total || 0;
+      revenue += total;
+
+      if (o.customerName) customers.add(o.customerName);
+
+      const day = o.createdAt
+        ? new Date(o.createdAt.seconds * 1000).toLocaleDateString()
+        : "Unknown";
+
+      daily[day] = (daily[day] || 0) + total;
+
+      (o.items || []).forEach(i => {
+        categories[i.category] = (categories[i.category] || 0) + i.qty;
+      });
     });
 
-    salesHistoryBtn.addEventListener("click", async () => {
-      mainContent.innerHTML = `
-        <h2>Sales History</h2>
-        <p>Loading sales data...</p>
-      `;
-      await loadSalesHistory();
+    totalRevenueEl.textContent = `₱${revenue.toFixed(2)}`;
+    totalOrdersEl.textContent = orders.length;
+    totalCustomersEl.textContent = customers.size || "—";
+    netProfitEl.textContent = `₱${(revenue * 0.65).toFixed(2)}`;
+
+    renderRevenueChart(daily);
+    renderCategoryChart(categories);
+  }
+
+  function renderRevenueChart(data) {
+    if (revenueChart) revenueChart.destroy();
+    revenueChart = new Chart(document.getElementById("revenueChart"), {
+      type: "bar",
+      data: {
+        labels: Object.keys(data),
+        datasets: [{
+          label: "Revenue",
+          data: Object.values(data)
+        }]
+      },
+      options: { responsive: true }
     });
+  }
 
-    returnToPosBtn.addEventListener("click", () => {
-      window.location.href = "main.html";
-    });
-
-    logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem('loggedIn');
-      window.location.href = "index.html";
-    });
-
-    async function loadCrewData() {
-      try {
-        const employeesCollection = window.FirestoreHelpers.collection(window.Firebase.db, "employees");
-        const employeesSnapshot = await window.FirestoreHelpers.getDocs(employeesCollection);
-        const employeesList = employeesSnapshot.docs.map(doc => doc.data());
-
-        let html = `<h2>Manage Crew</h2><table border="1"><tr><th>Crew ID</th><th>First Name</th><th>Last Name</th><th>MI</th></tr>`;
-        employeesList.forEach(employee => {
-          html += `<tr><td>${employee.crewId}</td><td>${employee.firstName}</td><td>${employee.lastName}</td><td>${employee.middleInitial}</td></tr>`;
-        });
-        html += `</table>`;
-        mainContent.innerHTML = html;
-      } catch (error) {
-        console.error("Error loading crew data:", error);
-        mainContent.innerHTML = `<h2>Manage Crew</h2><p>Error loading crew data: ${error.message}</p>`;
+  function renderCategoryChart(data) {
+    if (categoryChart) categoryChart.destroy();
+    categoryChart = new Chart(document.getElementById("categoryChart"), {
+      type: "doughnut",
+      data: {
+        labels: Object.keys(data),
+        datasets: [{ data: Object.values(data) }]
       }
-    }
+    });
+  }
 
-    async function loadSalesHistory() {
-      try {
-        const ordersCollection = window.FirestoreHelpers.collection(window.Firebase.db, "orders");
-        const ordersSnapshot = await window.FirestoreHelpers.getDocs(ordersCollection);
-        const ordersList = ordersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  /* SALES HISTORY */
+  async function loadSalesHistory() {
+    const ordersRef = window.FirestoreHelpers.collection(window.Firebase.db, "orders");
+    const snapshot = await window.FirestoreHelpers.getDocs(ordersRef);
+  
+    let html = `
+      <h2>Sales History</h2>
+      <button class="primary" onclick="exportTodayFullPDF()">
+  Export Today's Sales (PDF)
+</button>
 
-        let html = `<h2>Sales History</h2><table border="1"><tr><th>Order ID</th><th>Date</th><th>Total</th><th>Items</th><th>Payment Method</th></tr>`;
-        ordersList.forEach(order => {
-          const date = order.createdAt ? new Date(order.createdAt.seconds * 1000).toLocaleString() : 'N/A';
-          const items = order.items ? order.items.map(item => `${item.name} x${item.qty}`).join(', ') : 'N/A';
-          html += `<tr><td>${order.id}</td><td>${date}</td><td>₱${order.totals ? order.totals.total.toFixed(2) : '0.00'}</td><td>${items}</td><td>${order.paymentMethod || 'N/A'}</td></tr>`;
-        });
-        html += `</table>`;
-        mainContent.innerHTML = html;
-      } catch (error) {
-        console.error("Error loading sales history:", error);
-        mainContent.innerHTML = `<h2>Sales History</h2><p>Error loading sales data: ${error.message}</p>`;
-      }
-    }
-  </script>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>Bill #</th>
+            <th>Transaction ID</th>
+            <th>Date & Time</th>
+            <th>Customer</th>
+            <th>Items (Qty)</th>
+            <th>Total Amount</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+  
+    snapshot.docs.forEach((doc, index) => {
+      const o = doc.data();
+  
+      const dateObj = o.createdAt
+        ? new Date(o.createdAt.seconds * 1000)
+        : null;
+  
+      const itemsText = (o.items || [])
+        .map(i => `${i.name} (${i.qty})`)
+        .join(", ");
+  
+      html += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${doc.id}</td>
+          <td>${dateObj ? dateObj.toLocaleString() : "N/A"}</td>
+          <td>${o.customerName || "Walk-in"}</td>
+          <td>${itemsText}</td>
+          <td>₱${o.totals?.total.toFixed(2)}</td>
+          <td>${o.paymentMethod}</td>
+        </tr>
+      `;
+    });
+  
+    html += "</tbody></table>";
+    mainContent.innerHTML = html;
+  }
+
+async function exportTodayPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF("landscape");
+
+  const ordersRef = window.FirestoreHelpers.collection(window.Firebase.db, "orders");
+  const snapshot = await window.FirestoreHelpers.getDocs(ordersRef);
+
+  const today = new Date().toLocaleDateString();
+
+  const rows = snapshot.docs
+    .map(d => ({ id: d.id, ...d.data() }))
+    .filter(o => {
+      if (!o.createdAt) return false;
+      const d = new Date(o.createdAt.seconds * 1000);
+      return d.toLocaleDateString() === today;
+    })
+    .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+    .slice(0, 20)
+    .map((o, i) => [
+      i + 1,
+      o.id,
+      new Date(o.createdAt.seconds * 1000).toLocaleString(),
+      o.customerName || "Walk-in",
+      (o.items || []).map(i => `${i.name} (${i.qty})`).join(", "),
+      `₱${o.totals?.total.toFixed(2)}`,
+      o.paymentMethod
+    ]);
+
+  doc.text("LitLatte POS – Top 20 Transactions (Today)", 14, 12);
+
+  doc.autoTable({
+    startY: 18,
+    head: [[
+      "Bill #",
+      "Transaction ID",
+      "Date & Time",
+      "Customer",
+      "Items (Qty)",
+      "Total Amount",
+      "Payment Method"
+    ]],
+    body: rows,
+    styles: { fontSize: 8, cellPadding: 3 }
+  });
+
+  doc.save(`LitLatte_Top20_${today.replace(/\//g, "-")}.pdf`);
+}
+
+  /* MANAGE CREW */
+  async function loadCrew() {
+    const crewRef = window.FirestoreHelpers.collection(window.Firebase.db, "employees");
+    const snapshot = await window.FirestoreHelpers.getDocs(crewRef);
+
+    let html = `
+      <h2>Manage Crew</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>MI</th>
+          </tr>
+        </thead><tbody>`;
+
+    snapshot.docs.forEach(doc => {
+      const c = doc.data();
+      html += `
+        <tr>
+          <td>${c.crewId}</td>
+          <td>${c.firstName}</td>
+          <td>${c.lastName}</td>
+          <td>${c.MI}</td>
+        </tr>`;
+    });
+
+    html += "</tbody></table>";
+    mainContent.innerHTML = html;
+  }
+
+  /* NAV */
+  document.getElementById("dashboardBtn").onclick = () => {
+    mainContent.innerHTML = dashboardView.outerHTML;
+    loadDashboard();
+  };
+
+  document.getElementById("salesHistoryBtn").onclick = loadSalesHistory;
+  document.getElementById("manageCrewBtn").onclick = loadCrew;
+  document.getElementById("returnBtn").onclick = () => window.location.href = "main.html";
+  document.getElementById("logoutBtn").onclick = () => {
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
+  };
+
+  loadDashboard();
+</script>
+
 </body>
 </html>

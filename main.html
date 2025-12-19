@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- ICONS -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
@@ -42,23 +45,28 @@
     const managerBtn = document.getElementById("managerBtn");
     const MANAGER_PIN = "1234";
 
-    if (managerBtn) {
-      managerBtn.addEventListener("click", () => {
-        const pin = prompt("Enter Manager PIN:");
+    if (!managerBtn) return;
 
-        if (pin === null) return;
+    managerBtn.addEventListener("click", () => {
+      const enteredPin = prompt("Enter Manager PIN:");
 
-        if (pin !== MANAGER_PIN) {
-          alert("❌ Incorrect Manager PIN");
-          return;
-        }
+      // Handle cancel or empty input
+      if (enteredPin === null || enteredPin.trim() === "") {
+        return;
+      }
 
-     
-        window.location.href = "manager.html";
-      });
-    }
+      // Validate PIN
+      if (enteredPin !== MANAGER_PIN) {
+        alert("Incorrect Manager PIN.");
+        return;
+      }
+
+      // Authorized access
+      window.location.href = "manager.html";
+    });
   });
 </script>
+
 
 <body>
 
@@ -74,29 +82,30 @@
   <div class="main-container">
     
     <aside class="sidebar">
+      <div class="sidebar-title">MENU</div>
+    
       <nav class="sidebar-nav">
-        <a href="#" class="nav-item active">
-          <i class="fas fa-shopping-bag"></i>
-          <span>Food Order</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-clock"></i>
-          <span>Order History</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-boxes"></i>
-          <span>Inventory</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-chart-bar"></i>
-          <span>Reports</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-cog"></i>
-          <span>Settings</span>
-        </a>
+        <button class="nav-btn active" data-view="dashboard">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-btn" data-view="products">
+          <i data-lucide="coffee"></i>
+          <span>Products</span>
+        </button>
+
+    
+      <div class="sidebar-divider"></div>
+    
+      <nav class="sidebar-nav">
+        <button class="nav-btn danger" id="logoutBtn">
+          <i data-lucide="log-out"></i>
+          <span>Logout</span>
+        </button>
       </nav>
     </aside>
+    
 
   
     <main class="main-content">
@@ -1738,7 +1747,7 @@
       `;
       
       receiptContent.innerHTML = receiptHtml;
-      receiptModal.style.display = 'flex';
+      openReceiptModal();
     }
     
     function closeReceiptModal() {
@@ -1885,5 +1894,43 @@
       }
     });
   </script>
+
+  <script>
+    let receiptAutoCloseTimer = null;
+  
+    function openReceiptModal() {
+      const receiptModal = document.getElementById('receiptModal');
+      receiptModal.style.display = 'flex';
+  
+      // Start 5-second auto close
+      receiptAutoCloseTimer = setTimeout(() => {
+        closeReceiptModal();
+      }, 5000);
+    }
+  
+    function closeReceiptModal() {
+      const receiptModal = document.getElementById('receiptModal');
+      receiptModal.style.display = 'none';
+  
+      // Clear timer if closed manually
+      if (receiptAutoCloseTimer) {
+        clearTimeout(receiptAutoCloseTimer);
+        receiptAutoCloseTimer = null;
+      }
+    }
+  
+    // Close button
+    document.getElementById('closeReceiptModal').addEventListener('click', closeReceiptModal);
+  
+    // Click outside receipt
+    document.getElementById('receiptModal').addEventListener('click', (e) => {
+      if (e.target.id === 'receiptModal') {
+        closeReceiptModal();
+      }
+    });
+
+    lucide.createIcons();
+  </script>
+  
 </body>
 </html>
