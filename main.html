@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Firebase SDKs -->
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
@@ -31,7 +31,7 @@
 
     window.Firebase = { app, analytics, auth, db };
 
-    // Check login status
+ 
     if (localStorage.getItem('loggedIn') !== 'true') {
       window.location.href = "login.html";
     }
@@ -53,7 +53,7 @@
           return;
         }
 
-        // Correct PIN → go to manager page
+     
         window.location.href = "manager.html";
       });
     }
@@ -61,7 +61,7 @@
 </script>
 
 <body>
-  <!-- Top Header -->
+
   <header class="top-header">
     <div class="header-left">
       <h1>LitLatte POS</h1>
@@ -72,7 +72,7 @@
   </header>
 
   <div class="main-container">
-    <!-- Left Sidebar -->
+    
     <aside class="sidebar">
       <nav class="sidebar-nav">
         <a href="#" class="nav-item active">
@@ -98,9 +98,9 @@
       </nav>
     </aside>
 
-    <!-- Main Content Area -->
+  
     <main class="main-content">
-      <!-- Search -->
+     
       <div class="search-filter-bar">
         <div class="search-box">
           <i class="fas fa-search"></i>
@@ -108,7 +108,7 @@
         </div>
       </div>
 
-      <!-- Explore Categories -->
+    
       <div class="categories-section">
         <div class="categories-scroll">
           <button class="category-btn active" data-category="all">
@@ -150,16 +150,16 @@
         </div>
       </div>
 
-      <!-- Product Tabs -->
+      
       <div class="product-tabs">
         <button class="tab-btn active" data-tab="popular">Popular</button>
       </div>
 
-      <!-- Products Grid -->
+    
       <div class="products-grid" id="productsGrid"></div>
     </main>
 
-    <!-- Right Invoice Sidebar -->
+    
     <aside class="invoice-sidebar">
       <div class="invoice-card">
         <div class="bill-header">
@@ -241,14 +241,14 @@
     </aside>
   </div>
 
-  <!-- Product Ordering Modal -->
+  
   <div id="productModal" class="product-modal">
     <div class="product-modal-content">
       <button class="modal-close-btn" id="closeProductModal">
         <i class="fas fa-times"></i>
       </button>
       
-      <!-- Product Identity -->
+      
       <div class="product-modal-header">
         <div class="product-modal-image">
           <img id="modalProductImage" src="" alt="">
@@ -260,7 +260,7 @@
         </div>
       </div>
 
-      <!-- Quantity Control -->
+      
       <div class="product-modal-section">
         <label class="section-label">Quantity</label>
         <div class="quantity-control">
@@ -271,38 +271,38 @@
         <p class="stock-indicator">In stock: <span id="stockCount">50</span></p>
       </div>
 
-      <!-- Required Options -->
+      
       <div class="product-modal-section" id="sizeSection" style="display: none;">
         <label class="section-label">Size <span class="required-badge">Required</span></label>
         <div class="options-group" id="requiredOptions">
-          <!-- Dynamically populated -->
+          
         </div>
       </div>
 
-      <!-- Optional Add-ons -->
+     
       <div class="product-modal-section">
         <label class="section-label">Add-ons (Optional)</label>
         <div class="options-group" id="optionalAddons">
-          <!-- Dynamically populated -->
+         
         </div>
       </div>
 
-      <!-- Modifiers -->
+      
       <div class="product-modal-section">
         <label class="section-label">Modifiers</label>
         <div class="modifier-buttons" id="modifierButtons">
-          <!-- Dynamically populated -->
+          
         </div>
       </div>
 
-      <!-- Special Instructions -->
+      
       <div class="product-modal-section">
         <label class="section-label">Special Instructions</label>
         <textarea id="specialInstructions" placeholder="Special instructions (kitchen will see this)" maxlength="100"></textarea>
         <p class="char-count"><span id="charCount">0</span>/100</p>
       </div>
 
-      <!-- Price Breakdown -->
+      
       <div class="product-modal-section price-breakdown">
         <div class="breakdown-row">
           <span>Base price</span>
@@ -318,7 +318,7 @@
         </div>
       </div>
 
-      <!-- Action Buttons -->
+      
       <div class="product-modal-actions">
         <button class="btn-secondary" id="cancelProductModal">Cancel</button>
         <button class="btn-primary" id="addToOrderBtn" disabled>Add to Order - <span id="addToOrderPrice">₱0.00</span></button>
@@ -1211,6 +1211,8 @@
       if(selectedPaymentMethod === 'cash') {
         const cashRadio = paymentForm.querySelector('input[name="payment"][value="cash"]');
         if(cashRadio) cashRadio.checked = true;
+        cashDetails.style.display = 'block';
+        updateModalTotals();
       }
 
       modalCartItems.innerHTML = "";
