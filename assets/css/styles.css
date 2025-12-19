@@ -1604,84 +1604,118 @@ body {
 .card-payment-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  padding: 8px 0;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+  position: relative;
 }
 
 .form-group label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 
 .account-type-buttons {
   display: flex;
-  gap: 12px;
+  gap: 16px;
 }
 
 .account-type-btn {
   flex: 1;
-  padding: 12px;
-  border: 2px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
   color: white;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
 .account-type-btn:hover {
-  border-color: rgba(255,255,255,0.5);
-  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 45, 37, 0.3);
 }
 
 .account-type-btn.active {
   border-color: var(--red-accent);
-  background: rgba(255,255,255,0.2);
-  color: white;
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 0 3px rgba(138, 45, 37, 0.2);
 }
 
 .pin-input {
-  padding: 12px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
   text-align: center;
-  letter-spacing: 6px;
-  max-width: 200px;
+  letter-spacing: 8px;
+  max-width: 220px;
   margin: 0 auto;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.08);
   color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
 .pin-input:focus {
   border-color: var(--red-accent);
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 45, 37, 0.3);
   outline: none;
 }
 
+.pin-input::placeholder {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
 .amount-input {
-  padding: 12px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-radius: 8px;
-  font-size: 18px;
-  font-weight: 600;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
   text-align: center;
   width: 100%;
-  margin-bottom: 16px;
-  background: rgba(255,255,255,0.1);
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.08);
   color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+.amount-input:focus {
+  border-color: var(--red-accent);
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 45, 37, 0.3);
+  outline: none;
 }
 
 .amount-input::placeholder {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
+.amount-input:hover {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
 }
 
 .keypad-container {

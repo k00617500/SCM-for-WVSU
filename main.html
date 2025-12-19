@@ -369,18 +369,21 @@
         </button>
       </div>
       <div class="card-payment-form">
-        <div class="form-group" id="accountTypeGroup">
-          <label>Account Type</label>
-          <div class="account-type-buttons">
-            <button type="button" class="account-type-btn" data-type="savings">Savings</button>
-            <button type="button" class="account-type-btn" data-type="debit">Debit</button>
-            <button type="button" class="account-type-btn" data-type="checking">Checking</button>
-          </div>
+        <div class="form-group">
+          <label for="accountNumber">Account Number</label>
+          <input type="text" id="accountNumber" placeholder="Enter account number" class="form-input" maxlength="20">
         </div>
-        <div class="form-group" id="pinGroup" style="display: none;">
-          <label>Enter 6-Digit PIN</label>
-          <input type="password" id="cardPin" maxlength="6" pattern="[0-9]{6}" placeholder="000000" class="pin-input">
-          <p class="pin-hint" style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Payment will process automatically after entering 6-digit PIN</p>
+        <div class="form-group">
+          <label for="cardPin">PIN</label>
+          <input type="password" id="cardPin" placeholder="Enter PIN" class="form-input" maxlength="6">
+        </div>
+        <div class="form-group">
+          <label for="totalAmount">Total Amount</label>
+          <input type="text" id="totalAmount" class="form-input" readonly>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cardCancel" class="btn-secondary">Cancel</button>
+          <button type="button" id="cardConfirm" class="btn-primary">Confirm Payment</button>
         </div>
       </div>
     </div>
@@ -1388,15 +1391,19 @@
       }
     }
     
-    let cardPaymentStep = 1; // 1: account type, 2: PIN, 3: amount, 4: confirm
-    
     function openCardModal() {
       const cardModal = document.getElementById('cardModal');
       cardModal.style.display = 'flex';
-      selectedAccountType = null;
-      cardPaymentStep = 1;
-      document.querySelectorAll('.account-type-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('pinGroup').style.display = 'none';
+
+      // Get current total amount
+      const discountType = getSelectedDiscount() || 'none';
+      const totals = computeTotals(discountType);
+
+      // Populate the total amount field
+      document.getElementById('totalAmount').value = `₱${totals.total.toFixed(2)}`;
+
+      // Clear form fields
+      document.getElementById('accountNumber').value = '';
       document.getElementById('cardPin').value = '';
     }
     
@@ -1529,6 +1536,23 @@
         cardPaymentStep = 3;
         processCardPayment();
       }
+    });
+
+    document.getElementById('cardConfirm').addEventListener('click', () => {
+      const accountNumber = document.getElementById('accountNumber').value.trim();
+      const cardPin = document.getElementById('cardPin').value.trim();
+
+      if(!accountNumber) {
+        alert('Please enter account number.');
+        return;
+      }
+
+      if(!cardPin || cardPin.length !== 6) {
+        alert('Please enter a valid 6-digit PIN.');
+        return;
+      }
+
+      processCardPayment();
     });
     
     async function processCardPayment() {
@@ -1867,7 +1891,7 @@
             orderId: orderRef.id
           });
 
-          // Clear cart and reset
+          
           cart.length = 0;
           billNumber = generateBillNumber();
           document.getElementById('billNumber').textContent = billNumber;
