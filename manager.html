@@ -105,7 +105,7 @@
 
         let html = `<h2>Manage Crew</h2><table border="1"><tr><th>Crew ID</th><th>First Name</th><th>Last Name</th><th>MI</th></tr>`;
         employeesList.forEach(employee => {
-          html += `<tr><td>${employee.crewId}</td><td>${employee.firstName}</td><td>${employee.lastName}</td><td>${employee.MI}</td></tr>`;
+          html += `<tr><td>${employee.crewId}</td><td>${employee.firstName}</td><td>${employee.lastName}</td><td>${employee.middleInitial}</td></tr>`;
         });
         html += `</table>`;
         mainContent.innerHTML = html;
