@@ -37,7 +37,7 @@
         console.error("Anonymous sign-in failed:", error);
       }
     })();
-    // xpose a couple of Firestore helpers so non-module inline scripts can call them
+    
     window.FirestoreHelpers = { collection, getDocs };
   </script>
 </head>
@@ -89,7 +89,7 @@
     });
 
     returnToPosBtn.addEventListener("click", () => {
-      window.location.href = "index.html";
+      window.location.href = "main.html";
     });
 
     logoutBtn.addEventListener("click", () => {

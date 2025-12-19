@@ -1,4 +1,4 @@
-// Firebase imports
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 import {
@@ -19,7 +19,7 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-/* ---------------- FIREBASE INIT ---------------- */
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
@@ -38,8 +38,7 @@ const db = getFirestore(app);
 
 window.Firebase = { app, analytics, auth, db };
 
-/* ---------------- AUTH REDIRECT (FIXED) ---------------- */
-/* Redirect ONLY on login.html */
+
 onAuthStateChanged(auth, user => {
   const path = window.location.pathname;
 
@@ -53,7 +52,7 @@ onAuthStateChanged(auth, user => {
   }
 });
 
-/* ---------------- FIRESTORE HELPERS ---------------- */
+
 
 export async function saveOrder(order) {
   const ref = await addDoc(collection(db, "orders"), {
@@ -99,11 +98,11 @@ export async function getOrdersByDate(startDate, endDate) {
   return results;
 }
 
-/* ---------------- DOM LOGIC ---------------- */
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------- LOGIN ---------- */
+  
   const loginForm = document.getElementById("loginForm");
   const errorMessage = document.getElementById("errorMessage");
 
@@ -127,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ---------- MANAGER BUTTON + PIN ---------- */
+  
   const managerBtn = document.getElementById("managerBtn");
   const MANAGER_PIN = "1234";
 
@@ -135,14 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
     managerBtn.addEventListener("click", () => {
       const pin = prompt("Enter Manager PIN:");
 
-      if (pin === null) return; // Cancelled
+      if (pin === null) return;
 
       if (pin !== MANAGER_PIN) {
         alert("❌ Incorrect Manager PIN");
         return;
       }
 
-      // PIN correct → open manager page
+   
       window.location.href = "manager.html";
     });
   }
