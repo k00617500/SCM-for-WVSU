@@ -184,9 +184,8 @@ bash
 1. User interacts via **Frontend (HTML, CSS, JS)**  
 2. Transaction or order data is processed by **Client-Side JavaScript Scripts** 
 3. Order and transaction data are stored in **Firebase Firestore** in real time
-4.The system records transaction details and generates a digital receipt  
-5. Inventory-related data is updated in **Firebase Firestore** 
-6. Analytics Dashboard visualizes sales, inventory status, and customer activity
+4. Inventory-related data is updated in **Firebase Firestore** 
+5. Analytics Dashboard visualizes sales, inventory status, and customer activity
 
 
 ---
