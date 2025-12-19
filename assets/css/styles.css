@@ -813,12 +813,12 @@ body {
 }
 
 .payment-method-btn-sidebar:hover {
-  border-color: var(--maroon-primary);
-  background: rgba(107, 26, 20, 0.05);
+  border-color: #c50000;
+  background: rgba(153, 53, 53, 0.05);
 }
 
 .payment-method-btn-sidebar.active {
-  border-color: var(--maroon-primary);
+  border-color: #c50000;
   background: rgba(107, 26, 20, 0.1);
   box-shadow: 0 0 0 2px rgba(107, 26, 20, 0.1);
 }
@@ -863,7 +863,8 @@ body {
 }
 
 .product-modal-content {
-  background: var(--maroon-primary);
+  background: #8f1b1b;      
+  color: var(--text-dark);    
   border-radius: 16px;
   width: 100%;
   max-width: 600px;
@@ -1206,7 +1207,7 @@ body {
 }
 
 .payment-modal-box {
-  background: var(--maroon-primary);
+  background: #920505;
   border-radius: 16px;
   width: 100%;
   max-width: 500px;
@@ -1338,6 +1339,7 @@ body {
 }
 
 .payment-method-card {
+  background: #920505;
   position: relative;
   cursor: pointer;
 }
@@ -1639,8 +1641,133 @@ body {
 .card-payment-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  padding: 8px 0;
 }
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+
+.account-type-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+
+.account-type-btn {
+  flex: 1;
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+
+.account-type-btn:hover {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 45, 37, 0.3);
+}
+
+
+.account-type-btn.active {
+  border-color: var(--red-accent);
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 0 3px rgba(138, 45, 37, 0.2);
+}
+
+
+.pin-input {
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 8px;
+  max-width: 220px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+
+.pin-input:focus {
+  border-color: var(--red-accent);
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 45, 37, 0.3);
+  outline: none;
+}
+
+
+.pin-input::placeholder {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
+
+.amount-input {
+  padding: 16px 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+
+
+.amount-input:focus {
+  border-color: var(--red-accent);
+  background: rgba(255,255,255,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(138, 45, 37, 0.3);
+  outline: none;
+}
+
+
+.amount-input::placeholder {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+}
+
+
+.amount-input:hover {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+}
+
 
 .form-group {
   display: flex;
@@ -2057,3 +2184,93 @@ body {
     top: 0;
   }
 }
+
+/* ================= LOGOUT MODAL ================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px 32px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  animation: logoutPop 0.25s ease-out;
+}
+
+.modal-box h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 22px;
+}
+
+/* Buttons container */
+.modal-box div {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* YES button */
+#confirmLogout {
+  background: #a80000;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#confirmLogout:hover {
+  background: #7a1212;
+  transform: translateY(-1px);
+}
+
+/* NO button */
+#cancelLogout {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#cancelLogout:hover {
+  background: #cfcfcf;
+  transform: translateY(-1px);
+}
+
+/* Animation */
+@keyframes logoutPop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.option-radio input[type="checkbox"] {
+  transform: scale(1.3);   
+  margin-right: 8px;      
+  cursor: pointer;
+  accent-color: #c40300;
+}
+

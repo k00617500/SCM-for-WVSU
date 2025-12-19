@@ -381,3 +381,195 @@
     transition: width 0.3s ease;
   }
   
+
+  /* =============================== */
+/* TOP PRODUCTS CAROUSEL           */
+/* =============================== */
+
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    padding-top: 10px;
+  }
+  
+  .carousel-track {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .carousel-card {
+    min-width: 180px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    padding: 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  .product-rank {
+    font-weight: 600;
+    color: #7a1212;
+    width: 30px;
+  }
+  
+  .product-name {
+    flex: 1;
+    margin-left: 10px;
+    font-weight: 500;
+  }
+  
+  .product-qty {
+    color: #666;
+    font-size: 13px;
+  }
+
+  .stat-card div {
+    font-weight: 700;
+    font-size: 22px;
+    margin-top: 6px;
+  }
+  .top-products-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .top-products-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  
+  .top-products-list li.top-three {
+    font-weight: 800;
+    color: #7a1212;
+    background: rgba(122, 18, 18, 0.05);
+    border-radius: 6px;
+  }
+  
+  .product-rank {
+    width: 30px;
+  }
+  
+  .product-qty {
+    opacity: 0.8;
+  }
+  
+  /* ================= LOGOUT MODAL ================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .modal-box {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px 32px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: logoutPop 0.25s ease-out;
+  }
+  
+  .modal-box h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 22px;
+  }
+  
+  /* Buttons container */
+  .modal-box div {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+  
+  /* YES button */
+  #confirmLogout {
+    background: #a80000;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  
+  #confirmLogout:hover {
+    background: #7a1212;
+    transform: translateY(-1px);
+  }
+  
+  /* NO button */
+  #cancelLogout {
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 22px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  
+  #cancelLogout:hover {
+    background: #cfcfcf;
+    transform: translateY(-1px);
+  }
+  
+  /* Animation */
+  @keyframes logoutPop {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal.hidden { display: none; }
+  
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  button.danger {
+    background: #a80000;
+    color: #fff;
+  }
+  

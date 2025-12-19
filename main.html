@@ -16,6 +16,8 @@
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
     import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
     import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+    import { deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
 
     const firebaseConfig = {
       apiKey: "AIzaSyAd7ZD-YonKHor0twOWSyPAE6ix9LXLeGI",
@@ -40,6 +42,7 @@
     }
   </script>
 </head>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const managerBtn = document.getElementById("managerBtn");
@@ -378,22 +381,26 @@
         </button>
       </div>
       <div class="card-payment-form">
-        <div class="form-group" id="accountTypeGroup">
-          <label>Account Type</label>
-          <div class="account-type-buttons">
-            <button type="button" class="account-type-btn" data-type="savings">Savings</button>
-            <button type="button" class="account-type-btn" data-type="debit">Debit</button>
-            <button type="button" class="account-type-btn" data-type="checking">Checking</button>
-          </div>
+        <div class="form-group">
+          <label for="accountNumber">Account Number</label>
+          <input type="text" id="accountNumber" placeholder="Enter account number" class="form-input" maxlength="20">
         </div>
-        <div class="form-group" id="pinGroup" style="display: none;">
-          <label>Enter 6-Digit PIN</label>
-          <input type="password" id="cardPin" maxlength="6" pattern="[0-9]{6}" placeholder="000000" class="pin-input">
-          <p class="pin-hint" style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Payment will process automatically after entering 6-digit PIN</p>
+        <div class="form-group">
+          <label for="cardPin">PIN</label>
+          <input type="password" id="cardPin" placeholder="Enter PIN" class="form-input" maxlength="6">
+        </div>
+        <div class="form-group">
+          <label for="totalAmount">Total Amount</label>
+          <input type="text" id="totalAmount" class="form-input" readonly>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cardCancel" class="btn-secondary">Cancel</button>
+          <button type="button" id="cardConfirm" class="btn-primary">Confirm Payment</button>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- Payment Modal -->
   <div id="paymentModal" class="modal">
@@ -424,9 +431,12 @@
               <span id="modalVat">₱0.00</span>
             </div>
             <div class="payment-summary-row payment-total">
-              <span>Total</span>
-              <span id="modalTotal">₱0.00</span>
+              <span style="color:#ffffff;">Total</span>
+              <span id="modalTotal" style="color:#ffffff; font-weight:700; font-size:20px;">
+                ₱0.00
+              </span>
             </div>
+            
           </div>
         </div>
 
@@ -497,10 +507,11 @@
           <div id="cashPaymentDetails" class="cash-details" style="display:none;">
             <h3>Cash Received</h3>
             <input type="number" id="cashReceivedInput" name="cash_received_amount" step="0.01" min="0" placeholder="₱ 0.00" class="cash-input">
-            <div class="change-due-section">
-              <h3>Change Due</h3>
-              <span id="changeDueSpan" class="change-amount">₱0.00</span>
-            </div>
+            <span id="changeDueSpan" class="change-amount"
+            style="color:#ff0000; font-weight:700; font-size:18px;">
+                ₱0.00
+              </span>
+              
           </div>
 
           <div class="payment-modal-actions">
@@ -528,6 +539,17 @@
       </div>
     </div>
   </div>
+
+  <div id="logoutModal" class="modal">
+    <div class="modal-box">
+      <h3>Do you want to log out?</h3>
+      <div style="margin-top:20px">
+        <button id="confirmLogout">Yes</button>
+        <button id="cancelLogout">No</button>
+      </div>
+    </div>
+  </div>
+  
 
   <!-- App script -->
   <script>
@@ -831,13 +853,19 @@
       if(productConfig.addons && productConfig.addons.length > 0){
         optionalAddons.innerHTML = productConfig.addons.map(addon => `
           <label class="option-radio">
-           <input type="checkbox" name="addon" value="${addon.value}" data-price="${addon.price}">
+           <input type="checkbox" style="margin-right:8px" name="addon" value="${addon.value}" data-price="${addon.price}">
             <span>${addon.name} P${addon.price}</span>
           </label>
         `).join('');
       } else {
-        optionalAddons.innerHTML = '<p style="color: rgba(255,255,255,0.6); font-size: 14px;">No add-ons available for this item.</p>';
-      }
+        optionalAddons.innerHTML = productConfig.addons.map(addon => `
+      <label class="option-radio">
+       <input type="checkbox" style="margin-right:8px" name="addon" value="${addon.value}" data-price="${addon.price}">
+        <span class="addon-label">${addon.name} P${addon.price}</span>
+      </label>
+    `).join('');
+
+          }
       
       // Setup Modifiers
       const modifierButtons = document.getElementById('modifierButtons');
@@ -1930,6 +1958,48 @@
     });
 
     lucide.createIcons();
+
+    const params = new URLSearchParams(window.location.search);
+
+if (params.get("viewReceipt") === "true") {
+  const receipt = JSON.parse(localStorage.getItem("viewReceipt"));
+  if (receipt) {
+    showReceiptFromManager(receipt);
+  }
+}
+
+function showReceiptFromManager(order) {
+  const receiptContent = document.getElementById("receiptContent");
+
+  receiptContent.innerHTML = `
+    <h3>Receipt</h3>
+    <p><strong>Customer:</strong> ${order.customerName || "Walk-in"}</p>
+    <p><strong>Date:</strong> ${new Date(order.createdAt.seconds * 1000).toLocaleString()}</p>
+    <hr>
+    ${order.items.map(i => `
+      <div>${i.qty} × ${i.name} — ₱${(i.qty * i.price).toFixed(2)}</div>
+    `).join("")}
+    <hr>
+    <strong>Total: ₱${order.totals.total.toFixed(2)}</strong>
+  `;
+
+  document.getElementById("receiptModal").style.display = "flex";
+}
+
+logoutBtn.onclick = () => {
+  document.getElementById("logoutModal").style.display = "flex";
+};
+
+confirmLogout.onclick = () => {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "index.html";
+};
+
+cancelLogout.onclick = () => {
+  document.getElementById("logoutModal").style.display = "none";
+};
+
+
   </script>
   
 </body>
